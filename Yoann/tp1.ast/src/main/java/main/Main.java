@@ -1,4 +1,4 @@
-package tp1.ast;
+package main;
 
 public class Main {
 
