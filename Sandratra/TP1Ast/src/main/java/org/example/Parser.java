@@ -14,17 +14,20 @@ import org.eclipse.jdt.core.dom.CompilationUnit;
 public class Parser {
     //recuperer le fichier a parser
     private String projectPath;
+    private String projectSourcePath;
+
     public Parser(){
 
     }
     public Parser(String projectPath){
         this.projectPath=projectPath;
+        this.projectSourcePath = this.projectPath + "/src";
     }
 
 
 
     public void ParseFolder(){
-        String projectSourcePath = this.projectPath + "/src";
+
         final File folder = new File(projectSourcePath);
         ArrayList<File> javaFiles = listJavaFilesForFolder(folder);
 
@@ -36,7 +39,9 @@ public class Parser {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            System.out.println(content);
+            //System.out.println(content);
+            CompilationUnit parse = parse(content.toCharArray());
+            System.out.println(parse);
         }
     }
 
@@ -55,25 +60,27 @@ public class Parser {
         return javaFiles;
     }
     //create AST
-//    private static CompilationUnit parse(char[] classSource) {
-//        ASTParser parser = ASTParser.newParser(AST.JLS4); // java +1.6
-//        parser.setResolveBindings(true);
-//        parser.setKind(ASTParser.K_COMPILATION_UNIT);
-//
-//        parser.setBindingsRecovery(true);
-//
-//        Map options = JavaCore.getOptions();
-//        parser.setCompilerOptions(options);
-//
-//        parser.setUnitName("");
-//
-//        String[] sources = { projectSourcePath };
-//        String[] classpath = {jrePath};
-//
-//        parser.setEnvironment(classpath, sources, new String[] { "UTF-8"}, true);
-//        parser.setSource(classSource);
-//
-//        return (CompilationUnit) parser.createAST(null); // create and parse
-//    }
+    private CompilationUnit parse(char[] classSource) {
+        String javaHome = System.getProperty("java.home");
+
+        ASTParser parser = ASTParser.newParser(AST.JLS4); // Java +1.6
+        parser.setResolveBindings(true);
+        parser.setKind(ASTParser.K_COMPILATION_UNIT);
+        parser.setBindingsRecovery(true);
+
+        Map<String, String> options = JavaCore.getOptions();
+        parser.setCompilerOptions(options);
+
+        parser.setUnitName("");
+
+        String[] sources = {projectSourcePath};
+        String[] classpath = {javaHome}; // Utilisez JAVA_HOME ici
+
+        parser.setEnvironment(classpath, sources, new String[]{"UTF-8"}, true);
+        parser.setSource(classSource);
+
+        return (CompilationUnit) parser.createAST(null); // Crée et analyse
+    }
+
 
 }
