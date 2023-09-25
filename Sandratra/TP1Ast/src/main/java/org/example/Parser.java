@@ -7,9 +7,7 @@ import java.util.Map;
 
 import org.apache.commons.io.FileUtils;
 import org.eclipse.jdt.core.JavaCore;
-import org.eclipse.jdt.core.dom.AST;
-import org.eclipse.jdt.core.dom.ASTParser;
-import org.eclipse.jdt.core.dom.CompilationUnit;
+import org.eclipse.jdt.core.dom.*;
 
 public class Parser {
     //recuperer le fichier a parser
@@ -41,7 +39,7 @@ public class Parser {
             }
             //System.out.println(content);
             CompilationUnit parse = parse(content.toCharArray());
-            System.out.println(parse);
+           printMethodInfo(parse);
         }
     }
 
@@ -82,5 +80,15 @@ public class Parser {
         return (CompilationUnit) parser.createAST(null); // Crée et analyse
     }
 
+    //Methode declaration
+    public void printMethodInfo(CompilationUnit parse) {
+        MethodDeclarationVisitor visitor = new MethodDeclarationVisitor();
+        parse.accept(visitor);
 
+        for (MethodDeclaration method : visitor.getMethods()) {
+            System.out.println("Method name: " + method.getName()
+                    + " Return type: " + method.getReturnType2());
+        }
+
+    }
 }
