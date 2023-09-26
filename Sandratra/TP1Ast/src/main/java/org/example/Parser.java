@@ -43,6 +43,7 @@ public class Parser {
            //printMethodInfo(parse);
             nbrClasse+=getNbrClassInFiles(parse);
             nbrLigne+=getNbrLineInFile(parse);
+            System.out.println("ligne de la classe "+getNbrLineInFile(parse));
             nbrMethode+=getNbrMethodeInFile(parse);
         }
         // Affichez le nombre de classes
@@ -125,6 +126,6 @@ public class Parser {
     }
 
     public double moyenne(int nbr,int nbrClasse){
-        return nbr/nbrClasse;
+        return (double) nbr /nbrClasse;
     }
 }
