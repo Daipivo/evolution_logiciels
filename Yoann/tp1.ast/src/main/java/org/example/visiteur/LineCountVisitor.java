@@ -5,14 +5,28 @@ import org.eclipse.jdt.core.dom.*;
 public class LineCountVisitor extends ASTVisitor {
     private int lineCount = 0;
 
+
     @Override
     public boolean visit(TypeDeclaration node) {
         // Obtenir le numéro de ligne de début et de fin du nœud
-        int startLine = ((CompilationUnit) node.getRoot()).getLineNumber(node.getStartPosition());
-        int endLine = ((CompilationUnit) node.getRoot()).getLineNumber(node.getStartPosition() + node.getLength());
+        CompilationUnit compilationUnit = (CompilationUnit) node.getRoot();
 
-        // Ajouter le nombre de lignes du nœud
+
+        System.out.println("====");
+        System.out.println(compilationUnit);
+
+        System.out.println("====");
+
+        // Obtenir le numéro de ligne de début et de fin du nœud
+        int startLine = compilationUnit.getLineNumber(node.getStartPosition());
+        int endLine = compilationUnit.getLineNumber(node.getStartPosition() + node.getLength());
+
+        // Calculer le nombre de lignes de code dans le TypeDeclaration
+
         lineCount += endLine - startLine + 1;
+
+
+        System.out.println(endLine - startLine + 1);
 
         return super.visit(node);
     }

@@ -2,6 +2,9 @@ package org.example.parser;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -33,7 +36,7 @@ public class Parser {
         final File folder = new File(projectSourcePath);
         ArrayList<File> javaFiles = listJavaFilesForFolder(folder);
         int nbrClasse=0;
-        int nbrLigne=0;
+        long nbrLigne=0;
         int nbrMethode=0;
         int nbrPackage=0;
         //
@@ -43,6 +46,13 @@ public class Parser {
 
         for (File fileEntry : javaFiles) {
             String content = null;
+
+            System.out.println(fileEntry.getName());
+
+            nbrLigne += getNumberOfLines(fileEntry.getAbsolutePath()) ;
+
+            System.out.println(getNumberOfLines(fileEntry.getAbsolutePath()));
+
             try {
                 content = FileUtils.readFileToString(fileEntry);
             } catch (IOException e) {
@@ -52,7 +62,7 @@ public class Parser {
             CompilationUnit parse = parse(content.toCharArray());
             //System.out.println(content);
             nbrClasse+=getNbrClassInFiles(parse);
-            nbrLigne+=getNbrLineInFile(parse);
+            //nbrLigne+=getNbrLineInFile(parse);
             nbrMethode+=getNbrMethodeInFile(parse);
             nbrPackage += getNbrPackageInFolder(parse);
         }
@@ -64,7 +74,7 @@ public class Parser {
         //Nombre	moyen	de	méthodes	par	classe.
         System.out.println("Nombre moyen de méthodes par classe : " + moyenne(nbrMethode,nbrClasse));
         //Nombre	moyen	de	lignes	de	code	par	méthode
-        System.out.println("Nombre moyen de lignes de code par méthode : "+moyenne(nbrLigne,nbrMethode));
+        System.out.println("Nombre moyen de lignes de code par méthode : "+moyenne((int)nbrLigne,nbrMethode));
         System.out.println("Nombre de packages : " + nbrPackage);
     }
 
@@ -139,6 +149,15 @@ public class Parser {
         PackageDeclarationVisitor visitor = new PackageDeclarationVisitor();
         parse.accept(visitor);
         return visitor.getPackageCount();
+    }
+
+    public long getNumberOfLines(String fileName) {
+        Path path = Paths.get(fileName);
+        long lines = 0;
+        try {
+            lines = Files.lines(path).count();
+        } catch (IOException e) { e.printStackTrace(); }
+        return lines;
     }
 
     public double moyenne(int nbr,int nbrClasse){
