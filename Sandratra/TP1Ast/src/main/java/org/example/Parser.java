@@ -25,10 +25,11 @@ public class Parser {
 
 
     public void ParseFolder(){
-
         final File folder = new File(projectSourcePath);
         ArrayList<File> javaFiles = listJavaFilesForFolder(folder);
-
+        int nbrClasse=0;
+        int nbrLigne=0;
+        int nbrMethode=0;
         //
         for (File fileEntry : javaFiles) {
             String content = null;
@@ -39,8 +40,21 @@ public class Parser {
             }
             //System.out.println(content);
             CompilationUnit parse = parse(content.toCharArray());
-           printMethodInfo(parse);
+           //printMethodInfo(parse);
+            nbrClasse+=getNbrClassInFiles(parse);
+            nbrLigne+=getNbrLineInFile(parse);
+            nbrMethode+=getNbrMethodeInFile(parse);
         }
+        // Affichez le nombre de classes
+
+        System.out.println("Nombre total de classes dans le projet : " + nbrClasse);
+        System.out.println("Nombre total de Ligne de code dans le projet : " + nbrLigne);
+        System.out.println("Nombre total de Methode dans le projet : " + nbrMethode);
+        //Nombre	moyen	de	méthodes	par	classe.
+        System.out.println("Nombre moyen de méthodes par classe : " + moyenne(nbrMethode,nbrClasse));
+        //Nombre	moyen	de	lignes	de	code	par	méthode
+        System.out.println("Nombre moyen de lignes de code par méthode : "+moyenne(nbrLigne,nbrMethode));
+
     }
 
     // read all java files from specific folder
@@ -90,5 +104,27 @@ public class Parser {
                     + " Return type: " + method.getReturnType2());
         }
 
+    }
+
+    public int getNbrClassInFiles(CompilationUnit parse){
+        ClassCountVisitor visitor=new ClassCountVisitor();
+        parse.accept(visitor);
+        return visitor.getClassCount();
+    }
+
+    public int getNbrLineInFile(CompilationUnit parse){
+        LineCountVisitor visitor=new LineCountVisitor();
+        parse.accept(visitor);
+        return visitor.getLineCount();
+    }
+
+    public int getNbrMethodeInFile(CompilationUnit parse){
+        MethodDeclarationVisitor visitor=new MethodDeclarationVisitor();
+        parse.accept(visitor);
+        return visitor.getMethodCount();
+    }
+
+    public double moyenne(int nbr,int nbrClasse){
+        return nbr/nbrClasse;
     }
 }
