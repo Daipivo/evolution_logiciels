@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MethodDeclarationVisitor extends ASTVisitor {
-    List<MethodDeclaration> methods = new ArrayList<MethodDeclaration>();
+    private List<MethodDeclaration> methods = new ArrayList<MethodDeclaration>();
     private int methodCount = 0;
 
     public boolean visit(MethodDeclaration node) {

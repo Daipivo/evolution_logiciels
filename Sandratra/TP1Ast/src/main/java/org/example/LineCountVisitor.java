@@ -11,8 +11,6 @@ public class LineCountVisitor extends ASTVisitor {
     @Override
     public boolean visit(MethodDeclaration node) {
         // Obtenir le numéro de ligne de début et de fin du nœud
-        System.out.println("on va lire un noeud");
-        System.out.println(node);
         int startLine = ((CompilationUnit) node.getRoot()).getLineNumber(node.getStartPosition());
         int endLine = ((CompilationUnit) node.getRoot()).getLineNumber(node.getStartPosition() + node.getLength());
 
