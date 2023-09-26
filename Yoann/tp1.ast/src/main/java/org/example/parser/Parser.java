@@ -11,6 +11,7 @@ import org.eclipse.jdt.core.dom.*;
 import org.example.visiteur.ClassCountVisitor;
 import org.example.visiteur.LineCountVisitor;
 import org.example.visiteur.MethodDeclarationVisitor;
+import org.example.visiteur.PackageDeclarationVisitor;
 
 public class Parser {
     //recuperer le fichier a parser
@@ -34,7 +35,12 @@ public class Parser {
         int nbrClasse=0;
         int nbrLigne=0;
         int nbrMethode=0;
+        int nbrPackage=0;
         //
+
+        processFolder(folder);
+
+
         for (File fileEntry : javaFiles) {
             String content = null;
             try {
@@ -42,12 +48,13 @@ public class Parser {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            //System.out.println(content);
+            //printMethodInfo(parse);
             CompilationUnit parse = parse(content.toCharArray());
-           //printMethodInfo(parse);
+            //System.out.println(content);
             nbrClasse+=getNbrClassInFiles(parse);
             nbrLigne+=getNbrLineInFile(parse);
             nbrMethode+=getNbrMethodeInFile(parse);
+            nbrPackage += getNbrPackageInFolder(parse);
         }
         // Affichez le nombre de classes
 
@@ -58,7 +65,7 @@ public class Parser {
         System.out.println("Nombre moyen de méthodes par classe : " + moyenne(nbrMethode,nbrClasse));
         //Nombre	moyen	de	lignes	de	code	par	méthode
         System.out.println("Nombre moyen de lignes de code par méthode : "+moyenne(nbrLigne,nbrMethode));
-
+        System.out.println("Nombre de packages : " + nbrPackage);
     }
 
     // read all java files from specific folder
@@ -128,7 +135,26 @@ public class Parser {
         return visitor.getMethodCount();
     }
 
+    public int getNbrPackageInFolder(CompilationUnit parse){
+        PackageDeclarationVisitor visitor = new PackageDeclarationVisitor();
+        parse.accept(visitor);
+        return visitor.getPackageCount();
+    }
+
     public double moyenne(int nbr,int nbrClasse){
         return nbr/nbrClasse;
+    }
+
+
+    public void processFolder(File folder) {
+        File[] files = folder.listFiles();
+
+        if (files != null) {
+            for (File file : files) {
+                if (file.isDirectory()) {
+                    processFolder(file);
+                }
+            }
+        }
     }
 }
