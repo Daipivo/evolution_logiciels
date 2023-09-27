@@ -6,13 +6,13 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.io.FileUtils;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.dom.*;
 import org.example.visiteur.ClassCountVisitor;
-import org.example.visiteur.LineCountVisitor;
 import org.example.visiteur.MethodDeclarationVisitor;
 import org.example.visiteur.PackageDeclarationVisitor;
 
@@ -20,6 +20,9 @@ public class Parser {
     //recuperer le fichier a parser
     private String projectPath;
     private String projectSourcePath;
+
+    ArrayList<CompilationUnit> cUnits = new ArrayList<>();
+
 
     public Parser(){
 
@@ -35,11 +38,11 @@ public class Parser {
     public void ParseFolder(){
         final File folder = new File(projectSourcePath);
         ArrayList<File> javaFiles = listJavaFilesForFolder(folder);
-        int nbrClasse=0;
-        long nbrLigne=0;
-        int nbrMethode=0;
-        int nbrPackage=0;
-        //
+        int nbrClasses = 0;
+        int nbrLignes = 0;
+        int nbrMethodes = 0;
+        int nbrPackage = 0;
+
 
         processFolder(folder);
 
@@ -47,35 +50,30 @@ public class Parser {
         for (File fileEntry : javaFiles) {
             String content = null;
 
-            System.out.println(fileEntry.getName());
-
-            nbrLigne += getNumberOfLines(fileEntry.getAbsolutePath()) ;
-
-            System.out.println(getNumberOfLines(fileEntry.getAbsolutePath()));
+            nbrLignes += getNumberOfLines(fileEntry.getAbsolutePath()) ;
 
             try {
                 content = FileUtils.readFileToString(fileEntry);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            //printMethodInfo(parse);
             CompilationUnit parse = parse(content.toCharArray());
-            //System.out.println(content);
-            nbrClasse+=getNbrClassInFiles(parse);
-            //nbrLigne+=getNbrLineInFile(parse);
-            nbrMethode+=getNbrMethodeInFile(parse);
-            nbrPackage += getNbrPackageInFolder(parse);
+            cUnits.add(parse);
         }
-        // Affichez le nombre de classes
 
-        System.out.println("Nombre total de classes dans le projet : " + nbrClasse);
-        System.out.println("Nombre total de Ligne de code dans le projet : " + nbrLigne);
-        System.out.println("Nombre total de Methode dans le projet : " + nbrMethode);
-        //Nombre	moyen	de	méthodes	par	classe.
-        System.out.println("Nombre moyen de méthodes par classe : " + moyenne(nbrMethode,nbrClasse));
-        //Nombre	moyen	de	lignes	de	code	par	méthode
-        System.out.println("Nombre moyen de lignes de code par méthode : "+moyenne((int)nbrLigne,nbrMethode));
-        System.out.println("Nombre de packages : " + nbrPackage);
+
+        nbrClasses = getNbClasses();
+        nbrMethodes = getNbMethods();
+        nbrPackage = getNbPackages();
+
+
+        System.out.println("Nombre total de classes dans le projet ==> " + nbrClasses);
+        System.out.println("Nombre total de lignes de code dans le projet ==> " + nbrLignes);
+        System.out.println("Nombre total de méthodes dans le projet ==> " + nbrMethodes);
+        System.out.println("Nombre total de packages dans le projet ==> " + nbrPackage);
+        System.out.println("Nombre moyen de méthodes par classe ==> " + moyenne(nbrMethodes,nbrClasses));
+        System.out.println("Nombre moyen de lignes de code par méthode ==> "+moyenne(nbrLignes,nbrMethodes));
+        System.out.println(classes10percentMethods());
     }
 
     // read all java files from specific folder
@@ -115,49 +113,53 @@ public class Parser {
         return (CompilationUnit) parser.createAST(null); // Crée et analyse
     }
 
-    //Methode declaration
-    public void printMethodInfo(CompilationUnit parse) {
-        MethodDeclarationVisitor visitor = new MethodDeclarationVisitor();
-        parse.accept(visitor);
+    public int getNbClasses(){
 
-        for (MethodDeclaration method : visitor.getMethods()) {
-            System.out.println("Method name: " + method.getName()
-                    + " Return type: " + method.getReturnType2());
-        }
+        ClassCountVisitor visitor = new ClassCountVisitor();
 
-    }
+        for (CompilationUnit cUnit: cUnits)
+            cUnit.accept(visitor);
 
-    public int getNbrClassInFiles(CompilationUnit parse){
-        ClassCountVisitor visitor=new ClassCountVisitor();
-        parse.accept(visitor);
         return visitor.getClassCount();
     }
 
-    public int getNbrLineInFile(CompilationUnit parse){
-        LineCountVisitor visitor=new LineCountVisitor();
-        parse.accept(visitor);
-        return visitor.getLineCount();
+    public List<String> classes10percentMethods()
+    {
+        ClassCountVisitor ClassVisitor = new ClassCountVisitor();
+
+        for (CompilationUnit cUnit: cUnits)
+            cUnit.accept(ClassVisitor);
+
+        return ClassVisitor.get10PercentMostMethods();
     }
 
-    public int getNbrMethodeInFile(CompilationUnit parse){
-        MethodDeclarationVisitor visitor=new MethodDeclarationVisitor();
-        parse.accept(visitor);
-        return visitor.getMethodCount();
+    public int getNbMethods(){
+
+        MethodDeclarationVisitor MethodVisitor=new MethodDeclarationVisitor();
+
+        for (CompilationUnit cUnit: cUnits)
+            cUnit.accept(MethodVisitor);
+
+        return MethodVisitor.getMethodCount();
     }
 
-    public int getNbrPackageInFolder(CompilationUnit parse){
-        PackageDeclarationVisitor visitor = new PackageDeclarationVisitor();
-        parse.accept(visitor);
-        return visitor.getPackageCount();
+    public int getNbPackages(){
+
+        PackageDeclarationVisitor Packagevisitor = new PackageDeclarationVisitor();
+
+        for (CompilationUnit cUnit: cUnits)
+            cUnit.accept(Packagevisitor);
+
+        return Packagevisitor.getPackageCount();
     }
 
-    public long getNumberOfLines(String fileName) {
+    public int getNumberOfLines(String fileName) {
         Path path = Paths.get(fileName);
         long lines = 0;
         try {
             lines = Files.lines(path).count();
         } catch (IOException e) { e.printStackTrace(); }
-        return lines;
+        return (int)lines;
     }
 
     public double moyenne(int nbr,int nbrClasse){
