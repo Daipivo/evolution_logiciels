@@ -83,4 +83,19 @@ public class ClassCountVisitor extends ASTVisitor {
         return classNames;
     }
 
+    public List<String> getClassesWithMoreThanMethods(int nbMethodsMin){
+
+        List<TypeDeclaration> allClasses = getClasses();
+
+        List<String> result = new ArrayList<>();
+
+        for (TypeDeclaration cl : allClasses){
+            if(cl.getMethods().length >= nbMethodsMin){
+                result.add(String.valueOf(cl.getName()));
+            }
+        }
+
+        return result;
+    }
+
 }

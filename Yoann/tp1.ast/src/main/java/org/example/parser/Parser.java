@@ -75,6 +75,8 @@ public class Parser {
         System.out.println("Nombre moyen de lignes de code par méthode ==> "+moyenne(nbrLignes,nbrMethodes));
         System.out.println(classes10percentMethods());
         System.out.println(classes10percentAttributes());
+        System.out.println(classesMostAttributesAndMethods());
+        System.out.println(classesWithMoreThanMethods(3));
     }
 
     // read all java files from specific folder
@@ -143,6 +145,33 @@ public class Parser {
 
         return ClassVisitor.get10PercentMostAttributes();
     }
+
+    public List<String> classesMostAttributesAndMethods() {
+
+        List<String> classesMostAttributes = classes10percentAttributes();
+        List<String> classesMostMethods = classes10percentMethods();
+        List<String> result = new ArrayList<>();
+
+        for (String cA : classesMostAttributes){
+                if(classesMostMethods.contains(cA)){
+                    result.add(cA);
+                }
+        }
+
+        return result;
+
+    }
+
+    public List<String> classesWithMoreThanMethods(int nbMethods)
+    {
+        ClassCountVisitor ClassVisitor = new ClassCountVisitor();
+
+        for (CompilationUnit cUnit: cUnits)
+            cUnit.accept(ClassVisitor);
+
+        return ClassVisitor.getClassesWithMoreThanMethods(nbMethods);
+    }
+
 
     public int getNbMethods(){
 
