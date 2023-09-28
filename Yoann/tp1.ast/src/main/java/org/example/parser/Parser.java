@@ -210,7 +210,7 @@ public class Parser {
     }
 
     public int getNbrParameterMax() {
-        MaxParametersVisitor parametersvisitor = new MaxParametersVisitor();
+        MethodDeclarationVisitor parametersvisitor = new MethodDeclarationVisitor();
         for (CompilationUnit cUnit: cUnits)
             cUnit.accept(parametersvisitor);
 
