@@ -12,10 +12,9 @@ import java.util.Map;
 import org.apache.commons.io.FileUtils;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.dom.*;
-import org.example.visiteur.AttributDeclarationVisitor;
-import org.example.visiteur.ClassCountVisitor;
-import org.example.visiteur.MethodDeclarationVisitor;
-import org.example.visiteur.PackageDeclarationVisitor;
+import org.example.visiteur.*;
+
+import javax.xml.crypto.dsig.spec.HMACParameterSpec;
 
 public class Parser {
     //recuperer le fichier a parser
@@ -44,6 +43,7 @@ public class Parser {
         int nbrMethodes = 0;
         int nbrPackage = 0;
         int nbrAttribute=0;
+        int nbrMaxParameters=0;
 
         processFolder(folder);
 
@@ -66,7 +66,8 @@ public class Parser {
         nbrClasses = getNbClasses();
         nbrMethodes = getNbMethods();
         nbrPackage = getNbPackages();
-        nbrAttribute+=getnbrAttribut();
+        nbrAttribute=getnbrAttribut();
+        nbrMaxParameters=getNbrParameterMax();
 
 
         System.out.println("Nombre total de classes dans le projet ==> " + nbrClasses);
@@ -81,6 +82,7 @@ public class Parser {
         System.out.println(classes10percentAttributes());
         System.out.println(classesMostAttributesAndMethods());
         System.out.println(classesWithMoreThanMethods(3));
+        System.out.println("Le nombre maximal de paramètres par rapport à toutes les méthodes de l’application: "+nbrMaxParameters);
 
     }
 
@@ -205,6 +207,14 @@ public class Parser {
             lines = Files.lines(path).count();
         } catch (IOException e) { e.printStackTrace(); }
         return (int)lines;
+    }
+
+    public int getNbrParameterMax() {
+        MaxParametersVisitor parametersvisitor = new MaxParametersVisitor();
+        for (CompilationUnit cUnit: cUnits)
+            cUnit.accept(parametersvisitor);
+
+        return parametersvisitor.getMaxParameters();
     }
 
     public double moyenne(int nbr,int nbrClasse){
