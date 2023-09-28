@@ -2,14 +2,16 @@ package org.example.visiteur;
 
 import org.eclipse.jdt.core.dom.ASTVisitor;
 import org.eclipse.jdt.core.dom.MethodDeclaration;
+import org.eclipse.jdt.core.dom.TypeDeclaration;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class MethodDeclarationVisitor extends ASTVisitor {
     List<MethodDeclaration> methods = new ArrayList<MethodDeclaration>();
     private int methodCount = 0;
     private int maxParameters = 0;
+
+
 
     public boolean visit(MethodDeclaration node) {
         methodCount++;
@@ -28,7 +30,10 @@ public class MethodDeclarationVisitor extends ASTVisitor {
     public List<MethodDeclaration> getMethods() {
         return methods;
     }
+
     public int getMaxParameters() {
         return maxParameters;
     }
+
+
 }

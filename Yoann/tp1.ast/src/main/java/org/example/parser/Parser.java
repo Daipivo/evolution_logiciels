@@ -83,7 +83,7 @@ public class Parser {
         System.out.println(classesMostAttributesAndMethods());
         System.out.println(classesWithMoreThanMethods(3));
         System.out.println("Le nombre maximal de paramètres par rapport à toutes les méthodes de l’application: "+nbrMaxParameters);
-
+        methodsWithMostCodeLinesPerClasses();
     }
 
     // read all java files from specific folder
@@ -177,6 +177,16 @@ public class Parser {
             cUnit.accept(ClassVisitor);
 
         return ClassVisitor.getClassesWithMoreThanMethods(nbMethods);
+    }
+
+    public Map<String,List<String>> methodsWithMostCodeLinesPerClasses()
+    {
+        ClassCountVisitor ClassVisitor = new ClassCountVisitor();
+
+        for (CompilationUnit cUnit: cUnits)
+            cUnit.accept(ClassVisitor);
+
+        return ClassVisitor.getMethodsMostCodeLinesPerClasses();
     }
 
 
