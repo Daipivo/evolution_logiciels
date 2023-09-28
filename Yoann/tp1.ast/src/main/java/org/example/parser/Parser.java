@@ -12,6 +12,7 @@ import java.util.Map;
 import org.apache.commons.io.FileUtils;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.dom.*;
+import org.example.visiteur.AttributDeclarationVisitor;
 import org.example.visiteur.ClassCountVisitor;
 import org.example.visiteur.MethodDeclarationVisitor;
 import org.example.visiteur.PackageDeclarationVisitor;
@@ -42,7 +43,7 @@ public class Parser {
         int nbrLignes = 0;
         int nbrMethodes = 0;
         int nbrPackage = 0;
-
+        int nbrAttribute=0;
 
         processFolder(folder);
 
@@ -65,6 +66,7 @@ public class Parser {
         nbrClasses = getNbClasses();
         nbrMethodes = getNbMethods();
         nbrPackage = getNbPackages();
+        nbrAttribute+=getnbrAttribut();
 
 
         System.out.println("Nombre total de classes dans le projet ==> " + nbrClasses);
@@ -73,10 +75,13 @@ public class Parser {
         System.out.println("Nombre total de packages dans le projet ==> " + nbrPackage);
         System.out.println("Nombre moyen de méthodes par classe ==> " + moyenne(nbrMethodes,nbrClasses));
         System.out.println("Nombre moyen de lignes de code par méthode ==> "+moyenne(nbrLignes,nbrMethodes));
+        System.out.println("Nombre d'attribut: "+nbrAttribute);
+        System.out.println("Nombre moyenne d'attribut par classe :"+(double)moyenne(nbrAttribute,nbrClasses));
         System.out.println(classes10percentMethods());
         System.out.println(classes10percentAttributes());
         System.out.println(classesMostAttributesAndMethods());
         System.out.println(classesWithMoreThanMethods(3));
+
     }
 
     // read all java files from specific folder
@@ -217,5 +222,20 @@ public class Parser {
                 }
             }
         }
+    }
+
+    public int getnbrAttribut(){
+        AttributDeclarationVisitor Attributevisitor = new AttributDeclarationVisitor();
+        for (CompilationUnit cUnit: cUnits)
+            cUnit.accept(Attributevisitor);
+
+        // Calculez le nombre moyen d'attributs par classe
+        int totalAttributes = 0;
+        int classCount = Attributevisitor.getClassCount();
+
+        for (Integer attributeCount : Attributevisitor.getAttributeCounts().values()) {
+            totalAttributes += attributeCount;
+        }
+        return totalAttributes;
     }
 }
