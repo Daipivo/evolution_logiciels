@@ -35,7 +35,7 @@ public class Parser {
 
 
 
-    public void ParseFolder(){
+    public String ParseFolder(){
         final File folder = new File(projectSourcePath);
         ArrayList<File> javaFiles = listJavaFilesForFolder(folder);
         int nbrClasses = 0;
@@ -69,21 +69,21 @@ public class Parser {
         nbrAttribute=getnbrAttribut();
         nbrMaxParameters=getNbrParameterMax();
 
+        String results = "Nombre total de classes dans le projet ==> " + nbrClasses + "\n"
+                + "Nombre total de lignes de code dans le projet ==> " + nbrLignes + "\n"
+                + "Nombre total de méthodes dans le projet ==> " + nbrMethodes + "\n"
+                + "Nombre total de packages dans le projet ==> " + nbrPackage + "\n"
+                + "Nombre moyen de méthodes par classe ==> " + moyenne(nbrMethodes, nbrClasses) + "\n"
+                + "Nombre moyen de lignes de code par méthode ==> " + moyenne(nbrLignes, nbrMethodes) + "\n"
+                + "Nombre d'attribut: " + nbrAttribute + "\n"
+                + "Nombre moyenne d'attribut par classe :" + (double) moyenne(nbrAttribute, nbrClasses) + "\n"
+                + classes10percentMethods() + "\n"
+                + classes10percentAttributes() + "\n"
+                + classesMostAttributesAndMethods() + "\n"
+                + classesWithMoreThanMethods(3) + "\n"
+                + "Le nombre maximal de paramètres par rapport à toutes les méthodes de l’application: " + nbrMaxParameters;
 
-        System.out.println("Nombre total de classes dans le projet ==> " + nbrClasses);
-        System.out.println("Nombre total de lignes de code dans le projet ==> " + nbrLignes);
-        System.out.println("Nombre total de méthodes dans le projet ==> " + nbrMethodes);
-        System.out.println("Nombre total de packages dans le projet ==> " + nbrPackage);
-        System.out.println("Nombre moyen de méthodes par classe ==> " + moyenne(nbrMethodes,nbrClasses));
-        System.out.println("Nombre moyen de lignes de code par méthode ==> "+moyenne(nbrLignes,nbrMethodes));
-        System.out.println("Nombre d'attribut: "+nbrAttribute);
-        System.out.println("Nombre moyenne d'attribut par classe :"+(double)moyenne(nbrAttribute,nbrClasses));
-        System.out.println(classes10percentMethods());
-        System.out.println(classes10percentAttributes());
-        System.out.println(classesMostAttributesAndMethods());
-        System.out.println(classesWithMoreThanMethods(3));
-        System.out.println("Le nombre maximal de paramètres par rapport à toutes les méthodes de l’application: "+nbrMaxParameters);
-
+        return results;
     }
 
     // read all java files from specific folder
