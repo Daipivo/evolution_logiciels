@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class PackageDeclarationVisitor extends ASTVisitor {
     private int packageCount = 0;
-    private static ArrayList<String> packages = new ArrayList<>();
+    private ArrayList<String> packages = new ArrayList<>();
 
     @Override
     public boolean visit(PackageDeclaration node) {

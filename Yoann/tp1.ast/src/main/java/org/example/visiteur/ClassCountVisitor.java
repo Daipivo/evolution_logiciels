@@ -14,11 +14,14 @@ public class ClassCountVisitor extends ASTVisitor {
 
     @Override
     public boolean visit(TypeDeclaration node) {
-        classCount++;
-        classes.add(node);
 
-        if(!classesAndMethods.containsKey(String.valueOf(node.getName()))){
-            classesAndMethods.put(String.valueOf(node.getName()), Arrays.asList(node.getMethods()));
+        if(!node.isInterface()) {
+            classCount++;
+            classes.add(node);
+
+            if (!classesAndMethods.containsKey(String.valueOf(node.getName()))) {
+                classesAndMethods.put(String.valueOf(node.getName()), Arrays.asList(node.getMethods()));
+            }
         }
 
         return super.visit(node);
