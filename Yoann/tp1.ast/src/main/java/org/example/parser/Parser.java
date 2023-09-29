@@ -20,6 +20,7 @@ public class Parser {
     //recuperer le fichier a parser
     private String projectPath;
     private String projectSourcePath;
+    private int x;
 
     ArrayList<CompilationUnit> cUnits = new ArrayList<>();
 
@@ -28,7 +29,8 @@ public class Parser {
 
     }
     
-    public Parser(String projectPath){
+    public Parser(String projectPath,int x){
+        this.x=x;
         this.projectPath=projectPath;
         this.projectSourcePath = this.projectPath + "/src";
     }
@@ -80,7 +82,7 @@ public class Parser {
                 + classes10percentMethods() + "\n"
                 + classes10percentAttributes() + "\n"
                 + classesMostAttributesAndMethods() + "\n"
-                + classesWithMoreThanMethods(3) + "\n"
+                + classesWithMoreThanMethods(this.x) + "\n"
                 + "Le nombre maximal de paramètres par rapport à toutes les méthodes de l’application: " + nbrMaxParameters;
 
         return results;
