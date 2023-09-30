@@ -11,6 +11,8 @@ public class MethodDeclarationVisitor extends ASTVisitor {
     private int methodCount = 0;
     private int maxParameters = 0;
 
+    private Map<TypeDeclaration, List<MethodDeclaration>> map = new HashMap<>();
+
 
 
     public boolean visit(MethodDeclaration node) {
@@ -23,8 +25,20 @@ public class MethodDeclarationVisitor extends ASTVisitor {
         return super.visit(node);
     }
 
+    public boolean visit(TypeDeclaration type) {
+        if(!type.isInterface() && !map.containsKey(type))
+            map.put(type, Arrays.asList(type.getMethods()));
+
+        return super.visit(type);
+    }
+
     public int getMethodCount() {
         return methodCount;
+    }
+
+    public List<MethodDeclaration> getMethods(TypeDeclaration cls) {
+        cls.accept(this);
+        return map.get(cls);
     }
 
     public List<MethodDeclaration> getMethods() {

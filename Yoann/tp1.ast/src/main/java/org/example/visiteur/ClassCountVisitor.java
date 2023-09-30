@@ -129,4 +129,9 @@ public class ClassCountVisitor extends ASTVisitor {
         return 0; // Method has no body
     }
 
+    public List<TypeDeclaration> getClasses(CompilationUnit cUnit) {
+        cUnit.accept(this);
+        return this.getClasses();
+    }
+
 }

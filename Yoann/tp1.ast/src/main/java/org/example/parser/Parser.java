@@ -64,7 +64,6 @@ public class Parser {
             cUnits.add(parse);
         }
 
-
         nbrClasses = getNbClasses();
         nbrMethodes = getNbMethods();
         nbrPackage = getNbPackages();
@@ -95,7 +94,6 @@ public class Parser {
             if (fileEntry.isDirectory()) {
                 javaFiles.addAll(listJavaFilesForFolder(fileEntry));
             } else if (fileEntry.getName().contains(".java")) {
-                System.out.println(fileEntry.getName());
                 javaFiles.add(fileEntry);
             }
         }
@@ -244,6 +242,10 @@ public class Parser {
                 }
             }
         }
+    }
+
+    public ArrayList<CompilationUnit> getcUnits() {
+        return cUnits;
     }
 
     public int getnbrAttribut(){
