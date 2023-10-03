@@ -86,8 +86,7 @@ public class Parser {
                 + "Nombre total de méthodes dans le projet ==> " + nbrMethodes + "\n"
                 + "Nombre total de packages dans le projet ==> " + nbrPackage + "\n"
                 + "Nombre moyen de méthodes par classe ==> " + moyenne(nbrMethodes, nbrClasses) + "\n"
-                +"Nombre de ligne dans une methode ==> "+getNbrLineMethode()+"\n"
-                + "Nombre moyen de lignes de code par méthode ==> " + moyenne(nbrLignes, nbrMethodes) + "\n"
+                + "Nombre moyen de lignes de code par méthode ==> " + moyenne(nbrLignesMethode, nbrMethodes) + "\n"
                 + "Nombre d'attribut: " + nbrAttribute + "\n"
                 + "Nombre moyenne d'attribut par classe :" + (double) moyenne(nbrAttribute, nbrClasses) + "\n"
                 + classes10percentMethods() + "\n"
@@ -250,7 +249,9 @@ public class Parser {
     }
 
     public double moyenne(int nbr,int nbrClasse){
-        return nbr/nbrClasse;
+        double resultat = (double) nbr / nbrClasse;
+        double arrondi = Math.round(resultat * 1000.0) / 1000.0;
+        return arrondi;
     }
 
 
@@ -264,14 +265,6 @@ public class Parser {
                 }
             }
         }
-    }
-
-    public int getNbrLineMethode(){
-        MethodLineCountVisitor visitor = new MethodLineCountVisitor();
-        for (CompilationUnit cu: cUnits)
-            cu.accept(visitor);
-
-        return visitor.getMethodLineCounts();
     }
 
     public ArrayList<CompilationUnit> getcUnits() {
