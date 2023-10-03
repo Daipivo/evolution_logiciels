@@ -35,6 +35,11 @@ public class Parser {
         this.projectSourcePath = this.projectPath + "/src";
     }
 
+    public Parser(String projectPath){
+        this.projectPath=projectPath;
+        this.projectSourcePath = this.projectPath + "/src";
+    }
+
 
 
     public String ParseFolder(){
@@ -62,12 +67,6 @@ public class Parser {
             }
 
             CompilationUnit parse = parse(content.toCharArray());
-
-//            if(fileEntry.getName().equals("ClassCountVisitor.java")){
-//                System.out.println(content.toCharArray());
-//                System.out.println(parse);
-//            }
-
             cUnits.add(parse);
         }
 

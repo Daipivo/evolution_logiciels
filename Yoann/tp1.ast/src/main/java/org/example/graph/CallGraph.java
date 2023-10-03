@@ -6,10 +6,7 @@ import org.example.visiteur.ClassCountVisitor;
 import org.example.visiteur.MethodDeclarationVisitor;
 import org.example.visiteur.MethodInvocationVisitor;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class CallGraph {
 
@@ -17,10 +14,11 @@ public class CallGraph {
 
     private Map<String, Map<String, List<MethodInvocation>>> graph = new HashMap<>();
 
+    private Set<Pair<String, String>> aretes;
+
     public CallGraph(String projectPath){
-
-        this.parser = new Parser(projectPath,5);
-
+        this.parser = new Parser(projectPath);
+        this.aretes = new HashSet<>();
     }
 
     // Parcours d'un fichier java
@@ -40,6 +38,8 @@ public class CallGraph {
             // Récupération de la liste des appels de méthode présent dans la méthode "method"
             List<MethodInvocation> invocationMethods = getMethodInvocation(method);
 
+            invocationMethods.stream()
+                    .forEach(methodInvocation -> aretes.add(new Pair<>(method.getName().toString(),methodInvocation.getName().toString())));
             // Ajout dans le hashmap => NomMethode : [ methodeAppelee1, methodeAppelee2 ..]
             callMethods.put(method.getName().toString(), invocationMethods);
 
@@ -79,23 +79,10 @@ public class CallGraph {
     public String toString() {
         StringBuilder sb = new StringBuilder();
 
-        for (Map.Entry<String, Map<String, List<MethodInvocation>>> entry1 : graph.entrySet()) {
-            String classe = entry1.getKey();
-            Map<String, List<MethodInvocation>> methodes = entry1.getValue();
+        aretes
+                .stream()
+                .forEach(arete -> System.out.println(arete.getFirst() + " ---> " + arete.getSecond()));
 
-            sb.append(classe).append(System.lineSeparator());
-
-            for (Map.Entry<String, List<MethodInvocation>> entry2 : methodes.entrySet()) {
-                String methode = entry2.getKey();
-                List<MethodInvocation> appels = entry2.getValue();
-
-                sb.append("==> ").append(methode).append(System.lineSeparator());
-
-                for (MethodInvocation appel : appels) {
-                    sb.append("    ==> ").append(appel.toString()).append(System.lineSeparator());
-                }
-            }
-        }
 
         return sb.toString();
     }
