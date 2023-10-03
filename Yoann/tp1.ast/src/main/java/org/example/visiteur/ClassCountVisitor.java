@@ -12,13 +12,15 @@ public class ClassCountVisitor extends ASTVisitor {
 
     private Map<String, List<MethodDeclaration>> classesAndMethods = new HashMap<>();
 
+    private TypeDeclaration currentClasse;
+
     @Override
     public boolean visit(TypeDeclaration node) {
 
         if(!node.isInterface()) {
             classCount++;
             classes.add(node);
-
+            currentClasse = node;
             if (!classesAndMethods.containsKey(String.valueOf(node.getName()))) {
                 classesAndMethods.put(String.valueOf(node.getName()), Arrays.asList(node.getMethods()));
             }
@@ -129,9 +131,13 @@ public class ClassCountVisitor extends ASTVisitor {
         return 0; // Method has no body
     }
 
-    public List<TypeDeclaration> getClasses(CompilationUnit cUnit) {
+    public TypeDeclaration getCurrentClasse(){
+        return this.currentClasse;
+    }
+
+    public TypeDeclaration getClasse(CompilationUnit cUnit) {
         cUnit.accept(this);
-        return this.getClasses();
+        return this.getCurrentClasse();
     }
 
 }

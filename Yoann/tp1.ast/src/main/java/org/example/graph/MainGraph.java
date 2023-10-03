@@ -8,10 +8,12 @@ public class MainGraph {
 
 
         // Projet à tester
-        CallGraph graph = new CallGraph("/home/reyne/Bureau/evolution_logiciels/Yoann/tp1.ast");
+        CallGraph graph = new CallGraph("/home/e20180003955/Bureau/evolution_logiciels/Yoann/tp1.ast");
 
         // Lancement du graph
-        System.out.println(graph.start());
+        graph.start();
+
+        System.out.println(graph);
 
     }
 

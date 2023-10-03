@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="cbcfc678-d071-4b13-8df3-355ab0b1699a" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/Yoann.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tp1.ast/.classpath" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tp1.ast/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tp1.ast/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tp1.ast/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tp1.ast/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tp1.ast/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tp1.ast/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tp1.ast/.metadata/.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tp1.ast/.metadata/.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tp1.ast/.metadata/.mylyn/repositories.xml.zip" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tp1.ast/.metadata/.plugins/org.eclipse.core.resources/.projects/.org.eclipse.egit.core.cmp/.location" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tp1.ast/.metadata/.plugins/org.eclipse.core.resources/.root/.indexes/history.version" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tp1.ast/.metadata/.plugins/org.eclipse.core.resources/.root/.indexes/properties.index" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tp1.ast/.metadata/.plugins/org.eclipse.core.resources/.root/.indexes/properties.version" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tp1.ast/.metadata/.plugins/org.eclipse.core.resources/.root/1.tree" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tp1.ast/.metadata/.plugins/org.eclipse.core.resources/.safetable/org.eclipse.core.resources" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tp1.ast/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.core.resources.prefs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tp1.ast/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.egit.core.prefs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tp1.ast/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.jdt.ui.prefs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tp1.ast/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.jst.j2ee.webservice.ui.prefs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tp1.ast/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.m2e.apt.prefs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tp1.ast/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.m2e.discovery.prefs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tp1.ast/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.mylyn.context.core.prefs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tp1.ast/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.mylyn.monitor.ui.prefs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tp1.ast/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.mylyn.tasks.ui.prefs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tp1.ast/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.ui.ide.prefs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tp1.ast/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.ui.navigator.prefs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tp1.ast/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.ui.prefs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tp1.ast/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.ui.workbench.prefs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tp1.ast/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.urischeme.prefs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tp1.ast/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.springframework.ide.eclipse.imports.prefs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tp1.ast/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.springsource.ide.eclipse.commons.frameworks.core.prefs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tp1.ast/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.springsource.ide.eclipse.commons.ui.prefs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tp1.ast/.metadata/.plugins/org.eclipse.e4.workbench/workbench.xmi" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tp1.ast/.metadata/.plugins/org.eclipse.egit.core/.org.eclipse.egit.core.cmp/.project" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tp1.ast/.metadata/.plugins/org.eclipse.jdt.core/assumedExternalFilesCache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tp1.ast/.metadata/.plugins/org.eclipse.jdt.core/externalFilesCache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tp1.ast/.metadata/.plugins/org.eclipse.jdt.core/javaLikeNames.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tp1.ast/.metadata/.plugins/org.eclipse.jdt.core/nonChainingJarsCache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tp1.ast/.metadata/.plugins/org.eclipse.jdt.core/variablesAndContainers.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tp1.ast/.metadata/.plugins/org.eclipse.jdt.ui/OpenTypeHistory.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tp1.ast/.metadata/.plugins/org.eclipse.jdt.ui/QualifiedTypeNameHistory.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tp1.ast/.metadata/.plugins/org.eclipse.m2e.core/workspaceState.ser" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tp1.ast/.metadata/.plugins/org.eclipse.m2e.logback.configuration/0.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tp1.ast/.metadata/.plugins/org.eclipse.m2e.logback.configuration/logback.1.16.1.20210603-1006.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tp1.ast/.metadata/.plugins/org.eclipse.oomph.setup/workspace.setup" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tp1.ast/.metadata/.plugins/org.eclipse.tips.ide/dialog_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tp1.ast/.metadata/.plugins/org.eclipse.ui.ide/dialog_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tp1.ast/.metadata/.plugins/org.eclipse.ui.intro/introstate" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tp1.ast/.metadata/.plugins/org.eclipse.ui.workbench/dialog_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tp1.ast/.metadata/.plugins/org.eclipse.ui.workbench/workingsets.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tp1.ast/.metadata/version.ini" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tp1.ast/.project" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tp1.ast/.settings/org.eclipse.jdt.core.prefs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tp1.ast/.settings/org.eclipse.m2e.core.prefs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tp1.ast/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tp1.ast/src/main/java/org/example/FileChooser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tp1.ast/src/main/java/org/example/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tp1.ast/src/main/java/org/example/parser/Parser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tp1.ast/src/main/java/org/example/visiteur/ClassCountVisitor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tp1.ast/src/main/java/org/example/visiteur/LineCountVisitor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tp1.ast/src/main/java/org/example/visiteur/MethodDeclarationVisitor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tp1.ast/src/main/java/org/example/visiteur/ModifierDeclarationVisitor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tp1.ast/src/main/java/org/example/visiteur/PackageDeclarationVisitor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tp1.ast/target/TP1Ast-1.0-SNAPSHOT.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tp1.ast/target/classes/org/example/FileChooser$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tp1.ast/target/classes/org/example/FileChooser$2.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tp1.ast/target/classes/org/example/FileChooser.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tp1.ast/target/classes/org/example/Main.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tp1.ast/target/classes/org/example/parser/Parser.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tp1.ast/target/classes/org/example/visiteur/ClassCountVisitor.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tp1.ast/target/classes/org/example/visiteur/LineCountVisitor.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tp1.ast/target/classes/org/example/visiteur/MethodDeclarationVisitor.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tp1.ast/target/classes/org/example/visiteur/ModifierDeclarationVisitor.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tp1.ast/target/classes/org/example/visiteur/PackageDeclarationVisitor.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tp1.ast/target/maven-archiver/pom.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tp1.ast/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tp1.ast/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tp1.ast/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tp1.ast/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 5
+}]]></component>
+  <component name="ProjectId" id="2Vvo5dMKYdpfPPGglqa5ZYGJlme" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/home/e20180003955/Bureau/evolution_logiciels/TP1-P2"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="cbcfc678-d071-4b13-8df3-355ab0b1699a" name="Changes" comment="" />
+      <created>1695725732318</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1695725732318</updated>
+    </task>
+    <servers />
+  </component>
+</project>

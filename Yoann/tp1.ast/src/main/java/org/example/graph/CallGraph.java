@@ -30,33 +30,24 @@ public class CallGraph {
 
         Map<String, List<MethodInvocation>> callMethods = new HashMap<>();
 
-        // Pour chaque classe
-        for(TypeDeclaration cls: classVisitor.getClasses(cUnit)){
+        TypeDeclaration cls = classVisitor.getClasse(cUnit);
 
-            MethodDeclarationVisitor methodVisitor = new MethodDeclarationVisitor();
+        MethodDeclarationVisitor methodVisitor = new MethodDeclarationVisitor();
 
-            // Pour chaque méthode de la classe
-            for(MethodDeclaration method: methodVisitor.getMethods(cls)){
+        // Pour chaque méthode de la classe
+        for(MethodDeclaration method: methodVisitor.getMethods(cls)){
 
-                // Récupération de la liste des appels de méthode présent dans la méthode "method"
-                List<MethodInvocation> invocationMethods = getMethodInvocation(method);
+            // Récupération de la liste des appels de méthode présent dans la méthode "method"
+            List<MethodInvocation> invocationMethods = getMethodInvocation(method);
 
-                // Ajout dans le hashmap => NomMethode : [ methodeAppelee1, methodeAppelee2 ..]
-                callMethods.put(method.getName().toString(), invocationMethods);
-
-            }
-
-            // Ajout dans le graph => Classe : hashmap
-            graph.put(String.valueOf(cls.getName()),callMethods);
+            // Ajout dans le hashmap => NomMethode : [ methodeAppelee1, methodeAppelee2 ..]
+            callMethods.put(method.getName().toString(), invocationMethods);
 
         }
-        System.out.println("======");
 
-        // Affichage du graphe pour 1 seul fichier !
-        // ==> Trouver moyen pour concatenation
-        System.out.println(graph);
+        // Ajout dans le graph => Classe : hashmap
+        graph.put(String.valueOf(cls.getName()),callMethods);
 
-        System.out.println("======");
         return graph;
     }
 
@@ -83,6 +74,31 @@ public class CallGraph {
 
     }
 
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+
+        for (Map.Entry<String, Map<String, List<MethodInvocation>>> entry1 : graph.entrySet()) {
+            String classe = entry1.getKey();
+            Map<String, List<MethodInvocation>> methodes = entry1.getValue();
+
+            sb.append(classe).append(System.lineSeparator());
+
+            for (Map.Entry<String, List<MethodInvocation>> entry2 : methodes.entrySet()) {
+                String methode = entry2.getKey();
+                List<MethodInvocation> appels = entry2.getValue();
+
+                sb.append("==> ").append(methode).append(System.lineSeparator());
+
+                for (MethodInvocation appel : appels) {
+                    sb.append("    ==> ").append(appel.toString()).append(System.lineSeparator());
+                }
+            }
+        }
+
+        return sb.toString();
+    }
 
 
 }

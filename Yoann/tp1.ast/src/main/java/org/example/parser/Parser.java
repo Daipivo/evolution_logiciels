@@ -60,7 +60,14 @@ public class Parser {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
+
             CompilationUnit parse = parse(content.toCharArray());
+
+//            if(fileEntry.getName().equals("ClassCountVisitor.java")){
+//                System.out.println(content.toCharArray());
+//                System.out.println(parse);
+//            }
+
             cUnits.add(parse);
         }
 
