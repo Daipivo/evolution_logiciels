@@ -267,11 +267,12 @@ public class Parser {
     }
 
     public int getNbrLineMethode(){
-        MethodLineCountVisitor visitor = new MethodLineCountVisitor();
+        MethodDeclarationVisitor visitor = new MethodDeclarationVisitor();
+
         for (CompilationUnit cu: cUnits)
             cu.accept(visitor);
 
-        return visitor.getMethodLineCounts();
+        return visitor.getNbrLigneMethodes();
     }
 
     public ArrayList<CompilationUnit> getcUnits() {

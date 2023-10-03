@@ -105,19 +105,6 @@ public class ClassCountVisitor extends ASTVisitor {
         return result;
     }
 
-    public Map<String, List<String>> getMethodsMostCodeLinesPerClasses(){
-
-        Map<String, List<String>> result = new HashMap<>();
-
-        for ( String cs : classesAndMethods.keySet()){
-            if(!classesAndMethods.get(cs).isEmpty()) {
-                System.out.println(classesAndMethods.get(cs).get(0).getName() + " " + getMethodLineCount(classesAndMethods.get(cs).get(0)));
-            }
-        }
-
-        return result;
-    }
-
     public int getMethodLineCount(MethodDeclaration methodDeclaration) {
         Block body = methodDeclaration.getBody();
         if (body != null) {

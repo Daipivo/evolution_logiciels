@@ -80,6 +80,8 @@ public class Parser {
 
         System.out.println("nombre de ligne de methodes: "+nbrLignesMethode);
         System.out.println("nombre de methodes: "+nbrMethodes);
+        System.out.println(methodsWithMostCodeLinesPerClasses());
+
 
         String results = "Nombre total de classes dans le projet ==> " + nbrClasses + "\n"
                 + "Nombre total de lignes de code dans le projet ==> " + nbrLignes + "\n"
@@ -192,12 +194,12 @@ public class Parser {
 
     public Map<String,List<String>> methodsWithMostCodeLinesPerClasses()
     {
-        ClassCountVisitor ClassVisitor = new ClassCountVisitor();
+        MethodDeclarationVisitor MethodVisitor = new MethodDeclarationVisitor();
 
         for (CompilationUnit cUnit: cUnits)
-            cUnit.accept(ClassVisitor);
+            cUnit.accept(MethodVisitor);
 
-        return ClassVisitor.getMethodsMostCodeLinesPerClasses();
+        return MethodVisitor.get10PercentMostMethodsPerClasse();
     }
 
 
@@ -247,6 +249,7 @@ public class Parser {
 
         return parametersvisitor.getMaxParameters();
     }
+
 
     public double moyenne(int nbr,int nbrClasse){
         double resultat = (double) nbr / nbrClasse;
