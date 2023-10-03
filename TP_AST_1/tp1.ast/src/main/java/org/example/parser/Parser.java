@@ -249,7 +249,9 @@ public class Parser {
     }
 
     public double moyenne(int nbr,int nbrClasse){
-        return nbr/nbrClasse;
+        double resultat = (double) nbr / nbrClasse;
+        double arrondi = Math.round(resultat * 1000.0) / 1000.0;
+        return arrondi;
     }
 
 

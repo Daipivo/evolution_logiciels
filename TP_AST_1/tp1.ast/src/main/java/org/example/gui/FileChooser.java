@@ -38,14 +38,14 @@ public class FileChooser {
 
     private void initialize() {
         frame = new JFrame();
-        frame.setBounds(100, 100, 837, 510);
+        frame.setBounds(100, 100, 900, 610);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().setLayout(null);
         frame.setResizable(false);
 
         JPanel panel = new JPanel();
         panel.setBackground(Color.WHITE);
-        panel.setBounds(0, 0, 355, 471);
+        panel.setBounds(0, 0, 355, 571);
         frame.getContentPane().add(panel);
         panel.setLayout(null);
 
@@ -118,7 +118,7 @@ public class FileChooser {
         // Ajouter un JLabel pour le titre "Statistiques"
         JLabel titleLabel = new JLabel("Statistiques");
         titleLabel.setFont(new Font("Monotype Corsiva", Font.BOLD, 18));
-        titleLabel.setBounds(410, 10, 350, 30);
+        titleLabel.setBounds(450, 10, 350, 30);
         titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
         frame.getContentPane().add(titleLabel);
 
@@ -126,7 +126,7 @@ public class FileChooser {
         textAreaResults = new JTextArea();
         textAreaResults.setEditable(false);
         JScrollPane scrollPane = new JScrollPane(textAreaResults);
-        scrollPane.setBounds(410, 50, 350, 400);
+        scrollPane.setBounds(410, 50, 420, 430);
         frame.getContentPane().add(scrollPane);
 
         frame.setVisible(true);
