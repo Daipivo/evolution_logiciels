@@ -25,7 +25,7 @@ public class MethodInvocationVisitor extends ASTVisitor {
         return super.visit(node);
     }
 
-    public List<MethodInvocation> getMethodsInvocation(MethodDeclaration methode) {
+        public List<MethodInvocation> getMethodsInvocation(MethodDeclaration methode) {
         methode.accept(this);
         return methods;
     }
