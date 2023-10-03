@@ -43,6 +43,7 @@ public class Parser {
         int nbrClasses = 0;
         int nbrLignes = 0;
         int nbrMethodes = 0;
+        int nbrLignesMethode=0;
         int nbrPackage = 0;
         int nbrAttribute=0;
         int nbrMaxParameters=0;
@@ -73,16 +74,20 @@ public class Parser {
 
         nbrClasses = getNbClasses();
         nbrMethodes = getNbMethods();
+        nbrLignesMethode=getNbLigneMethods();
         nbrPackage = getNbPackages();
         nbrAttribute=getnbrAttribut();
         nbrMaxParameters=getNbrParameterMax();
+
+        System.out.println("nombre de ligne de methodes: "+nbrLignesMethode);
+        System.out.println("nombre de methodes: "+nbrMethodes);
 
         String results = "Nombre total de classes dans le projet ==> " + nbrClasses + "\n"
                 + "Nombre total de lignes de code dans le projet ==> " + nbrLignes + "\n"
                 + "Nombre total de méthodes dans le projet ==> " + nbrMethodes + "\n"
                 + "Nombre total de packages dans le projet ==> " + nbrPackage + "\n"
                 + "Nombre moyen de méthodes par classe ==> " + moyenne(nbrMethodes, nbrClasses) + "\n"
-                + "Nombre moyen de lignes de code par méthode ==> " + moyenne(nbrLignes, nbrMethodes) + "\n"
+                + "Nombre moyen de lignes de code par méthode ==> " + moyenne(nbrLignesMethode, nbrMethodes) + "\n"
                 + "Nombre d'attribut: " + nbrAttribute + "\n"
                 + "Nombre moyenne d'attribut par classe :" + (double) moyenne(nbrAttribute, nbrClasses) + "\n"
                 + classes10percentMethods() + "\n"
@@ -205,6 +210,16 @@ public class Parser {
             cUnit.accept(MethodVisitor);
 
         return MethodVisitor.getMethodCount();
+    }
+
+    public int getNbLigneMethods(){
+
+        MethodDeclarationVisitor MethodVisitor=new MethodDeclarationVisitor();
+
+        for (CompilationUnit cUnit: cUnits)
+            cUnit.accept(MethodVisitor);
+
+        return MethodVisitor.getNbrLigneMethodes();
     }
 
     public int getNbPackages(){
