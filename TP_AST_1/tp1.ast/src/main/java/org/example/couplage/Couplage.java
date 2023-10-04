@@ -2,76 +2,65 @@ package org.example.couplage;
 
 import org.example.graph.CallGraph;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 public class Couplage {
 
     private CallGraph graph;
-//    private Map<String, >
-
     public Couplage(CallGraph graph){
         this.graph = graph;
     }
 
-    public double getCouplage(String class1, String class2){
+    public int getCouplageGraph(){
 
-        double result = 0;
+        int numberOfRelationsBtwAllClasses = 0;
 
+        Set<String> cls = graph.getGraph().keySet();
+        List<String> clsList = new ArrayList<>(cls);
 
-        return result;
+            for (int i = 0; i < clsList.size() - 1; i++) {
+                for (int j = i + 1; j < clsList.size(); j++) {
+                    numberOfRelationsBtwAllClasses += getCouplage(clsList.get(i), clsList.get(j));
+                }
+            }
+
+        return numberOfRelationsBtwAllClasses;
+
     }
 
+    public int getCouplage(String class1, String class2){
 
-//    public double calculateCouplage(String classA, String classB) {
-//
-//        Map<String, List<MethodInvocation>> methodsInClassA = graph.get(classA);
-//        Map<String, List<MethodInvocation>> methodsInClassB = graph.get(classB);
-//
-//        int numberOfRelationsAB = 0;
-//        int totalNumberOfRelations = 0;
-//
-//        // Calcul du nombre de relations entre les méthodes de classe A et classe B
-//        for (String methodA : methodsInClassA.keySet()) {
-//            for (String methodB : methodsInClassB.keySet()) {
-//                numberOfRelationsAB += countMethodInvocations(methodsInClassA.get(methodA), methodsInClassB.get(methodB));
-//            }
-//        }
-//
-//        // Calcul du nombre total de relations entre toutes les classes
-//        for (String className : graph.keySet()) {
-//            if (!className.equals(classA) && !className.equals(classB)) {
-//                totalNumberOfRelations += countMethodInvocationsBetweenClasses(methodsInClassA, graph.get(className));
-//                totalNumberOfRelations += countMethodInvocationsBetweenClasses(methodsInClassB, graph.get(className));
-//            }
-//        }
-//
-//        // Calcul de la métrique de couplage
-//        double couplage = (double) numberOfRelationsAB / totalNumberOfRelations;
-//
-//        return couplage;
-//    }
+        Map<String, List<String>> class1Methods = graph.getCalledMethodsInClasse(class1);
+        Map<String, List<String>> class2Methods = graph.getCalledMethodsInClasse(class2);
 
-    // Compte le nombre de relations entre deux listes de MethodInvocations
-//    private int countMethodInvocations(List<MethodInvocation> listA, List<MethodInvocation> listB) {
-//        int count = 0;
-//        for (MethodInvocation invocationA : listA) {
-//            for (MethodInvocation invocationB : listB) {
-//                if (invocationA.equals(invocationB)) {
-//                    count++;
-//                }
-//            }
-//        }
-//        return count;
-//    }
+        int numberOfRelationsBtwClasses = 0;
 
-    // Compte le nombre de relations entre les méthodes d'une classe et d'une autre classe
-//    private int countMethodInvocationsBetweenClasses(Map<String, List<MethodInvocation>> methodsInClassA, Map<String, List<MethodInvocation>> methodsInClassB) {
-//        int count = 0;
-//        for (String methodA : methodsInClassA.keySet()) {
-//            for (String methodB : methodsInClassB.keySet()) {
-//                count += countMethodInvocations(methodsInClassA.get(methodA), methodsInClassB.get(methodB));
-//            }
-//        }
-//        return count;
-//    }
+        for ( String cls1m : class1Methods.keySet()){
 
+            for ( String methodscls1 : class1Methods.get(cls1m)){
 
+                if(class2Methods.keySet().contains(methodscls1)){
+
+                    numberOfRelationsBtwClasses++;
+                }
+            }
+        }
+
+        for ( String cls2m : class2Methods.keySet()){
+
+            for ( String methodscls2 : class2Methods.get(cls2m)){
+
+                if(class1Methods.keySet().contains(methodscls2)){
+
+                    numberOfRelationsBtwClasses++;
+
+                }
+            }
+        }
+
+        return numberOfRelationsBtwClasses;
+    }
 }

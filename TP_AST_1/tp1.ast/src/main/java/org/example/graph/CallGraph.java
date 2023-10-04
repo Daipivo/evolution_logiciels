@@ -13,6 +13,10 @@ public class CallGraph {
 
     private Parser parser;
 
+    public Map<String, Map<String, List<MethodInvocation>>> getGraph() {
+        return graph;
+    }
+
     private Map<String, Map<String, List<MethodInvocation>>> graph = new HashMap<>();
 
     private Set< Pair<String, String>> aretes;
@@ -80,7 +84,6 @@ public class CallGraph {
         Map<String, List<String>> result = new HashMap<>();
 
         for (String methodName : graph.get(nameClasse).keySet()) {
-            System.out.println(methodName);
             List<String> methodNamesList = graph.get(nameClasse).get(methodName)
                     .stream()
                     .map(m -> m.getName().toString())

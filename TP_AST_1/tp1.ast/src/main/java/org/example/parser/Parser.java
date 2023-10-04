@@ -78,9 +78,9 @@ public class Parser {
         nbrAttribute=getnbrAttribut();
         nbrMaxParameters=getNbrParameterMax();
 
-        System.out.println("nombre de ligne de methodes: "+nbrLignesMethode);
-        System.out.println("nombre de methodes: "+nbrMethodes);
-        System.out.println(methodsWithMostCodeLinesPerClasses());
+//        System.out.println("nombre de ligne de methodes: "+nbrLignesMethode);
+//        System.out.println("nombre de methodes: "+nbrMethodes);
+//        System.out.println(methodsWithMostCodeLinesPerClasses());
 
 
         String results = "Nombre total de classes dans le projet ==> " + nbrClasses + "\n"

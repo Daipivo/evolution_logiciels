@@ -13,7 +13,9 @@ public class MainCouplage {
 
         Couplage couplage = new Couplage(graph);
 
-        couplage.getCouplage("ClassCountVisitor", "Parser");
+        System.out.println(couplage.getCouplage("ClassCountVisitor", "Parser"));
+
+        System.out.println(couplage.getCouplageGraph());
 
     }
 }
