@@ -7,7 +7,6 @@ import org.example.visiteur.MethodDeclarationVisitor;
 import org.example.visiteur.MethodInvocationVisitor;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class CallGraph {
 
@@ -15,7 +14,7 @@ public class CallGraph {
 
     private Map<String, Map<String, List<MethodInvocation>>> graph = new HashMap<>();
 
-    private Set< Pair<String, String>> aretes;
+    private Set<Pair<String, String>> aretes;
 
     public CallGraph(String projectPath){
         this.parser = new Parser(projectPath);
@@ -73,23 +72,6 @@ public class CallGraph {
 
         return visitor.getMethodsInvocation(methode);
 
-    }
-
-    public Map<String, List<String>> getCalledMethodsInClasse(String nameClasse) {
-
-        Map<String, List<String>> result = new HashMap<>();
-
-        for (String methodName : graph.get(nameClasse).keySet()) {
-            System.out.println(methodName);
-            List<String> methodNamesList = graph.get(nameClasse).get(methodName)
-                    .stream()
-                    .map(m -> m.getName().toString())
-                    .collect(Collectors.toList());
-
-            result.put(methodName, methodNamesList);
-
-        }
-        return result;
     }
 
 

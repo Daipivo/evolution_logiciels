@@ -1,7 +1,5 @@
 package org.example.graph;
 
-import org.example.visiteur.ClassCountVisitor;
-
 import java.io.IOException;
 
 public class MainGraph {
@@ -15,10 +13,7 @@ public class MainGraph {
         // Lancement du graph
         graph.start();
 
-//        System.out.println(graph.getCalledMethodsInClasse("ClassCountVisitor"));
-
-//        System.out.println(graph);
-
+        System.out.println(graph);
 
     }
 
