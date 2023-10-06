@@ -109,20 +109,7 @@ public class ClassCountVisitor extends ASTVisitor {
 
         return result;
     }
-
-    public int getMethodLineCount(MethodDeclaration methodDeclaration) {
-        Block body = methodDeclaration.getBody();
-        if (body != null) {
-            int methodStartLine = body.getStartPosition();
-            int methodEndLine = methodStartLine + body.getLength();
-            CompilationUnit compilationUnit = (CompilationUnit) methodDeclaration.getRoot();
-            int startLine = compilationUnit.getLineNumber(methodStartLine);
-            int endLine = compilationUnit.getLineNumber(methodEndLine);
-            return endLine - startLine + 1;
-        }
-        return 0; // Method has no body
-    }
-
+    
     public TypeDeclaration getCurrentClasse(){
         return this.currentClasse;
     }
