@@ -15,7 +15,7 @@ import org.graphstream.ui.view.Viewer;
 
 public class MainGraph {
 
-    public static void main(String[] args) throws IOException{
+    public static void main(String[] args) throws IOException, InterruptedException {
         System.setProperty("org.graphstream.ui", "swing");
         // Projet à tester
         CallGraph graph = new CallGraph("/home/reyne/Bureau/evolution_logiciels/TP1/tp1.ast");
@@ -52,15 +52,14 @@ public class MainGraph {
 //            System.out.println(node1Name+"=>"+node2Name);
 
             Edge edgeAB = graphDisplay.getEdge(node1Name+node2Name);
-
             if(edgeAB == null){
-                graphDisplay.addEdge(node1Name+node2Name, node1, node2, true);
+                Edge e = graphDisplay.addEdge(node1Name+node2Name, node1, node2, true);
+                e.addAttribute("layout.weight", 3);
             }
         });
-
         // Affichez le graphe (facultatif)
         graphDisplay.addAttribute("ui.stylesheet", "node {\n" +
-                "\tsize: 3px;\n" +
+                "\tsize: 2px;\n" +
                 "\tfill-color: #777;\n" +
                 "\tz-index: 0;\n" +
                 "}\n" +
@@ -69,12 +68,11 @@ public class MainGraph {
                 "\tshape: line;\n" +
                 "\tfill-mode: dyn-plain;\n" +
                 "\tfill-color: #222;\n" +
-                "\tarrow-size: 3px, 2px;\n" +
+                "\tarrow-size: 3px, 4px;\n" +
                 "}\n");
         graphDisplay.addAttribute("ui.quality");
         graphDisplay.addAttribute("ui.antialias");
         graphDisplay.display();   // No auto-layout.
-        graphDisplay.addAttribute("ui.screenshot", "screenshot.png");
 
     }
 
