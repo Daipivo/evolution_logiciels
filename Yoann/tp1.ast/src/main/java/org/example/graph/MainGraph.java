@@ -8,7 +8,7 @@ public class MainGraph {
 
 
         // Projet à tester
-        CallGraph graph = new CallGraph("/home/reyne/Bureau/evolution_logiciels/Yoann/tp1.ast");
+        CallGraph graph = new CallGraph("C:\\Users\\Sandratra\\Desktop\\Projet M1 UM\\HAI712I - Ingénierie Logicielle\\TP4-EauDuBidon");
 
         // Lancement du graph
         System.out.println(graph.start());
