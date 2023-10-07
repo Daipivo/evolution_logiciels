@@ -38,8 +38,36 @@ public class CallGraph {
             // Récupération de la liste des appels de méthode présent dans la méthode "method"
             List<MethodInvocation> invocationMethods = getMethodInvocation(method);
 
+//            invocationMethods
+//                    .stream()
+//                    .forEach(m ->
+//                            {
+//                                if(m.getExpression() == null){
+////                                    System.out.println(method.getName());
+//                                    if(method.getName().toString().equals("ParseFolder"))
+////                                        System.out.println("JEJEJEJEJE");
+//                                    System.out.println(m);
+//                                }
+//
+//                            });
+
             invocationMethods.stream()
-                    .forEach(methodInvocation -> aretes.add(new Pair<>(method.getName().toString(),methodInvocation.getName().toString())));
+                    .forEach(methodInvocation -> {
+                                if(methodInvocation.getExpression() != null){
+                                    if(methodInvocation.getExpression().resolveTypeBinding() != null){
+                                        String secondValue = methodInvocation.getExpression().resolveTypeBinding().getName() +":"+methodInvocation.getName().toString();
+                                        aretes.add(new Pair<>(cls.getName()+":"+method.getName().toString(),secondValue));
+                                    }
+                                    else{
+                                        String secondValue = methodInvocation.getExpression() +":"+methodInvocation.getName().toString();
+                                        aretes.add(new Pair<>(cls.getName()+":"+method.getName().toString(),secondValue));
+                                    }
+
+                                }
+                                else{
+                                    aretes.add(new Pair<>(cls.getName()+":"+method.getName().toString(),methodInvocation.getName().toString()));
+                                }
+                    });
             // Ajout dans le hashmap => NomMethode : [ methodeAppelee1, methodeAppelee2 ..]
             callMethods.put(method.getName().toString(), invocationMethods);
 
@@ -68,12 +96,17 @@ public class CallGraph {
     // Renvoie la liste des appels de méthodes présent dans une méthode
     public List<MethodInvocation> getMethodInvocation(MethodDeclaration methode){
 
-        MethodInvocationVisitor  visitor = new MethodInvocationVisitor();
+        MethodInvocationVisitor visitor = new MethodInvocationVisitor();
 
         return visitor.getMethodsInvocation(methode);
 
     }
 
+    public Set<Pair<String, String>> getAretes(){
+
+        return aretes;
+
+    }
 
     @Override
     public String toString() {
