@@ -59,11 +59,6 @@ public class MethodDeclarationVisitor extends ASTVisitor {
         cls.accept(this);
         return classToMethodsMap.get(cls);
     }
-
-    public List<MethodDeclaration> getMethods() {
-        return methods;
-    }
-
     public int getMaxParameters() {
         return maxParameters;
     }

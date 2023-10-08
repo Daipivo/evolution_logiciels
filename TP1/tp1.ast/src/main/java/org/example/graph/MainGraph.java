@@ -37,6 +37,10 @@ public class MainGraph {
             String node2Name = paire.getSecond();
             Node node2 = graphDisplay.getNode(node2Name);
 
+            if(node1Name.equals(node2Name)){
+                return;
+            }
+
             if (node1 == null) {
                 // Le nœud n'existe pas encore, créez-le
                 node1 = graphDisplay.addNode(node1Name);
@@ -49,12 +53,11 @@ public class MainGraph {
                 node2.setAttribute("label", node2Name);
             }
 
-//            System.out.println(node1Name+"=>"+node2Name);
 
             Edge edgeAB = graphDisplay.getEdge(node1Name+node2Name);
             if(edgeAB == null){
                 Edge e = graphDisplay.addEdge(node1Name+node2Name, node1, node2, true);
-                e.addAttribute("layout.weight", 3);
+                e.addAttribute("layout.weight", 10);
             }
         });
         // Affichez le graphe (facultatif)
@@ -68,7 +71,7 @@ public class MainGraph {
                 "\tshape: line;\n" +
                 "\tfill-mode: dyn-plain;\n" +
                 "\tfill-color: #222;\n" +
-                "\tarrow-size: 3px, 4px;\n" +
+                "\tarrow-size: 2px, 4px;\n" +
                 "}\n");
         graphDisplay.addAttribute("ui.quality");
         graphDisplay.addAttribute("ui.antialias");
