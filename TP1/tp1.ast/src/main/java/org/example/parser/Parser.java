@@ -83,19 +83,19 @@ public class Parser {
         System.out.println(methodsWithMostCodeLinesPerClasses());
 
 
-        String results = "Nombre total de classes dans le projet ==> " + nbrClasses + "\n"
-                + "Nombre total de lignes de code dans le projet ==> " + nbrLignes + "\n"
-                + "Nombre total de méthodes dans le projet ==> " + nbrMethodes + "\n"
-                + "Nombre total de packages dans le projet ==> " + nbrPackage + "\n"
-                + "Nombre moyen de méthodes par classe ==> " + moyenne(nbrMethodes, nbrClasses) + "\n"
-                + "Nombre moyen de lignes de code par méthode ==> " + moyenne(nbrLignesMethode, nbrMethodes) + "\n"
-                + "Nombre d'attribut: " + nbrAttribute + "\n"
-                + "Nombre moyenne d'attribut par classe :" + (double) moyenne(nbrAttribute, nbrClasses) + "\n"
-                + classes10percentMethods() + "\n"
-                + classes10percentAttributes() + "\n"
-                + classesMostAttributesAndMethods() + "\n"
-                + classesWithMoreThanMethods(this.x) + "\n"
-                + "Le nombre maximal de paramètres par rapport à toutes les méthodes de l’application: " + nbrMaxParameters;
+        String results = "Nombre total de classes : \n" + nbrClasses + "\n"
+                + "Nombre total de lignes de code : \n" + nbrLignes + "\n"
+                + "Nombre total de méthodes : \n" + nbrMethodes + "\n"
+                + "Nombre total de packages : \n" + nbrPackage + "\n"
+                + "Nombre moyen de méthodes par classe : \n" + moyenne(nbrMethodes, nbrClasses) + "\n"
+                + "Nombre moyen de lignes de code par méthode : \n" + moyenne(nbrLignesMethode, nbrMethodes) + "\n"
+                + "Nombre d'attributs : " + nbrAttribute + "\n"
+                + "Nombre moyen d'attributs par classe : \n" + (double) moyenne(nbrAttribute, nbrClasses) + "\n"
+                + "Classes avec au moins 10% des méthodes : \n" + classes10percentMethods() + "\n"
+                + "Classes avec au moins 10% des attributs : \n" + classes10percentAttributes() + "\n"
+                + "Classes avec le plus d'attributs et de méthodes : \n" + classesMostAttributesAndMethods() + "\n"
+                + "Classes avec plus de " + x + " méthodes : \n" + classesWithMoreThanMethods(x) + "\n"
+                + "Nombre maximal de paramètres dans une méthode : " + nbrMaxParameters;
 
         return results;
     }
