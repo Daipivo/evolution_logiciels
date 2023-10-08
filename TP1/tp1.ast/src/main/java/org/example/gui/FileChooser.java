@@ -1,5 +1,7 @@
 package org.example.gui;
 
+import org.example.graph.CallGraph;
+import org.example.graph.DisplayGraph;
 import org.example.parser.Parser;
 import org.example.utils.ApplicationStatistics;
 
@@ -23,6 +25,7 @@ public class FileChooser {
     JButton btnAnalyse = new JButton("Analyser");
     HashMap<String,JLabel> Reslabels=new HashMap<>();
     HashMap<String,JComboBox> ResCombo=new HashMap<>();
+    String selectedFile;
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -74,6 +77,11 @@ public class FileChooser {
         btnBrowse.setBounds(111, 194, 100, 30);
         panel.add(btnBrowse);
 
+        JButton btnShowResults = new JButton("Graphe");
+        btnShowResults.setBounds(111, 276, 100, 30);
+        btnShowResults.setEnabled(false); // Définir l'état initial sur désactivé
+        panel.add(btnShowResults);
+
 
         btnAnalyse.setBounds(111, 235, 100, 30);
         btnAnalyse.setEnabled(false);
@@ -84,12 +92,26 @@ public class FileChooser {
                 fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
                 int returnValue = fileChooser.showOpenDialog(null);
                 if (returnValue == JFileChooser.APPROVE_OPTION) {
-                    String selectedFile = fileChooser.getSelectedFile().getAbsolutePath();
+                    selectedFile = fileChooser.getSelectedFile().getAbsolutePath();
                     textFieldFilePath.setText(selectedFile);
                     btnAnalyse.setEnabled(true); // Activer le bouton "Analyser" après la sélection
+                    btnShowResults.setEnabled(true);
                 } else {
                     System.out.println("Aucun fichier sélectionné");
                 }
+            }
+        });
+
+        btnShowResults.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                CallGraph graph = new CallGraph(selectedFile);
+
+                // Lancement du graph
+                graph.start();
+
+                DisplayGraph displayGraph = new DisplayGraph(graph);
+
+                displayGraph.displayGraph();
             }
         });
 
