@@ -12,6 +12,7 @@ import java.util.Map;
 import org.apache.commons.io.FileUtils;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.dom.*;
+import org.example.utils.ApplicationStatistics;
 import org.example.visiteur.*;
 
 import javax.xml.crypto.dsig.spec.HMACParameterSpec;
@@ -42,8 +43,9 @@ public class Parser {
 
 
 
-    public String ParseFolder(){
+    public ApplicationStatistics ParseFolder(){
         final File folder = new File(projectSourcePath);
+        ApplicationStatistics stats = new ApplicationStatistics();
         ArrayList<File> javaFiles = listJavaFilesForFolder(folder);
         int nbrClasses = 0;
         int nbrLignes = 0;
@@ -83,21 +85,34 @@ public class Parser {
         System.out.println(methodsWithMostCodeLinesPerClasses());
 
 
-        String results = "Nombre total de classes : \n" + nbrClasses + "\n"
-                + "Nombre total de lignes de code : \n" + nbrLignes + "\n"
-                + "Nombre total de méthodes : \n" + nbrMethodes + "\n"
-                + "Nombre total de packages : \n" + nbrPackage + "\n"
-                + "Nombre moyen de méthodes par classe : \n" + moyenne(nbrMethodes, nbrClasses) + "\n"
-                + "Nombre moyen de lignes de code par méthode : \n" + moyenne(nbrLignesMethode, nbrMethodes) + "\n"
-                + "Nombre d'attributs : " + nbrAttribute + "\n"
-                + "Nombre moyen d'attributs par classe : \n" + (double) moyenne(nbrAttribute, nbrClasses) + "\n"
-                + "Classes avec au moins 10% des méthodes : \n" + classes10percentMethods() + "\n"
-                + "Classes avec au moins 10% des attributs : \n" + classes10percentAttributes() + "\n"
-                + "Classes avec le plus d'attributs et de méthodes : \n" + classesMostAttributesAndMethods() + "\n"
-                + "Classes avec plus de " + x + " méthodes : \n" + classesWithMoreThanMethods(x) + "\n"
-                + "Nombre maximal de paramètres dans une méthode : " + nbrMaxParameters;
+//        String results = "Nombre total de classes : \n" + nbrClasses + "\n"
+//                + "Nombre total de lignes de code : \n" + nbrLignes + "\n"
+//                + "Nombre total de méthodes : \n" + nbrMethodes + "\n"
+//                + "Nombre total de packages : \n" + nbrPackage + "\n"
+//                + "Nombre moyen de méthodes par classe : \n" + moyenne(nbrMethodes, nbrClasses) + "\n"
+//                + "Nombre moyen de lignes de code par méthode : \n" + moyenne(nbrLignesMethode, nbrMethodes) + "\n"
+//                + "Nombre d'attributs : " + nbrAttribute + "\n"
+//                + "Nombre moyen d'attributs par classe : \n" + (double) moyenne(nbrAttribute, nbrClasses) + "\n"
+//                + "Classes avec au moins 10% des méthodes : \n" + classes10percentMethods() + "\n"
+//                + "Classes avec au moins 10% des attributs : \n" + classes10percentAttributes() + "\n"
+//                + "Classes avec le plus d'attributs et de méthodes : \n" + classesMostAttributesAndMethods() + "\n"
+//                + "Classes avec plus de " + x + " méthodes : \n" + classesWithMoreThanMethods(x) + "\n"
+//                + "Nombre maximal de paramètres dans une méthode : " + nbrMaxParameters;
 
-        return results;
+        stats.setNumberOfClasses(getNbClasses());
+        stats.setNumberOfLinesOfCode(nbrLignes);
+        stats.setTotalNumberOfMethods(getNbMethods());
+        stats.setTotalNumberOfPackages(getNbPackages());
+        stats.setAverageMethodsPerClass(moyenne(getNbMethods(), getNbClasses()));
+        stats.setAverageLinesOfCodePerMethod(moyenne(getNbLigneMethods(), getNbMethods()));
+        stats.setAverageAttributesPerClass((double) moyenne(getnbrAttribut(), getNbClasses()));
+        stats.setClassesWithMostMethods(classes10percentMethods());
+        stats.setClassesWithMostAttributes(classes10percentAttributes());
+        stats.setClassesWithBothAttributesAndMethods(classesMostAttributesAndMethods());
+        stats.setClassesWithMoreThanXMethods(classesWithMoreThanMethods(x));
+        stats.setMaxParametersInMethods(getNbrParameterMax());
+        stats.setMethodsWithMostLinesOfCode(classesMostAttributesAndMethods());
+        return stats;
     }
 
     // read all java files from specific folder
