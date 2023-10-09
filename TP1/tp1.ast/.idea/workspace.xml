@@ -5,68 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4a2290ed-4dfb-405d-a0cf-5f0601708e0b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../../TP_AST_1/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../TP_AST_1/.idea/jpa-buddy.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../TP_AST_1/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../TP_AST_1/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../TP_AST_1/tp1.ast/.classpath" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../TP_AST_1/tp1.ast/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../TP_AST_1/tp1.ast/.idea/jpa-buddy.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../TP_AST_1/tp1.ast/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../TP_AST_1/tp1.ast/.idea/shelf/Uncommitted_changes_before_Checkout_at_03_10_2023_09_12_[Changes]/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../TP_AST_1/tp1.ast/.idea/shelf/Uncommitted_changes_before_Checkout_at_03_10_2023_09_12__Changes_.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../TP_AST_1/tp1.ast/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../TP_AST_1/tp1.ast/.metadata/.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../TP_AST_1/tp1.ast/.metadata/.plugins/org.eclipse.core.resources/.projects/.org.eclipse.egit.core.cmp/.location" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../TP_AST_1/tp1.ast/.metadata/.plugins/org.eclipse.core.resources/.root/.indexes/history.version" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../TP_AST_1/tp1.ast/.metadata/.plugins/org.eclipse.core.resources/.root/.indexes/properties.index" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../TP_AST_1/tp1.ast/.metadata/.plugins/org.eclipse.core.resources/.root/.indexes/properties.version" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../TP_AST_1/tp1.ast/.metadata/.plugins/org.eclipse.core.resources/.root/1.tree" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../TP_AST_1/tp1.ast/.metadata/.plugins/org.eclipse.core.resources/.safetable/org.eclipse.core.resources" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../TP_AST_1/tp1.ast/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.core.resources.prefs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../TP_AST_1/tp1.ast/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.egit.core.prefs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../TP_AST_1/tp1.ast/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.jdt.ui.prefs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../TP_AST_1/tp1.ast/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.jst.j2ee.webservice.ui.prefs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../TP_AST_1/tp1.ast/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.m2e.apt.prefs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../TP_AST_1/tp1.ast/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.m2e.discovery.prefs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../TP_AST_1/tp1.ast/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.mylyn.context.core.prefs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../TP_AST_1/tp1.ast/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.mylyn.monitor.ui.prefs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../TP_AST_1/tp1.ast/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.mylyn.tasks.ui.prefs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../TP_AST_1/tp1.ast/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.ui.ide.prefs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../TP_AST_1/tp1.ast/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.ui.navigator.prefs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../TP_AST_1/tp1.ast/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.ui.prefs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../TP_AST_1/tp1.ast/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.ui.workbench.prefs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../TP_AST_1/tp1.ast/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.urischeme.prefs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../TP_AST_1/tp1.ast/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.springframework.ide.eclipse.imports.prefs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../TP_AST_1/tp1.ast/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.springsource.ide.eclipse.commons.frameworks.core.prefs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../TP_AST_1/tp1.ast/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.springsource.ide.eclipse.commons.ui.prefs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../TP_AST_1/tp1.ast/.metadata/.plugins/org.eclipse.e4.workbench/workbench.xmi" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../TP_AST_1/tp1.ast/.metadata/.plugins/org.eclipse.egit.core/.org.eclipse.egit.core.cmp/.project" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../TP_AST_1/tp1.ast/.metadata/.plugins/org.eclipse.jdt.core/assumedExternalFilesCache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../TP_AST_1/tp1.ast/.metadata/.plugins/org.eclipse.jdt.core/externalFilesCache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../TP_AST_1/tp1.ast/.metadata/.plugins/org.eclipse.jdt.core/javaLikeNames.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../TP_AST_1/tp1.ast/.metadata/.plugins/org.eclipse.jdt.core/nonChainingJarsCache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../TP_AST_1/tp1.ast/.metadata/.plugins/org.eclipse.jdt.core/variablesAndContainers.dat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../TP_AST_1/tp1.ast/.metadata/.plugins/org.eclipse.jdt.ui/OpenTypeHistory.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../TP_AST_1/tp1.ast/.metadata/.plugins/org.eclipse.jdt.ui/QualifiedTypeNameHistory.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../TP_AST_1/tp1.ast/.metadata/.plugins/org.eclipse.m2e.core/workspaceState.ser" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../TP_AST_1/tp1.ast/.metadata/.plugins/org.eclipse.m2e.logback.configuration/logback.1.16.1.20210603-1006.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../TP_AST_1/tp1.ast/.metadata/.plugins/org.eclipse.oomph.setup/workspace.setup" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../TP_AST_1/tp1.ast/.metadata/.plugins/org.eclipse.tips.ide/dialog_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../TP_AST_1/tp1.ast/.metadata/.plugins/org.eclipse.ui.ide/dialog_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../TP_AST_1/tp1.ast/.metadata/.plugins/org.eclipse.ui.intro/introstate" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../TP_AST_1/tp1.ast/.metadata/.plugins/org.eclipse.ui.workbench/dialog_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../TP_AST_1/tp1.ast/.metadata/.plugins/org.eclipse.ui.workbench/workingsets.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../TP_AST_1/tp1.ast/.metadata/version.ini" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../TP_AST_1/tp1.ast/.project" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../TP_AST_1/tp1.ast/.settings/org.eclipse.core.resources.prefs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../TP_AST_1/tp1.ast/.settings/org.eclipse.jdt.apt.core.prefs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../TP_AST_1/tp1.ast/.settings/org.eclipse.jdt.core.prefs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../TP_AST_1/tp1.ast/.settings/org.eclipse.m2e.core.prefs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/gui/FileChooser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/gui/FileChooser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../TP_AST_1/tp1.ast/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../TP_AST_1/tp1.ast/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Yoann/tp1.ast/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Yoann/tp1.ast/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

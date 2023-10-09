@@ -116,6 +116,7 @@ public class FileChooser {
                 if(checkValidFolder(selectedFiles)){
                     CallGraph graph = new CallGraph(selectedFile);
                     graph.start();
+                    System.out.println(graph);
                     DisplayGraph displayGraph = new DisplayGraph(graph);
                     Viewer viewer = displayGraph.displayGraph();
                     viewer.setCloseFramePolicy(Viewer.CloseFramePolicy.HIDE_ONLY);
@@ -238,13 +239,13 @@ public class FileChooser {
         JLabel label = new JLabel(labelText); // Ajoutez le texte au label
         label.setFont(new Font("Arial Narrow", Font.PLAIN, 13));
         label.setForeground(new Color(255, 255, 255));
-        label.setBounds(20, panel.getComponentCount() * 30 + 29, 350, 26); // Ajustez les coordonnées et la largeur du label
+        label.setBounds(20, (panel.getComponentCount()+1 )* 30 + 29, 350, 26); // Ajustez les coordonnées et la largeur du label
         panel.add(label);
 
         JLabel valueLabel = new JLabel(); // Pas de valeur initiale
         valueLabel.setFont(new Font("Arial Narrow", Font.PLAIN, 13));
         valueLabel.setForeground(new Color(255, 255, 255));
-        valueLabel.setBounds(20, panel.getComponentCount() * 30 + 29, 50, 26);
+        valueLabel.setBounds(20, (panel.getComponentCount()+1 )* 30 + 29, 50, 26);
         valueLabel.setName(variableName); // Définir le nom de la variable
 
         Reslabels.put(variableName, valueLabel);
