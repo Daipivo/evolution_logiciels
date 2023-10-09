@@ -14,6 +14,7 @@ import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 
@@ -121,27 +122,34 @@ public class FileChooser {
                 String selectedFilePath = textFieldFilePath.getText();
                 if (!selectedFilePath.isEmpty()) {
                     File selectedFile = new File(selectedFilePath);
-                    if (selectedFile.exists() && selectedFile.isDirectory()) {
-                        String input = JOptionPane.showInputDialog("Saisissez le nombre de méthodes voulue :");
-                        try {
-                            int x = Integer.parseInt(input);
-                            Parser parser = new Parser(selectedFile.getAbsolutePath(),x);
-                            ApplicationStatistics res;
-                            res = parser.ParseFolder();
-                            afficherStatistiques(res,x);
+                   if(checkValidFolder(selectedFile)){
 
-                        } catch (NumberFormatException ex) {
-                            JOptionPane.showMessageDialog(null, "Veuillez saisir un nombre valide pour X.", "Erreur", JOptionPane.ERROR_MESSAGE);
-                        }
+                       if (selectedFile.exists() && selectedFile.isDirectory()) {
+                           String input = JOptionPane.showInputDialog("Saisissez le nombre de méthodes souhaité pour la question 11 :");
+                           try {
+                               int x = Integer.parseInt(input);
+                               Parser parser = new Parser(selectedFile.getAbsolutePath(),x);
+                               ApplicationStatistics res;
+                               res = parser.ParseFolder();
+                               afficherStatistiques(res,x);
 
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Le chemin spécifié n'est pas un dossier valide.", "Erreur", JOptionPane.ERROR_MESSAGE);
-                    }
+                           } catch (NumberFormatException ex) {
+                               JOptionPane.showMessageDialog(null, "Veuillez saisir un nombre valide pour X !", "Erreur", JOptionPane.ERROR_MESSAGE);
+                           }
+
+                       }
+
+                   }
+                   else{
+                       JOptionPane.showMessageDialog(null, "Veuillez sélectionner un dossier valide !", "Avertissement", JOptionPane.WARNING_MESSAGE);
+                   }
+
                 } else {
-                    JOptionPane.showMessageDialog(null, "Veuillez sélectionner un dossier à analyser.", "Avertissement", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Veuillez sélectionner un dossier à analyser !", "Avertissement", JOptionPane.WARNING_MESSAGE);
                 }
             }
         });
+
 
         // Ajouter un JLabel pour le titre "Statistiques"
         JLabel titleLabel = new JLabel("RESULTAT");
@@ -195,6 +203,25 @@ public class FileChooser {
 
 
         frame.setVisible(true);
+    }
+
+    private static boolean checkValidFolder(File file) {
+        if (file.isDirectory()) {
+            File[] subFiles = file.listFiles();
+
+            if(!file.isDirectory()){
+                return false;
+            }
+
+            if (subFiles != null) {
+                for (File subFile : subFiles) {
+                    if (subFile.isDirectory() && subFile.getName().equals("src")) {
+                        return true; // Le sous-dossier "src" a été trouvé
+                    }
+                }
+            }
+        }
+        return false; // Aucun sous-dossier nommé "src" trouvé
     }
 
     private void addStatisticLabel(JPanel panel, String labelText, String variableName) {
