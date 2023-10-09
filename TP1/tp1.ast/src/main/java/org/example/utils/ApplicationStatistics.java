@@ -1,6 +1,7 @@
 package org.example.utils;
 
 import java.util.List;
+import java.util.Map;
 
 public class ApplicationStatistics {
     private int numberOfClasses;
@@ -14,7 +15,7 @@ public class ApplicationStatistics {
     private List<String> classesWithMostAttributes;
     private List<String> classesWithBothAttributesAndMethods;
     private List<String> classesWithMoreThanXMethods;
-    private List<String> methodsWithMostLinesOfCode;
+    private Map<String,List<String>> methodsWithMostLinesOfCode;
     private int maxParametersInMethods;
 
     public int getNumberOfClasses() {
@@ -105,11 +106,11 @@ public class ApplicationStatistics {
         this.classesWithMoreThanXMethods = classesWithMoreThanXMethods;
     }
 
-    public List<String> getMethodsWithMostLinesOfCode() {
+    public Map<String,List<String>> getMethodsWithMostLinesOfCode() {
         return methodsWithMostLinesOfCode;
     }
 
-    public void setMethodsWithMostLinesOfCode(List<String> methodsWithMostLinesOfCode) {
+    public void setMethodsWithMostLinesOfCode(Map<String,List<String>> methodsWithMostLinesOfCode) {
         this.methodsWithMostLinesOfCode = methodsWithMostLinesOfCode;
     }
 

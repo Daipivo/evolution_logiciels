@@ -80,11 +80,6 @@ public class Parser {
         nbrAttribute=getnbrAttribut();
         nbrMaxParameters=getNbrParameterMax();
 
-        System.out.println("nombre de ligne de methodes: "+nbrLignesMethode);
-        System.out.println("nombre de methodes: "+nbrMethodes);
-        System.out.println(methodsWithMostCodeLinesPerClasses());
-
-
 //        String results = "Nombre total de classes : \n" + nbrClasses + "\n"
 //                + "Nombre total de lignes de code : \n" + nbrLignes + "\n"
 //                + "Nombre total de méthodes : \n" + nbrMethodes + "\n"
@@ -111,7 +106,7 @@ public class Parser {
         stats.setClassesWithBothAttributesAndMethods(classesMostAttributesAndMethods());
         stats.setClassesWithMoreThanXMethods(classesWithMoreThanMethods(x));
         stats.setMaxParametersInMethods(getNbrParameterMax());
-        stats.setMethodsWithMostLinesOfCode(classesMostAttributesAndMethods());
+        stats.setMethodsWithMostLinesOfCode(methodsWithMostCodeLinesPerClasses());
         return stats;
     }
 
