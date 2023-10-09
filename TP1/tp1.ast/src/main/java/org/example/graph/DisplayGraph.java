@@ -4,6 +4,7 @@ import org.graphstream.graph.Edge;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;
 import org.graphstream.graph.implementations.SingleGraph;
+import org.graphstream.ui.view.Viewer;
 
 import java.util.Set;
 
@@ -14,7 +15,7 @@ public class DisplayGraph {
         this.callGraph = graph;
     }
     
-    public void displayGraph(){
+    public Viewer displayGraph(){
 
         System.setProperty("org.graphstream.ui", "swing");
 
@@ -69,7 +70,7 @@ public class DisplayGraph {
 
         graphDisplay.addAttribute("ui.quality");
         graphDisplay.addAttribute("ui.antialias");
-        graphDisplay.display();
+        return graphDisplay.display();
 
     }
 

@@ -4,10 +4,13 @@ import org.example.graph.CallGraph;
 import org.example.graph.DisplayGraph;
 import org.example.parser.Parser;
 import org.example.utils.ApplicationStatistics;
+import org.graphstream.ui.view.Viewer;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -47,7 +50,7 @@ public class FileChooser {
         frame = new JFrame();
         frame.getContentPane().setBackground(new Color(31, 81, 113));
         frame.setBounds(100, 100,1200, 630);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         frame.getContentPane().setLayout(null);
         frame.setResizable(false);
 
@@ -105,13 +108,10 @@ public class FileChooser {
         btnShowResults.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 CallGraph graph = new CallGraph(selectedFile);
-
-                // Lancement du graph
                 graph.start();
-
                 DisplayGraph displayGraph = new DisplayGraph(graph);
-
-                displayGraph.displayGraph();
+                Viewer viewer = displayGraph.displayGraph();
+                viewer.setCloseFramePolicy(Viewer.CloseFramePolicy.HIDE_ONLY);
             }
         });
 

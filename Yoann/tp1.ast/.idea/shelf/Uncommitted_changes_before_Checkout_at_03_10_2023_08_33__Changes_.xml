@@ -1,0 +1,49 @@
+<changelist name="Uncommitted_changes_before_Checkout_at_03_10_2023_08_33_[Changes]" date="1696314807069" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_03_10_2023_08_33_[Changes]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Checkout at 03/10/2023 08:33 [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/org/example/gui/FileChooser$2.class" />
+    <option name="AFTER_PATH" value="target/classes/org/example/gui/FileChooser$2.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_03_10_2023_08_33_[Changes]/FileChooser$2.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/org/example/gui/FileChooser.class" />
+    <option name="AFTER_PATH" value="target/classes/org/example/gui/FileChooser.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_03_10_2023_08_33_[Changes]/FileChooser.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/org/example/Main.class" />
+    <option name="AFTER_PATH" value="target/classes/org/example/Main.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_03_10_2023_08_33_[Changes]/Main.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/org/example/gui/FileChooser$1.class" />
+    <option name="AFTER_PATH" value="target/classes/org/example/gui/FileChooser$1.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_03_10_2023_08_33_[Changes]/FileChooser$1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/org/example/visiteur/MethodDeclarationVisitor.class" />
+    <option name="AFTER_PATH" value="target/classes/org/example/visiteur/MethodDeclarationVisitor.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_03_10_2023_08_33_[Changes]/MethodDeclarationVisitor.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/org/example/visiteur/ClassCountVisitor.class" />
+    <option name="AFTER_PATH" value="target/classes/org/example/visiteur/ClassCountVisitor.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_03_10_2023_08_33_[Changes]/ClassCountVisitor.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/org/example/parser/Parser.class" />
+    <option name="AFTER_PATH" value="target/classes/org/example/parser/Parser.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_03_10_2023_08_33_[Changes]/Parser.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/org/example/visiteur/PackageDeclarationVisitor.class" />
+    <option name="AFTER_PATH" value="target/classes/org/example/visiteur/PackageDeclarationVisitor.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_03_10_2023_08_33_[Changes]/PackageDeclarationVisitor.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/org/example/visiteur/AttributDeclarationVisitor.class" />
+    <option name="AFTER_PATH" value="target/classes/org/example/visiteur/AttributDeclarationVisitor.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_03_10_2023_08_33_[Changes]/AttributDeclarationVisitor.class" />
+  </binary>
+</changelist>
