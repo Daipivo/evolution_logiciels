@@ -112,11 +112,17 @@ public class FileChooser {
 
         btnShowResults.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                CallGraph graph = new CallGraph(selectedFile);
-                graph.start();
-                DisplayGraph displayGraph = new DisplayGraph(graph);
-                Viewer viewer = displayGraph.displayGraph();
-                viewer.setCloseFramePolicy(Viewer.CloseFramePolicy.HIDE_ONLY);
+                File selectedFiles = new File(selectedFile);
+                if(checkValidFolder(selectedFiles)){
+                    CallGraph graph = new CallGraph(selectedFile);
+                    graph.start();
+                    DisplayGraph displayGraph = new DisplayGraph(graph);
+                    Viewer viewer = displayGraph.displayGraph();
+                    viewer.setCloseFramePolicy(Viewer.CloseFramePolicy.HIDE_ONLY);
+                }else{
+                    JOptionPane.showMessageDialog(null, "Veuillez sélectionner un dossier valide !", "Avertissement", JOptionPane.WARNING_MESSAGE);
+                }
+
             }
         });
 

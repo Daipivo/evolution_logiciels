@@ -4,31 +4,31 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="08847f2a-be4d-473c-8bac-d018920ff2f4" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/parser/Parser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/visiteur/ClassCountVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/visiteur/ClassCountVisitor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Yoann/tp1.ast/src/main/java/org/example/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Yoann/tp1.ast/src/main/java/org/example/parser/Parser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Yoann/tp1.ast/src/main/java/org/example/visiteur/MethodLineCountVisitor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Yoann/tp1.ast/target/classes/org/example/parser/Parser.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../Yoann/tp1.ast/target/classes/org/example/parser/Parser.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Yoann/tp1.ast/target/classes/org/example/visiteur/MethodDeclarationVisitor.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../Yoann/tp1.ast/target/classes/org/example/visiteur/MethodDeclarationVisitor.class" afterDir="false" />
-    </list>
+    <list default="true" id="20dad1e2-bd5c-44fb-a78d-56c9be40df72" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$/../.." value="main" />
+        <entry key="$PROJECT_DIR$/../.." value="dev-sandratra" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 6
-}]]></component>
-  <component name="ProjectId" id="2WFrE2uGnThUIKI9ZBwTndEWKhN" />
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="2WF41uIEvR11mYAuCE3P1QlCw9c" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -38,18 +38,17 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/home/e20180003955/Bureau/ia_gl_projet/GLIA-Airlines",
+    "aspect.path.notification.shown": "true",
+    "last_opened_file_path": "/home/e20220012486/M2/Projet/evolution_logiciels/TP1/tp1.ast",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
+    "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.FileChooser">
     <configuration name="FileChooser" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.example.gui.FileChooser" />
       <module name="TP1Ast" />
@@ -63,9 +62,25 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="MainGraph" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.example.graph.MainGraph" />
+      <module name="TP1Ast" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.graph.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.FileChooser" />
+        <item itemvalue="Application.MainGraph" />
+        <item itemvalue="Application.FileChooser" />
+        <item itemvalue="Application.MainGraph" />
         <item itemvalue="Application.FileChooser" />
       </list>
     </recent_temporary>
@@ -73,16 +88,45 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="08847f2a-be4d-473c-8bac-d018920ff2f4" name="Changes" comment="" />
-      <created>1696339056331</created>
+      <changelist id="20dad1e2-bd5c-44fb-a78d-56c9be40df72" name="Changes" comment="" />
+      <created>1696314782423</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1696339056331</updated>
-      <workItem from="1696339057252" duration="4477000" />
+      <updated>1696314782423</updated>
+      <workItem from="1696314783646" duration="3632000" />
+      <workItem from="1696319889160" duration="4730000" />
+      <workItem from="1696327386089" duration="3143000" />
+      <workItem from="1696504706818" duration="2078000" />
+      <workItem from="1696835080568" duration="330000" />
+      <workItem from="1696843704991" duration="608000" />
+      <workItem from="1696844322165" duration="22000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/dev-sandratra" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
