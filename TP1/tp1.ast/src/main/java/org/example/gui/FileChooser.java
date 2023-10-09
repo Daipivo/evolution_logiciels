@@ -6,17 +6,21 @@ import org.example.parser.Parser;
 import org.example.utils.ApplicationStatistics;
 import org.graphstream.ui.view.Viewer;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.io.File;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.util.EventListener;
+import java.util.List;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.HashSet;
+import java.util.Map;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -50,14 +54,14 @@ public class FileChooser {
     private void initialize() {
         frame = new JFrame();
         frame.getContentPane().setBackground(new Color(31, 81, 113));
-        frame.setBounds(100, 100,1200, 630);
-        frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        frame.setBounds(100, 100,1200, 650);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().setLayout(null);
         frame.setResizable(false);
 
         JPanel panel = new JPanel();
         panel.setBackground(Color.WHITE);
-        panel.setBounds(32, 105, 323, 336);
+        panel.setBounds(32, 105, 323, 350);
         frame.getContentPane().add(panel);
         panel.setLayout(null);
 
@@ -162,7 +166,7 @@ public class FileChooser {
 
         JPanel panel_1 = new JPanel();
         panel_1.setBackground(new Color(31, 88, 113));
-        panel_1.setBounds(398, 50, 350, 511);
+        panel_1.setBounds(398, 50, 350, 550);
         frame.getContentPane().add(panel_1);
         panel_1.setLayout(null);
 
@@ -185,7 +189,7 @@ public class FileChooser {
 
         JPanel panel_1_1 = new JPanel();
         panel_1_1.setBackground(new Color(31, 88, 113));
-        panel_1_1.setBounds(786, 50, 365, 511);
+        panel_1_1.setBounds(786, 50, 365, 550);
         frame.getContentPane().add(panel_1_1);
         panel_1_1.setLayout(null);
 
@@ -226,13 +230,13 @@ public class FileChooser {
 
     private void addStatisticLabel(JPanel panel, String labelText, String variableName) {
         JLabel label = new JLabel(labelText); // Ajoutez le texte au label
-        label.setFont(new Font("Arial Narrow", Font.PLAIN, 16));
+        label.setFont(new Font("Arial Narrow", Font.PLAIN, 13));
         label.setForeground(new Color(255, 255, 255));
         label.setBounds(20, panel.getComponentCount() * 30 + 29, 350, 26); // Ajustez les coordonnées et la largeur du label
         panel.add(label);
 
         JLabel valueLabel = new JLabel(); // Pas de valeur initiale
-        valueLabel.setFont(new Font("Arial Narrow", Font.PLAIN, 16));
+        valueLabel.setFont(new Font("Arial Narrow", Font.PLAIN, 13));
         valueLabel.setForeground(new Color(255, 255, 255));
         valueLabel.setBounds(20, panel.getComponentCount() * 30 + 29, 50, 26);
         valueLabel.setName(variableName); // Définir le nom de la variable
@@ -286,29 +290,53 @@ public class FileChooser {
         String[] classesWithMoreThanXMethodsOptions = stats.getClassesWithMoreThanXMethods().toArray(new String[0]);
         cmbClassesWithMoreThanXMethods.setModel(new DefaultComboBoxModel<>(classesWithMoreThanXMethodsOptions));
 
-        // Les 10% des méthodes qui possèdent le plus grand nombre de lignes de code (par classe).
-        JComboBox<String> cmbTop10MethodsLinesOfCode = getComboBoxByName("cmbTop10MethodsLinesOfCode");
-        String[] top10MethodsLinesOfCodeOptions = stats.getMethodsWithMostLinesOfCode().toArray(new String[0]);
-        cmbTop10MethodsLinesOfCode.setModel(new DefaultComboBoxModel<>(top10MethodsLinesOfCodeOptions));
-//        // Les 10% des classes qui possèdent le plus grand nombre de méthodes.
-//        JLabel lblTop10ClassesMethods = getLabelByName("lblTop10ClassesMethods");
-//        lblTop10ClassesMethods.setText("" + String.join(", ", stats.getClassesWithMostMethods()));
-//
-//        // Les 10% des classes qui possèdent le plus grand nombre d’attributs.
-//        JLabel lblTop10ClassesAttributes = getLabelByName("lblTop10ClassesAttributes");
-//        lblTop10ClassesAttributes.setText("" + String.join(", ", stats.getClassesWithMostAttributes()));
-//
-//        // Les classes qui font partie en même temps des deux catégories précédentes.
-//        JLabel lblClassesInBothCategories = getLabelByName("lblClassesInBothCategories");
-//        lblClassesInBothCategories.setText("" + String.join(", ", stats.getClassesWithBothAttributesAndMethods()));
-//
-//        // Les classes qui possèdent plus de X méthodes (la valeur de X est donnée).
-//        JLabel lblClassesWithMoreThanXMethods = getLabelByName("lblClassesWithMoreThanXMethods");
-//        lblClassesWithMoreThanXMethods.setText("Les classes qui possèdent plus de " + x + " méthodes : " + String.join(", ", stats.getClassesWithMoreThanXMethods()));
 
-        // Le nombre maximal de paramètres par rapport à toutes les méthodes de l’application.
+
+// Les 10% des méthodes qui possèdent le plus grand nombre de lignes de code (par classe).
+        JComboBox<String> cmbTop10MethodsLinesOfCode = getComboBoxByName("cmbTop10MethodsLinesOfCode");
+        Map<String, List<String>> data = stats.getMethodsWithMostLinesOfCode();
+
+        System.out.println("data :" + data);
+
+// Créez un ItemListener
+        ItemListener itemListener = new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent itemEvent) {
+                if (itemEvent.getStateChange() == ItemEvent.SELECTED) {
+                    // Obtenez la classe sélectionnée dans le ComboBox
+                    if(!itemEvent.getItem().equals("Selectionner une Classe")){
+                    String selectedClass = (String) itemEvent.getItem();
+
+                    // Obtenez la liste des méthodes pour la classe sélectionnée
+                    List<String> methods = data.get(selectedClass);
+                    // Affichez les méthodes dans une boîte de dialogue ou un autre composant
+                    JOptionPane.showMessageDialog(frame, "Méthodes pour la classe " + selectedClass + ":\n" + methods);}
+                }
+            }
+        };
+
+
+
+        cmbTop10MethodsLinesOfCode.removeItemListener(itemListener);
+        ItemListener[] listeneras=cmbTop10MethodsLinesOfCode.getItemListeners();
+        if(listeneras.length>1)
+            cmbTop10MethodsLinesOfCode.removeItemListener(listeneras[0]);
+
+        cmbTop10MethodsLinesOfCode.removeAllItems();
+        cmbTop10MethodsLinesOfCode.addItem("Selectionner une Classe");
+        for (String className : data.keySet()) {
+            cmbTop10MethodsLinesOfCode.addItem(className);
+        }
+
+
+        // Ajoutez l'ItemListener au JComboBox après avoir ajouté tous les éléments
+        cmbTop10MethodsLinesOfCode.addItemListener(itemListener);
+
+
+
         JLabel lblNombreMaxParametres = getLabelByName("lblNombreMaxParametres");
         lblNombreMaxParametres.setText("" + stats.getMaxParametersInMethods());
+
     }
 
     private JComboBox getComboBoxByName(String name) {
@@ -319,13 +347,13 @@ public class FileChooser {
 
     private void addStatisticComboBox(JPanel panel, String labelText, String variableName) {
         JLabel label = new JLabel("<html>"+labelText+"</html>");
-        label.setFont(new Font("Arial Narrow", Font.PLAIN, 16));
+        label.setFont(new Font("Arial Narrow", Font.PLAIN, 13));
         label.setForeground(new Color(255, 255, 255));
-        label.setBounds(20, panel.getComponentCount() * 45 + 10, 350, 30); // Augmentez la hauteur à 60
+        label.setBounds(20, panel.getComponentCount() * 45 + 25, 350, 45); // Augmentez la hauteur à 60
         panel.add(label);
 
         JComboBox<String> comboBox = new JComboBox<>();
-        comboBox.setBounds(20, panel.getComponentCount() * 45 + 5, 300, 30); // Augmentez la hauteur à 60
+        comboBox.setBounds(20, panel.getComponentCount() * 45 + 25, 300, 30); // Augmentez la hauteur à 60
         comboBox.setName(variableName);
         panel.add(comboBox);
         ResCombo.put(variableName, comboBox);

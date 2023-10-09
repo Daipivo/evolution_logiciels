@@ -106,7 +106,7 @@ public class Parser {
         stats.setClassesWithBothAttributesAndMethods(classesMostAttributesAndMethods());
         stats.setClassesWithMoreThanXMethods(classesWithMoreThanMethods(x));
         stats.setMaxParametersInMethods(getNbrParameterMax());
-        stats.setMethodsWithMostLinesOfCode(classesMostAttributesAndMethods());
+        stats.setMethodsWithMostLinesOfCode(methodsWithMostCodeLinesPerClasses());
         return stats;
     }
 
