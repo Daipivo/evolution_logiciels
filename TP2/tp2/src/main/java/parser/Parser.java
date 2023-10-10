@@ -20,6 +20,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Parser {
     //recuperer le fichier a parser
@@ -168,6 +169,18 @@ public class Parser {
             cUnit.accept(ClassVisitor);
 
         return ClassVisitor.get10PercentMostMethods();
+    }
+
+    public List<String> getClasses(){
+        ClassCountVisitor ClassVisitor = new ClassCountVisitor();
+
+        for (CompilationUnit cUnit: cUnits)
+            cUnit.accept(ClassVisitor);
+
+        return ClassVisitor.getClasses()
+                .stream()
+                .map(c -> c.getName().toString()) // Transformation des éléments en noms de classe
+                .collect(Collectors.toList());
     }
 
     public List<String> classes10percentAttributes()

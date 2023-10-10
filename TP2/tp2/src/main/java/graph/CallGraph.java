@@ -13,21 +13,26 @@ public class CallGraph {
 
     private Parser parser;
 
-    private Map<String, Map<String, List<MethodInvocation>>> graph = new HashMap<>();
-
-    private Set<Pair<String, String>> aretes;
+    private List<String> classes;
+    private Map<String, Map<String, List<MethodInvocation>>> graphAll = new HashMap<>();
+    private Map<String, Map<String, List<MethodInvocation>>> graphIntern = new HashMap<>();
+    private Set<Pair<String, String>> aretesAll;
+    private Set<Pair<String, String>> aretesIntern;
 
     public CallGraph(String projectPath){
         this.parser = new Parser(projectPath);
-        this.aretes = new HashSet<>();
+        classes = new ArrayList<>();
+        this.aretesAll = new HashSet<>();
+        this.aretesIntern = new HashSet<>();
     }
 
     // Parcours d'un fichier java
-    public Map<String, Map<String, List<MethodInvocation>>> parcours(CompilationUnit cUnit){
+    public void parcours(CompilationUnit cUnit){
 
         ClassCountVisitor classVisitor = new ClassCountVisitor();
 
         Map<String, List<MethodInvocation>> callMethods = new HashMap<>();
+        Map<String, List<MethodInvocation>> callMethodsIntern = new HashMap<>();
 
             TypeDeclaration cls = classVisitor.getClasse(cUnit);
 
@@ -42,44 +47,60 @@ public class CallGraph {
                 // Récupération de la liste des appels de méthode présent dans la méthode "method"
                 List<MethodInvocation> invocationMethods = getMethodInvocation(method);
 
+                List<MethodInvocation> invocationMethodsIntern = new ArrayList<>();
+
                 invocationMethods.stream()
                         .forEach(methodInvocation -> {
                             if (methodInvocation.getExpression() != null) {
                                 if (methodInvocation.getExpression().resolveTypeBinding() != null) {
                                     String secondValue = methodInvocation.getExpression().resolveTypeBinding().getName() + ":" + methodInvocation.getName().toString();
-                                    aretes.add(new Pair<>(cls.getName() + ":" + method.getName().toString(), secondValue));
+                                    if(classes.contains(cls.getName().toString()) && classes.contains(methodInvocation.getExpression().resolveTypeBinding().getName().toString()))
+                                    {
+                                        aretesIntern.add(new Pair<>(cls.getName() + ":" + method.getName().toString(), secondValue));
+                                        invocationMethodsIntern.add(methodInvocation);
+                                    }
+                                    aretesAll.add(new Pair<>(cls.getName() + ":" + method.getName().toString(), secondValue));
                                 } else {
                                     String secondValue = methodInvocation.getExpression() + ":" + methodInvocation.getName().toString();
-                                    aretes.add(new Pair<>(cls.getName() + ":" + method.getName().toString(), secondValue));
+                                    aretesAll.add(new Pair<>(cls.getName() + ":" + method.getName().toString(), secondValue));
                                 }
 
                             } else {
                                 IMethodBinding methodBinding = methodInvocation.resolveMethodBinding();
                                 if (methodBinding != null) {
                                     ITypeBinding declaringClass = methodBinding.getDeclaringClass();
-                                    aretes.add(new Pair<>(cls.getName() + ":" + method.getName().toString(), declaringClass.getName() + ":" + methodInvocation.getName().toString()));
+                                    aretesAll.add(new Pair<>(cls.getName() + ":" + method.getName().toString(), declaringClass.getName() + ":" + methodInvocation.getName().toString()));
+                                    if(classes.contains(cls.getName().toString()) && classes.contains(declaringClass.getName().toString()))
+                                    {
+                                        aretesIntern.add(new Pair<>(cls.getName() + ":" + method.getName().toString(), declaringClass.getName() + ":" + methodInvocation.getName().toString()));
+                                        invocationMethodsIntern.add(methodInvocation);
+
+                                    }
                                 } else {
-                                    aretes.add(new Pair<>(cls.getName() + ":" + method.getName().toString(), methodInvocation.getName().toString()));
+                                    aretesAll.add(new Pair<>(cls.getName() + ":" + method.getName().toString(), methodInvocation.getName().toString()));
                                 }
                             }
                         });
                 // Ajout dans le hashmap => NomMethode : [ methodeAppelee1, methodeAppelee2 ..]
                 callMethods.put(method.getName().toString(), invocationMethods);
-
+                callMethodsIntern.put(method.getName().toString(), invocationMethodsIntern);
             }
 
             // Ajout dans le graph => Classe : hashmap
-            graph.put(String.valueOf(cls.getName()), callMethods);
+            graphAll.put(String.valueOf(cls.getName()), callMethods);
+            graphIntern.put(String.valueOf(cls.getName()), callMethodsIntern);
         }
-
-        return graph;
     }
 
+    public List<String> getClasses() {
+        return classes;
+    }
 
     public boolean start(){
 
         // Parcours du dossier
         parser.ParseFolder();
+        classes = parser.getClasses();
 
         // Chaque cUnit => AST d'un fichier .java
         for(CompilationUnit cUnit : parser.getcUnits()){
@@ -88,6 +109,13 @@ public class CallGraph {
         return true;
     }
 
+    public Map<String, Map<String, List<MethodInvocation>>> getGraphAll(){
+        return this.graphAll;
+    }
+
+    public Map<String, Map<String, List<MethodInvocation>>> getGraphIntern(){
+        return this.graphIntern;
+    }
 
     // Renvoie la liste des appels de méthodes présent dans une méthode
     public List<MethodInvocation> getMethodInvocation(MethodDeclaration methode){
@@ -102,8 +130,8 @@ public class CallGraph {
 
         Map<String, List<String>> result = new HashMap<>();
 
-        for (String methodName : graph.get(nameClasse).keySet()) {
-            List<String> methodNamesList = graph.get(nameClasse).get(methodName)
+        for (String methodName : graphIntern.get(nameClasse).keySet()) {
+            List<String> methodNamesList = graphIntern.get(nameClasse).get(methodName)
                     .stream()
                     .map(m -> m.getName().toString())
                     .collect(Collectors.toList());
@@ -115,20 +143,29 @@ public class CallGraph {
     }
 
     public Set<Pair<String, String>> getAretes(){
+        return aretesAll;
+    }
 
-        return aretes;
+    public Set<Pair<String, String>> getAretesIntern(){
+
+        return aretesIntern;
 
     }
 
-    public Map<String, Map<String, List<MethodInvocation>>> getGraph() {
-        return graph;
+    public int getNbrAretes(){
+        return aretesAll.size();
     }
+
+    public int getNbrAretesIntern(){
+        return aretesIntern.size();
+    }
+
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
 
-        aretes
+        aretesAll
                 .stream()
                 .forEach(arete -> System.out.println(arete.getFirst() + " ---> " + arete.getSecond()));
 
