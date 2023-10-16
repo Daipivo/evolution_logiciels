@@ -1,16 +1,20 @@
 package couplage;
 
 import graph.CallGraph;
+import graph.Pair;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class Couplage {
 
     private CallGraph graph;
     private int cpt = 0;
+
+    public Set<Pair<String, String>> getTest() {
+        return test;
+    }
+
+    private Set<Pair<String, String>> test = new HashSet<>();
 
     public Couplage(CallGraph graph){
         this.graph = graph;
@@ -34,6 +38,14 @@ public class Couplage {
             for (int j = i + 1; j < clsList.size(); j++) {
 
 //                System.out.println(clsList.get(i) + " " + clsList.get(j));
+//
+//                if(clsList.get(i).equals("CallGraph")){
+//                    System.out.println(clsList.get(j));
+//                }
+//
+//                if(clsList.get(j).equals("CallGraph")){
+//                    System.out.println(clsList.get(i));
+//                }
 
                 numberOfRelationsBtwAllClasses += getCouplage(clsList.get(i), clsList.get(j), false);
 //                System.out.println(numberOfRelationsBtwAllClasses);
@@ -51,25 +63,20 @@ public class Couplage {
         Map<String, List<String>> class1Methods = graph.getCalledMethodsInClasse(class1);
         Map<String, List<String>> class2Methods = graph.getCalledMethodsInClasse(class2);
 
-//        System.out.println(class1 + " " + class1Methods);
-//
-//        System.out.println(" ======== ");
-//
-//        System.out.println(class2 + " " + class2Methods);
-
         double numberOfRelationsBtwClasses = 0;
 
         for ( String cls1m : class1Methods.keySet()){
 
-//            System.out.println("Methode 1 ==> " + cls1m);
-
             for ( String methodscls1 : class1Methods.get(cls1m)){
 
-//                System.out.println("Methode 1 bis ==> " + methodscls1);
-
-
                 if(class2Methods.keySet().contains(methodscls1)){
-
+                    test.add(new Pair<>(class2 + ":" + cls1m, class1 + ":" + methodscls1));
+                    if(class1.equals("CallGraph")){
+                        System.out.println(class2);
+                    }
+                    if(class2.equals("CallGraph")){
+                        System.out.println(class1);
+                    }
                     numberOfRelationsBtwClasses++;
                     cpt++;
                 }
@@ -79,20 +86,18 @@ public class Couplage {
         if(!isRefl) {
             for (String cls2m : class2Methods.keySet()) {
 
-//            System.out.println("Methode 2 ==> " + cls2m);
 
                 for (String methodscls2 : class2Methods.get(cls2m)) {
 
-//                System.out.println("Methode 2 bis ==> " + methodscls2);
-                    if (class1Methods.keySet().contains(methodscls2)){
-                        if(methodscls2.equals(cls2m)){
-                            System.out.println(cls2m + " " + methodscls2);
-                        }
-                    }
-
-
                     if (class1Methods.keySet().contains(methodscls2) && !methodscls2.equals(cls2m))  {
-
+//                        System.out.println(class1 + ":" + cls2m);
+                        test.add(new Pair<>(class1 + ":" + cls2m, class2 + ":" + methodscls2));
+                        if(class1.equals("CallGraph")){
+                            System.out.println(class2);
+                        }
+                        if(class2.equals("CallGraph")){
+                            System.out.println(class1);
+                        }
                         numberOfRelationsBtwClasses++;
                         cpt++;
 
