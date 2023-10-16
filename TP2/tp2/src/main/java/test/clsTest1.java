@@ -7,5 +7,6 @@ public class clsTest1 {
         t2.m1t2();
     }
     public void m2t1(){
+        m1T1();
     }
 }
