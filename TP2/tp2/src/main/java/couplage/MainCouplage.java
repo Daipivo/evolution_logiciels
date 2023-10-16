@@ -23,10 +23,17 @@ public class MainCouplage {
 
         System.out.println(couplage.getCouplageGraph());
 
-//        System.out.println(couplage.getCpt());
+        DisplayWeightedGraph display = new DisplayWeightedGraph();
+        display.displayGraph(couplage.getWeightedGraph());
 
-//        graph.getAretesIntern().stream().forEach(p -> System.out.println(p.getFirst() + " " + p.getSecond()));
-        
+//        couplage.getWeightedGraph().forEach((pair, value) -> {
+//            String class1 = pair.getFirst();
+//            String class2 = pair.getSecond();
+//            double couplingValue = value;
+//
+//            // Votre logique ici.
+//            System.out.println("Couplage entre " + class1 + " et " + class2 + " est : " + couplingValue);
+//        });
 
     }
 
