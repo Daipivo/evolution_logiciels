@@ -27,7 +27,7 @@ public class Couplage {
         Set<String> cls = graph.getGraphIntern().keySet();
         List<String> clsList = new ArrayList<>(cls);
 
-        System.out.println(clsList);
+//        System.out.println(clsList);
 
         numberOfRelationsBtwAllClasses = cls.stream()
                 .mapToDouble(c -> getCouplage(c, c, true))
@@ -65,18 +65,17 @@ public class Couplage {
 
         double numberOfRelationsBtwClasses = 0;
 
+
+//        System.out.println(class1Methods);
+
+
+
         for ( String cls1m : class1Methods.keySet()){
 
             for ( String methodscls1 : class1Methods.get(cls1m)){
 
                 if(class2Methods.keySet().contains(methodscls1)){
-                    test.add(new Pair<>(class2 + ":" + cls1m, class1 + ":" + methodscls1));
-                    if(class1.equals("CallGraph")){
-                        System.out.println(class2);
-                    }
-                    if(class2.equals("CallGraph")){
-                        System.out.println(class1);
-                    }
+                    test.add(new Pair<>(class1 + ":" + cls1m, class2 + ":" + methodscls1));
                     numberOfRelationsBtwClasses++;
                     cpt++;
                 }
@@ -90,14 +89,7 @@ public class Couplage {
                 for (String methodscls2 : class2Methods.get(cls2m)) {
 
                     if (class1Methods.keySet().contains(methodscls2) && !methodscls2.equals(cls2m))  {
-//                        System.out.println(class1 + ":" + cls2m);
-                        test.add(new Pair<>(class1 + ":" + cls2m, class2 + ":" + methodscls2));
-                        if(class1.equals("CallGraph")){
-                            System.out.println(class2);
-                        }
-                        if(class2.equals("CallGraph")){
-                            System.out.println(class1);
-                        }
+                        test.add(new Pair<>(class2 + ":" + cls2m, class1 + ":" + methodscls2));
                         numberOfRelationsBtwClasses++;
                         cpt++;
 
