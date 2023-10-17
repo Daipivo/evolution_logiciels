@@ -12,60 +12,80 @@ public class ClusteringHierarchique {
         this.weightedGraph = weightedGraph;
     }
 
+    private void addClusterIfNotExists(Set<Cluster> clusters, String vertex) {
+        for (Cluster existingCluster : clusters) {
+            if (existingCluster.getClasses().contains(vertex)) {
+                return; // Le cluster avec ce sommet existe déjà
+            }
+        }
+        clusters.add(new Cluster(vertex, 0)); // Ajoute un nouveau cluster si aucun match n'a été trouvé
+    }
+
+
     public Set<Cluster> clusteringHierarchique() {
 
         Set<Cluster> dendro = new HashSet<>();
         Set<Cluster> clusters = new HashSet<>();
 
+        // Initialisez les clusters individuels
         for (Pair<String, String> edge : weightedGraph.keySet()) {
-            clusters.add(new Cluster(edge.getFirst()));
-            clusters.add(new Cluster(edge.getSecond()));
-            dendro.add(new Cluster(edge.getFirst()));
-            dendro.add(new Cluster(edge.getSecond()));
-
+            addClusterIfNotExists(clusters, edge.getFirst());
+            addClusterIfNotExists(clusters, edge.getSecond());
         }
 
-        while (clusters.size() > 1){
+        System.out.println("=====");
+        clusters.stream().forEach(cluster -> System.out.println(cluster.getClasses()));
+        System.out.println("=====");
 
 
-            double degreMax = -1;
-            Pair pairMax = new Pair();
+
+        while (clusters.size() > 1) {
+            double degreMax = Double.NEGATIVE_INFINITY;
+            Pair<String, String> pairMax = null;
+            Cluster clusterMax = null;
 
             for (Pair<String, String> pair : weightedGraph.keySet()) {
-
-                if(weightedGraph.get(pair) > degreMax){
+                if (weightedGraph.get(pair) > degreMax) {
                     pairMax = pair;
                     degreMax = weightedGraph.get(pair);
                 }
-
             }
 
-            ArrayList<String> classes = new ArrayList<>();
-            classes.add(pairMax.getFirst().toString());
-            classes.add(pairMax.getSecond().toString());
-
-            Cluster cluster = new Cluster(classes, degreMax);
-
-            System.out.println(clusters);
-
-            for(Cluster c : clusters){
-
-                System.out.println(c.getClasses());
-
-                if(c.getClasses().equals(cluster.getClasses())){
-
-                    clusters.remove(c);
-
+            for (Cluster cluster : clusters){
+                if(cluster.getWeight() > degreMax){
+                    clusterMax = cluster;
+                    degreMax = cluster.getWeight();
                 }
-
             }
 
-            dendro.add(cluster);
+            if (pairMax == null) {
+                break;  // Toutes les distances sont probablement négatives, ce qui est inattendu. Sortez de la boucle.
+            }
+            /*
+            List<String> classes = new ArrayList<>();
+            classes.add(pairMax.getFirst());
+            classes.add(pairMax.getSecond());
 
+            final String firstClass = pairMax.getFirst();
+            final String secondClass = pairMax.getSecond();
+
+            Cluster mergedCluster = new Cluster(classes, degreMax);
+
+            // Supprimez les anciens clusters
+            clusters.removeIf(cluster -> cluster.getClasses().contains(firstClass) || cluster.getClasses().contains(secondClass));
+
+            // Supprimez la paire maximale de weightedGraph pour éviter de la retrouver à la prochaine itération
+            weightedGraph.remove(pairMax);
+
+            // Ajoutez le nouveau cluster fusionné
+            clusters.add(mergedCluster);
+
+            // (Optionnel) Mettez à jour le weightedGraph ici si nécessaire
+
+            // Ajoutez le nouveau cluster au dendrogramme
+            dendro.add(mergedCluster);
         }
-
-
-
+    */
         return dendro;
     }
 }

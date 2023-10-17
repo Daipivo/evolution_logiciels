@@ -1,28 +1,32 @@
 package couplage;
 
-import scala.util.parsing.combinator.testing.Str;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class Cluster {
 
-    List<String> classes;
-    double weight;
+    private List<String> classes;
+    private double weight;
 
-    public Cluster(){
-
+    public Cluster() {
+        this.classes = new ArrayList<>();
     }
 
-    public Cluster(String classe){
-        classes = classes;
+    public Cluster(String classe) {
+        this.classes = new ArrayList<>();
+        this.classes.add(classe);
     }
 
-    public Cluster(ArrayList<String> classes, double weight){
-        classes = classes;
-        weight = weight;
+    public Cluster(String classe, double weight) {
+        this.classes = new ArrayList<>();
+        this.classes.add(classe);
+        this.weight = weight;
     }
 
+    public Cluster(List<String> classes, double weight) {
+        this.classes = new ArrayList<>(classes);
+        this.weight = weight;
+    }
     public List<String> getClasses() {
         return classes;
     }

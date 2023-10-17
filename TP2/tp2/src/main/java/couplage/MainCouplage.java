@@ -27,7 +27,9 @@ public class MainCouplage {
 
         ClusteringHierarchique clustering = new ClusteringHierarchique(weightedGraph);
 
-        System.out.println(clustering.clusteringHierarchique());
+        clustering.clusteringHierarchique()
+                .stream()
+                .forEach(cluster -> System.out.println(cluster.getClasses()));
 
     }
 
