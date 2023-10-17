@@ -23,8 +23,17 @@ public class Couplage {
     private Map<Pair<String, String>, Double> computeWeightedGraph() {
         Map<Pair<String, String>, Double> graph = new HashMap<>();
 
-        for (String cls1 : this.graph.getGraphIntern().keySet()) {
-            for (String cls2 : this.graph.getGraphIntern().keySet()) {
+        List<String> classes = new ArrayList<>(this.graph.getGraphIntern().keySet());
+
+        for(int i = 0; i < classes.size(); i++){
+            double coupling = getCouplage(classes.get(i), classes.get(i));
+            graph.put(new Pair<>(classes.get(i), classes.get(i)), coupling);
+        }
+
+        for (int i = 0; i < classes.size(); i++) {
+            for (int j = i + 1; j < classes.size(); j++) {
+                String cls1 = classes.get(i);
+                String cls2 = classes.get(j);
                 double coupling = getCouplage(cls1, cls2);
                 graph.put(new Pair<>(cls1, cls2), coupling);
             }
@@ -32,6 +41,7 @@ public class Couplage {
 
         return graph;
     }
+
 
 
     private double computeTotalCoupling() {
