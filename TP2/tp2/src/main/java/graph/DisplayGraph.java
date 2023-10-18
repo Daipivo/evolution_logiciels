@@ -6,6 +6,7 @@ import org.graphstream.graph.Node;
 import org.graphstream.graph.implementations.SingleGraph;
 import org.graphstream.ui.view.Viewer;
 
+import java.util.List;
 import java.util.Set;
 
 public class DisplayGraph {
@@ -19,7 +20,7 @@ public class DisplayGraph {
 
         System.setProperty("org.graphstream.ui", "swing");
 
-        Set<Pair<String,String>> aretes = callGraph.getAretes();
+        List<Pair<String,String>> aretes = callGraph.getAretes();
 
         Graph graphDisplay = new SingleGraph("Mon graphe");
 

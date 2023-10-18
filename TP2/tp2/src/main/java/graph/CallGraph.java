@@ -16,14 +16,14 @@ public class CallGraph {
     private List<String> classes;
     private Map<String, Map<String, List<MethodInvocation>>> graphAll = new HashMap<>();
     private Map<String, Map<String, List<String>>> graphIntern = new HashMap<>();
-    private Set<Pair<String, String>> aretesAll;
-    private Set<Pair<String, String>> aretesIntern;
+    private List<Pair<String, String>> aretesAll;
+    private List<Pair<String, String>> aretesIntern;
 
     public CallGraph(String projectPath){
         this.parser = new Parser(projectPath);
         classes = new ArrayList<>();
-        this.aretesAll = new HashSet<>();
-        this.aretesIntern = new HashSet<>();
+        this.aretesAll = new ArrayList<>();
+        this.aretesIntern = new ArrayList<>();
     }
 
     // Parcours d'un fichier java
@@ -88,10 +88,31 @@ public class CallGraph {
                     callMethodsIntern.put(method.getName().toString(), invocationMethodsIntern);
                 }
 
+            String key = String.valueOf(cls.getName());
+
+
             // Ajout dans le graph => Classe : hashmap
             graphAll.put(String.valueOf(cls.getName()), callMethods);
-            graphIntern.put(String.valueOf(cls.getName()), callMethodsIntern);
-        }
+
+
+                // Vérifier si la clé existe déjà dans graphIntern
+            if (graphIntern.containsKey(key)) {
+                // Récupérer la valeur existante
+                Map<String, List<String>> existingCallMethodsIntern = graphIntern.get(key);
+
+                // Parcourir toutes les clés de callMethodsIntern et les fusionner avec existingCallMethodsIntern
+                for (Map.Entry<String, List<String>> entry : callMethodsIntern.entrySet()) {
+                        existingCallMethodsIntern.merge(entry.getKey(), entry.getValue(), (existingList, newList) -> {
+                        existingList.addAll(newList);
+                        return existingList;
+                    });
+                }
+            } else {
+                // Si la clé n'existe pas dans graphIntern, ajoutez simplement callMethodsIntern
+                graphIntern.put(key, callMethodsIntern);
+            }
+
+            }
     }
 
     public boolean start(){
@@ -121,21 +142,20 @@ public class CallGraph {
         MethodInvocationVisitor visitor = new MethodInvocationVisitor();
 
         return visitor.getMethodsInvocation(methode);
-
     }
-
     public Map<String, List<String>> getCalledMethodsInClasse(String nameClasse) {
+
         if (graphIntern.containsKey(nameClasse)) {
             return new HashMap<>(graphIntern.get(nameClasse));
         }
         return new HashMap<>();
     }
 
-    public Set<Pair<String, String>> getAretes(){
+    public List<Pair<String, String>> getAretes(){
         return aretesAll;
     }
 
-    public Set<Pair<String, String>> getAretesIntern(){
+    public List<Pair<String, String>> getAretesIntern(){
 
         return aretesIntern;
 
