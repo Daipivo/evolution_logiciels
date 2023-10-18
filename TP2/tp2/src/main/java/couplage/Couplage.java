@@ -10,6 +10,9 @@ public class Couplage {
     private CallGraph graph;
     private Map<Pair<String, String>, Double> weightedGraph;
     private double totalCoupling = 0.00;
+
+    public List<Pair<String, String>> test = new ArrayList<>();
+
     public Couplage(CallGraph graph){
         this.graph = graph;
         this.totalCoupling = graph.getNbrAretesIntern();
@@ -45,19 +48,40 @@ public class Couplage {
         Map<String, List<String>> class1Methods = graph.getCalledMethodsInClasse(class1);
         Map<String, List<String>> class2Methods = graph.getCalledMethodsInClasse(class2);
 
-        long couplingsFromCls1ToCls2 = class1Methods.values().stream()
-                .flatMap(List::stream)
-                .filter(method -> method.startsWith(class2 + ":"))
-                .count();
 
-        if(class1.equals(class2)) {
-            return couplingsFromCls1ToCls2; // Retourner uniquement le nombre d'appels internes si les deux classes sont identiques.
+        long couplingsFromCls1ToCls2 = 0;
+        for (Map.Entry<String, List<String>> entry : class1Methods.entrySet()) {
+            String keyMethodName = entry.getKey();
+            List<String> methods = entry.getValue();
+
+            for (String method : methods) {
+                if (method.startsWith(class2 + ":")) {
+                    couplingsFromCls1ToCls2++;
+                    test.add(new Pair<>(class1 + ":" + keyMethodName, method));
+                }
+            }
         }
 
-        long couplingsFromCls2ToCls1 = class2Methods.values().stream()
-                .flatMap(List::stream)
-                .filter(method -> method.startsWith(class1 + ":"))
-                .count();
+        if(class1.equals(class2)) {
+            return couplingsFromCls1ToCls2 / totalCoupling; // Retourner uniquement le nombre d'appels internes si les deux classes sont identiques.
+        }
+
+        long couplingsFromCls2ToCls1 = 0;
+        for (Map.Entry<String, List<String>> entry : class2Methods.entrySet()) {
+            String keyMethodName = entry.getKey();
+            List<String> methods = entry.getValue();
+
+            for (String method : methods) {
+                if (method.startsWith(class1 + ":")) {
+                    couplingsFromCls2ToCls1++;
+
+
+                    test.add(new Pair<>(class2 + ":" + keyMethodName, method));
+                }
+            }
+        }
+
+
 
         return ( couplingsFromCls1ToCls2 + couplingsFromCls2ToCls1 ) / totalCoupling;
     }
