@@ -9,6 +9,8 @@ public class clsTest2 {
 
     public void m2t2(){
         t1.m2t1();
+        t1.m2t1();
+
     }
 
 }

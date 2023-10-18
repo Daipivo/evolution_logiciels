@@ -8,98 +8,63 @@ import java.util.*;
 public class Couplage {
 
     private CallGraph graph;
-    private double totalCoupling;  // Ajouté pour stocker le couplage total
-
     private Map<Pair<String, String>, Double> weightedGraph;
-
+    private double totalCoupling = 0.00;
     public Couplage(CallGraph graph){
         this.graph = graph;
-        // Initialisation du couplage total à l'instantiation de la classe
-        this.totalCoupling = computeTotalCoupling();
-        this.weightedGraph = computeWeightedGraph(); // Construction du graphe pondéré lors de l'initialisation
-
+        this.totalCoupling = graph.getNbrAretesIntern();
     }
 
-    private Map<Pair<String, String>, Double> computeWeightedGraph() {
-        Map<Pair<String, String>, Double> graph = new HashMap<>();
+    public Map<Pair<String, String>, Double> computeWeightedGraph() {
 
-        for (String cls1 : this.graph.getGraphIntern().keySet()) {
-            for (String cls2 : this.graph.getGraphIntern().keySet()) {
-                double coupling = getCouplage(cls1, cls2);
-                graph.put(new Pair<>(cls1, cls2), coupling);
+        Map<Pair<String, String>, Double> graphResult = new HashMap<>();
+        List<String> classes = new ArrayList<>(this.graph.getGraphIntern().keySet());
+
+        for(int i = 0; i<classes.size();i++){
+            double coupling = calculateCouplingBtwClasses(classes.get(i), classes.get(i));
+            graphResult.put(new Pair<>(classes.get(i), classes.get(i)), coupling);
+        }
+
+
+        for (int i = 0; i < classes.size() - 1; i++) { // Notez le changement ici
+            for (int j = i + 1; j < classes.size(); j++) { // Et ici
+
+                String cls1 = classes.get(i);
+                String cls2 = classes.get(j);
+
+                double coupling = calculateCouplingBtwClasses(cls1, cls2);
+
+                graphResult.put(new Pair<>(cls1, cls2), coupling);
             }
         }
 
-        return graph;
+        return graphResult;
     }
-
-
-    private double computeTotalCoupling() {
-        return graph.getGraphIntern().keySet()
-                .stream()
-                .flatMap(cls1 -> graph.getGraphIntern().keySet()
-                        .stream()
-                        .map(cls2 -> {
-                            double couplingValue = getRawCouplage(cls1, cls2);
-                            return couplingValue;
-                        }))
-                .reduce(0.0, Double::sum);
-    }
-
-
-    public double getCouplageGraph() {
-        Set<String> classes = graph.getGraphIntern().keySet();
-        List<String> classList = new ArrayList<>(classes);
-        double sum = 0.0;
-
-        for (int i = 0; i < classList.size(); i++) {
-            for (int j = i; j < classList.size(); j++) {  // Commencer à i pour éviter les redondances
-                sum += getCouplage(classList.get(i), classList.get(j));
-
-                if(i != j) { // Si ce n'est pas un couplage réflexif, ajoutez le couplage pour l'ordre inverse
-                    sum += getCouplage(classList.get(i), classList.get(j));
-                }
-            }
-        }
-
-        return sum;
-    }
-
-
-    private double getRawCouplage(String class1, String class2) {
+    private double calculateCouplingBtwClasses(String class1, String class2) {
 
         Map<String, List<String>> class1Methods = graph.getCalledMethodsInClasse(class1);
         Map<String, List<String>> class2Methods = graph.getCalledMethodsInClasse(class2);
-
-//        System.out.println(class1 + "  " +  class2);
-//        System.out.println(class1Methods);
 
         long couplingsFromCls1ToCls2 = class1Methods.values().stream()
                 .flatMap(List::stream)
                 .filter(method -> method.startsWith(class2 + ":"))
                 .count();
 
-        long couplingsFromCls2ToCls1 = 0;
-
-        if (!class1.equals(class2)) {  // Avoid calculating reflexive coupling twice
-            couplingsFromCls2ToCls1 = class2Methods.values().stream()
-                    .flatMap(List::stream)
-                    .filter(method -> method.startsWith(class1 + ":"))
-                    .count();
+        if(class1.equals(class2)) {
+            return couplingsFromCls1ToCls2; // Retourner uniquement le nombre d'appels internes si les deux classes sont identiques.
         }
 
-        return (double)(couplingsFromCls1ToCls2 + couplingsFromCls2ToCls1) / (double)graph.getNbrAretesIntern();
-    }
+        long couplingsFromCls2ToCls1 = class2Methods.values().stream()
+                .flatMap(List::stream)
+                .filter(method -> method.startsWith(class1 + ":"))
+                .count();
 
-    public double getCouplage(String class1, String class2) {
-        double rawCouplingValue = getRawCouplage(class1, class2);
-        return rawCouplingValue / totalCoupling;
+        return ( couplingsFromCls1ToCls2 + couplingsFromCls2ToCls1 ) / totalCoupling;
     }
 
     public Map<Pair<String, String>, Double> getWeightedGraph() {
         return this.weightedGraph;
     }
 }
-
 
 
