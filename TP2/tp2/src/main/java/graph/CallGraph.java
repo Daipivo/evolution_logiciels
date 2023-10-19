@@ -2,6 +2,7 @@ package graph;
 
 import org.eclipse.jdt.core.dom.*;
 import parser.Parser;
+import scala.util.parsing.combinator.testing.Str;
 import visiteur.ClassCountVisitor;
 import visiteur.MethodDeclarationVisitor;
 import visiteur.MethodInvocationVisitor;
@@ -12,7 +13,6 @@ import java.util.stream.Collectors;
 public class CallGraph {
 
     private Parser parser;
-
     private List<String> classes;
     private Map<String, Map<String, List<MethodInvocation>>> graphAll = new HashMap<>();
     private Map<String, Map<String, List<String>>> graphIntern = new HashMap<>();
@@ -21,9 +21,10 @@ public class CallGraph {
 
     public CallGraph(String projectPath){
         this.parser = new Parser(projectPath);
-        classes = new ArrayList<>();
+        this.classes = new ArrayList<>();
         this.aretesAll = new ArrayList<>();
         this.aretesIntern = new ArrayList<>();
+        start();
     }
 
     // Parcours d'un fichier java
@@ -169,6 +170,7 @@ public class CallGraph {
         return aretesIntern.size();
     }
 
+    public List<String> getClasses(){return classes;}
 
     @Override
     public String toString() {
