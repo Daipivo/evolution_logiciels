@@ -1,15 +1,26 @@
-/home/e20180003955/Bureau/evolution_logiciels/TP2/tp2/src/main/java/visiteur/ClassCountVisitor.java
-/home/e20180003955/Bureau/evolution_logiciels/TP2/tp2/src/main/java/utils/ApplicationStatistics.java
-/home/e20180003955/Bureau/evolution_logiciels/TP2/tp2/src/main/java/graph/MainGraph.java
-/home/e20180003955/Bureau/evolution_logiciels/TP2/tp2/src/main/java/org/example/couplage/MainCouplage.java
-/home/e20180003955/Bureau/evolution_logiciels/TP2/tp2/src/main/java/visiteur/AttributDeclarationVisitor.java
-/home/e20180003955/Bureau/evolution_logiciels/TP2/tp2/src/main/java/parser/Parser.java
-/home/e20180003955/Bureau/evolution_logiciels/TP2/tp2/src/main/java/visiteur/MethodInvocationVisitor.java
-/home/e20180003955/Bureau/evolution_logiciels/TP2/tp2/src/main/java/graph/Pair.java
-/home/e20180003955/Bureau/evolution_logiciels/TP2/tp2/src/main/java/graph/CallGraph.java
-/home/e20180003955/Bureau/evolution_logiciels/TP2/tp2/src/main/java/graph/DisplayGraph.java
-/home/e20180003955/Bureau/evolution_logiciels/TP2/tp2/src/main/java/gui/FileChooser.java
-/home/e20180003955/Bureau/evolution_logiciels/TP2/tp2/src/main/java/Main.java
-/home/e20180003955/Bureau/evolution_logiciels/TP2/tp2/src/main/java/org/example/couplage/Couplage.java
-/home/e20180003955/Bureau/evolution_logiciels/TP2/tp2/src/main/java/visiteur/MethodDeclarationVisitor.java
-/home/e20180003955/Bureau/evolution_logiciels/TP2/tp2/src/main/java/visiteur/PackageDeclarationVisitor.java
+C:\Users\Sandratra\Desktop\Projet M2 UM\evolution_logiciels\TP2\tp2\src\main\java\spoon\main\SpoonMain.java
+C:\Users\Sandratra\Desktop\Projet M2 UM\evolution_logiciels\TP2\tp2\src\main\java\test\clsTest1.java
+C:\Users\Sandratra\Desktop\Projet M2 UM\evolution_logiciels\TP2\tp2\src\main\java\couplage\Cluster.java
+C:\Users\Sandratra\Desktop\Projet M2 UM\evolution_logiciels\TP2\tp2\src\main\java\couplage\Couplage.java
+C:\Users\Sandratra\Desktop\Projet M2 UM\evolution_logiciels\TP2\tp2\src\main\java\visiteur\ClassCountVisitor.java
+C:\Users\Sandratra\Desktop\Projet M2 UM\evolution_logiciels\TP2\tp2\src\main\java\graph\Pair.java
+C:\Users\Sandratra\Desktop\Projet M2 UM\evolution_logiciels\TP2\tp2\src\main\java\graph\MainGraph.java
+C:\Users\Sandratra\Desktop\Projet M2 UM\evolution_logiciels\TP2\tp2\src\main\java\visiteur\MethodDeclarationVisitor.java
+C:\Users\Sandratra\Desktop\Projet M2 UM\evolution_logiciels\TP2\tp2\src\main\java\Abstract\Processor.java
+C:\Users\Sandratra\Desktop\Projet M2 UM\evolution_logiciels\TP2\tp2\src\main\java\spoon\parser\SpoonParser.java
+C:\Users\Sandratra\Desktop\Projet M2 UM\evolution_logiciels\TP2\tp2\src\main\java\visiteur\PackageDeclarationVisitor.java
+C:\Users\Sandratra\Desktop\Projet M2 UM\evolution_logiciels\TP2\tp2\src\main\java\utils\ApplicationStatistics.java
+C:\Users\Sandratra\Desktop\Projet M2 UM\evolution_logiciels\TP2\tp2\src\main\java\visiteur\MethodInvocationVisitor.java
+C:\Users\Sandratra\Desktop\Projet M2 UM\evolution_logiciels\TP2\tp2\src\main\java\test\clsTest2.java
+C:\Users\Sandratra\Desktop\Projet M2 UM\evolution_logiciels\TP2\tp2\src\main\java\graph\DisplayGraph.java
+C:\Users\Sandratra\Desktop\Projet M2 UM\evolution_logiciels\TP2\tp2\src\main\java\visiteur\AttributDeclarationVisitor.java
+C:\Users\Sandratra\Desktop\Projet M2 UM\evolution_logiciels\TP2\tp2\src\main\java\couplage\MainCouplage.java
+C:\Users\Sandratra\Desktop\Projet M2 UM\evolution_logiciels\TP2\tp2\src\main\java\couplage\ModuleIdentifier.java
+C:\Users\Sandratra\Desktop\Projet M2 UM\evolution_logiciels\TP2\tp2\src\main\java\graph\CallGraph.java
+C:\Users\Sandratra\Desktop\Projet M2 UM\evolution_logiciels\TP2\tp2\src\main\java\Abstract\Parsers.java
+C:\Users\Sandratra\Desktop\Projet M2 UM\evolution_logiciels\TP2\tp2\src\main\java\parser\Parser.java
+C:\Users\Sandratra\Desktop\Projet M2 UM\evolution_logiciels\TP2\tp2\src\main\java\Main.java
+C:\Users\Sandratra\Desktop\Projet M2 UM\evolution_logiciels\TP2\tp2\src\main\java\couplage\DisplayWeightedGraph.java
+C:\Users\Sandratra\Desktop\Projet M2 UM\evolution_logiciels\TP2\tp2\src\main\java\gui\FileChooser.java
+C:\Users\Sandratra\Desktop\Projet M2 UM\evolution_logiciels\TP2\tp2\src\main\java\couplage\ClusteringHierarchique.java
+C:\Users\Sandratra\Desktop\Projet M2 UM\evolution_logiciels\TP2\tp2\src\main\java\spoon\processor\SpoonProcessor.java
