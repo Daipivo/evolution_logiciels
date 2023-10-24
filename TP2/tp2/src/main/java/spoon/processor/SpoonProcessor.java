@@ -15,6 +15,5 @@ public class SpoonProcessor extends Processor<SpoonParser> {
     public void setParser(SpoonParser parser) {
         this.parser = parser;
     }
-
 }
 
