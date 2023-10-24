@@ -50,11 +50,6 @@ public class SpoonCouplage {
         return couplingMetric;
     }
 
-    public int calculateInverseCouplingMetric(CtClass<?> classA, CtClass<?> classB) {
-        // Calculer le couplage de classB vers classA
-        return calculateCouplingMetric(classB, classA);
-    }
-
     public Map<Pair<String, String>, Double> calculateCouplingMetricsForAllClasses() {
         Map<Pair<String, String>, Double> results = new HashMap<>();
         for (CtClass<?> classA : classes) {
@@ -63,22 +58,15 @@ public class SpoonCouplage {
                     Pair<String, String> pairAB = new Pair<>(classA.getQualifiedName(), classB.getQualifiedName());
                     Pair<String, String> pairBA = new Pair<>(classB.getQualifiedName(), classA.getQualifiedName());
                     // Vérifiez si l'entrée existe déjà pour A vers B
-                    if (results.containsKey(pairAB)) {
-                        double existingMetric = results.get(pairAB);
-                        int newMetric = calculateCouplingMetric(classA, classB);
-                        results.put(pairAB, existingMetric + ((double) (newMetric)));
-                    } else {
-                        int couplingAB = calculateCouplingMetric(classA, classB);
-                        results.put(pairAB, ((double) (couplingAB)));
-                    }
-                    // Vérifiez si l'entrée existe déjà pour B vers A
-                    if (results.containsKey(pairBA)) {
-                        double existingMetric = results.get(pairBA);
-                        int newMetric = calculateInverseCouplingMetric(classA, classB);
-                        results.put(pairBA, existingMetric + ((double) (newMetric)));
-                    } else {
-                        int couplingBA = calculateInverseCouplingMetric(classA, classB);
-                        results.put(pairBA, ((double) (couplingBA)));
+                    if (!results.containsKey(pairAB)) {
+                        if (results.containsKey(pairBA)) {
+                            double existingMetric = results.get(pairBA);
+                            int newMetric = calculateCouplingMetric(classA, classB);
+                            results.put(pairAB, existingMetric + ((double) (newMetric)));
+                        } else {
+                            int couplingAB = calculateCouplingMetric(classA, classB);
+                            results.put(pairAB, ((double) (couplingAB)));
+                        }
                     }
                 }
             }
