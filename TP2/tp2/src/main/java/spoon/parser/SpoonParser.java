@@ -1,11 +1,11 @@
 package spoon.parser;
 
-import Abstract.Parsers;
+import Abstract.AbstractParser;
 import spoon.Launcher;
 import spoon.processing.Processor;
 import spoon.reflect.declaration.CtClass;
 
-public class SpoonParser extends Parsers<Launcher> {
+public class SpoonParser extends AbstractParser<Launcher> {
 
     public SpoonParser(String projectPath) {
         super(projectPath);
@@ -15,7 +15,7 @@ public class SpoonParser extends Parsers<Launcher> {
                             boolean autoImports, boolean commentsEnabled) {
         parser = new Launcher(); // create launcher
         parser.addInputResource(getProjectSrcPath()); // set project source path
-        parser.getEnvironment().setSourceClasspath(new String[] {getProjectBinPath()}); // set project classpath
+//        parser.getEnvironment().setSourceClasspath(new String[] {getProjectBinPath()}); // set project classpath
         parser.setSourceOutputDirectory(sourceOutputPath); // set generated source code directory path
         parser.setBinaryOutputDirectory(binaryOutputPath); // set generated binary code directory path
         parser.getEnvironment().setAutoImports(autoImports); // set auto imports
@@ -33,5 +33,4 @@ public class SpoonParser extends Parsers<Launcher> {
     public void run() {
         parser.run();
     }
-
 }
