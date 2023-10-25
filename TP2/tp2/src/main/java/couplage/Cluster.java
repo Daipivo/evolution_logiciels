@@ -10,24 +10,22 @@ public class Cluster {
 
     private Set<String> classes;
     private Set<Cluster> clusters;
-    private double weight;
-
     public Cluster(String classe) {
         this.classes = new HashSet<>();
         this.clusters = new HashSet<>();
         this.classes.add(classe);
     }
-    public Cluster(Cluster c1, Cluster c2, double weight) {
+    public Cluster(Cluster c1, Cluster c2) {
 
         this.classes = new HashSet<>();
         this.classes.addAll(c1.getClasses());
         this.classes.addAll(c2.getClasses());
 
         this.clusters = new HashSet<>();
+        this.clusters.add(c1);
+        this.clusters.add(c2);
         this.clusters.addAll(c1.getClusters());
         this.clusters.addAll(c2.getClusters());
-
-        this.weight = weight;
 
     }
 
@@ -38,31 +36,19 @@ public class Cluster {
     public Set<Cluster> getClusters() {
         return clusters;
     }
-    public double getWeight(){
-        return weight;
-    }
 
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
 
         // Ajout des classes
-        builder.append("Classes: ");
-        builder.append(classes);
+        builder.append("Classes du cluster : ");
+        builder.append(this.classes);
 
-        // Ajout des clusters enfants si existants
-        if (!clusters.isEmpty()) {
-            builder.append(", Child Clusters: [");
-            List<String> clusterStrings = clusters.stream()
-                    .map(Cluster::toString)
-                    .collect(Collectors.toList());
-            builder.append(String.join(", ", clusterStrings));
-            builder.append("]");
-        }
-
-        // Ajout du poids
-        builder.append(", Weight: ");
-        builder.append(weight);
+        // Ajout du nombre de clusters
+        builder.append(" : ce cluster contient ");
+        builder.append(this.clusters.size());
+        builder.append(" cluster(s) enfant(s)");
 
         return builder.toString();
     }
