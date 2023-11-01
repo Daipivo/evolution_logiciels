@@ -9,7 +9,7 @@ import spoon.reflect.declaration.CtElement;
 public class SpoonMain {
     public static void main(String[] args) {
         // Remplacez le chemin du projet par le chemin réel de votre projet
-        String projectPath = "/home/e20220012486/M2/Projet/evolution_logiciels/TP2/tp2";
+        String projectPath = "C:\\Users\\Sandratra\\Desktop\\Projet M2 UM\\evolution_logiciels\\TP2\\tp2";
         // Créez une instance de votre SpoonParser en passant le chemin du projet
         SpoonParser spoonParser = new SpoonParser(projectPath);
         // Configurez le parser en spécifiant les répertoires de sortie et les options

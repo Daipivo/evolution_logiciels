@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.*;
 public class MainCouplage {
     public static void main(String[] args) throws IOException {
-        CallGraph graph = new CallGraph("/home/reyne/Bureau/evolution_logiciels/TP2/tp2");
+        CallGraph graph = new CallGraph("C:/Users/Sandratra/Desktop/Projet M2 UM/evolution_logiciels/TP2/tp1");
         List<String> classes = graph.getClasses();
         Couplage couplage = new Couplage(graph);
         // Graphe de couplage
