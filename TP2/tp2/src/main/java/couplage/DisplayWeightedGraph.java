@@ -9,6 +9,7 @@ import org.graphstream.ui.view.Viewer;
 import org.graphstream.ui.view.ViewerListener;
 import org.graphstream.ui.view.ViewerPipe;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.graphstream.algorithm.Toolkit;
@@ -37,6 +38,8 @@ public class DisplayWeightedGraph {
     }
 
     public void displayGraph() {
+
+
         couplage.getWeightedGraph().forEach((pair, weight) -> {
                 String class1 = pair.getFirst();
                 String class2 = pair.getSecond();
@@ -57,6 +60,7 @@ public class DisplayWeightedGraph {
                 if (node1 != null && node2 != null) {
                     Edge edge = graph.addEdge(edgeId, class1, class2, false);
                     if (edge != null) {
+                        edge.addAttribute("layout.weight", 0.5);
                         edge.setAttribute("ui.label", String.format("%.3f", weight));
                     }
                 }
@@ -88,15 +92,17 @@ public class DisplayWeightedGraph {
     protected String styleSheet =
             "edge {" +
                     "   text-alignment: above;" +
-                    "   text-size: 12px;" +
+                    "   text-size: 20px;" +   // Réduit la taille du texte pour le poids
                     "}" +
                     "node {" +
-                    "   size: 10px;" +
+                    "   size: 8px;" +         // Réduit la taille des nœuds
                     "   shape: circle;" +
                     "   fill-color: white;" +
                     "   stroke-mode: plain;" +
                     "   stroke-color: black;" +
-                    "   text-size: 10px;" +
+                    "   text-offset: 10px, 10px;" +  // Décale le texte de
+                    "   text-size: 16px;" +   // Augmente la taille du texte pour les noms de classes
                     "}";
+
 
 }
