@@ -4,7 +4,7 @@ import java.util.*;
 public class ClusteringHierarchique {
     private Map<Pair<String, String>, Double> weightedGraph;
 
-    private Set<Cluster> dendrogramme = new HashSet<>();
+    private Set<Cluster> dendrogramme = new LinkedHashSet<>();
 
     /**
      * Constructeur de la classe ClusteringHierarchique.
@@ -69,7 +69,7 @@ public class ClusteringHierarchique {
      * @return Un ensemble représentant la dendrogramme de clusters.
      */
     private Set<Cluster> clusteringHierarchique() {
-        Set<Cluster> dendro = new HashSet<>();
+        Set<Cluster> dendro = new LinkedHashSet<>();
         Set<Cluster> clusters = new HashSet<>();
         // Initialisez les clusters individuels
         for (Pair<String, String> edge : weightedGraph.keySet()) {
@@ -92,8 +92,7 @@ public class ClusteringHierarchique {
                     }
                 }
             }
-            Double couplageCluster = (clusterMax1.getWeight() + clusterMax2.getWeight()) + couplageMax;
-            Cluster clusterMax = new Cluster(clusterMax1, clusterMax2, couplageCluster);
+            Cluster clusterMax = new Cluster(clusterMax1, clusterMax2);
             clusters.remove(clusterMax1);
             clusters.remove(clusterMax2);
             clusters.add(clusterMax);
@@ -114,14 +113,12 @@ public class ClusteringHierarchique {
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        // Convertir le dendrogramme en liste pour le tri
-        List<Cluster> sortedClusters = new ArrayList<>(clusteringHierarchique());
-        // Trier la liste en fonction du poids, de manière décroissante
-        sortedClusters.sort((c1, c2) -> Double.compare(c2.getClasses().size(), c1.getClasses().size()));// Si Cluster a une méthode getWeight()
-
-        builder.append("ClusteringHierarchique {\n\tDendrogram:\n");
-        for (Cluster cluster : sortedClusters) {
-            builder.append("\t\tClasses: ").append(cluster.getClasses()).append(", Weight: ").append(cluster.getWeight()).append("\n");
+        builder.append("Clustering Hierarchique {\n\tDendrogramme :\n");
+        // Convertir le Set en List pour conserver l'ordre d'insertion
+        List<Cluster> clustersList = new ArrayList<>(dendrogramme);
+        // Parcourir la liste en sens inverse
+        for (int i = clustersList.size() - 1; i >= 0; i--) {
+            builder.append("\t\t").append(clustersList.get(i)).append("\n");
         }
         builder.append("}");
         return builder.toString();

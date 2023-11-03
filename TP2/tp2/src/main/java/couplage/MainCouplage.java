@@ -24,6 +24,7 @@ public class MainCouplage {
         // Affichage du graphe de couplage
         DisplayWeightedGraph displayWeightedGraph = new DisplayWeightedGraph(couplage);
         displayWeightedGraph.displayGraph();
+
         /*
         Instance utilisé pour le rapport
          */
@@ -62,5 +63,9 @@ public class MainCouplage {
         ModuleIdentifier moduleIdentifierTP = new ModuleIdentifier(clusteringTP, weightedGraphTP, 0.2, 5);
         System.out.println(moduleIdentifierTP);
 
+
+
     }
+
+
 }

@@ -44,6 +44,9 @@ public class SpoonMain {
             System.out.println("Couplage entre " + classA + " et " + classB + ": " + couplingMetric);
         }
 
+        // Affichez les détails de l'objet SpoonCouplage en utilisant la méthode toString
+        System.out.println(cpl.toString());
+
     }
 
     // Fonction récursive pour afficher l'AST

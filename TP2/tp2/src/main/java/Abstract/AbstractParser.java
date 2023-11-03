@@ -68,6 +68,7 @@ public abstract class AbstractParser<T> {
 
         return javaFiles;
     }
+
     public List<File> listJavaProjectFiles(){
         return listJavaFiles(getProjectSrcPath());
     }

@@ -43,6 +43,7 @@ public class DisplayWeightedGraph {
             if ((node1 != null) && (node2 != null)) {
                 Edge edge = graph.addEdge(edgeId, class1, class2, false);
                 if (edge != null) {
+                    edge.addAttribute("layout.weight", 0.5);
                     edge.setAttribute("ui.label", String.format("%.3f", weight));
                 }
             }
@@ -66,5 +67,9 @@ public class DisplayWeightedGraph {
         Toolkit.computeLayout(graph);
     }
 
-    protected String styleSheet = (((((((((("edge {" + "   text-alignment: above;") + "   text-size: 12px;") + "}") + "node {") + "   size: 10px;") + "   shape: circle;") + "   fill-color: white;") + "   stroke-mode: plain;") + "   stroke-color: black;") + "   text-size: 10px;") + "}";
+    protected String styleSheet = ((((((((((("edge {" + "   text-alignment: above;") + "   text-size: 20px;")// Réduit la taille du texte pour le poids
+     + "}") + "node {") + "   size: 8px;")// Réduit la taille des nœuds
+     + "   shape: circle;") + "   fill-color: white;") + "   stroke-mode: plain;") + "   stroke-color: black;") + "   text-offset: 10px, 10px;")// Décale le texte de
+     + "   text-size: 16px;")// Augmente la taille du texte pour les noms de classes
+     + "}";
 }

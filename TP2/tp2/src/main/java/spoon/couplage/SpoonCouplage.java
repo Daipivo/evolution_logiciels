@@ -15,7 +15,16 @@ public class SpoonCouplage {
 
     private CtModel model;
     private List<CtClass<?>> classes;
-    
+
+    private double TotalCoupling=0;
+
+    public double getTotalCoupling() {
+        return TotalCoupling;
+    }
+
+    public void setTotalCoupling(double totalCoupling) {
+        TotalCoupling = totalCoupling;
+    }
 
     public SpoonCouplage(CtModel model){
         this.model=model;
@@ -62,6 +71,19 @@ public class SpoonCouplage {
         return false;
     }
 
+    public Map<Pair<String, String>, Double> calculateCouplingMetric(Map<Pair<String, String>, Double> relations) {
+        Map<Pair<String, String>, Double> couplingMetrics = new HashMap<>();
+
+        for (Map.Entry<Pair<String, String>, Double> entry : relations.entrySet()) {
+            Pair<String, String> classPair = entry.getKey();
+            double relationsCountAB = entry.getValue();
+
+            double couplingMetric = relationsCountAB / getTotalCoupling();
+            couplingMetrics.put(classPair, couplingMetric);
+        }
+
+        return couplingMetrics;
+    }
     public Map<Pair<String, String>, Double> calculateCouplingMetricsForAllClasses() {
         Map<Pair<String, String>, Double> results = new HashMap<>();
         List<Pair<String, String>> listeDePairs=new ArrayList<>();
@@ -76,6 +98,7 @@ public class SpoonCouplage {
                     // Vérifiez si l'entrée existe déjà pour A vers B
                     if (!results.containsKey(pairAB)) {
                         double newMetric = calculateCouplingMetric(classA, classB);
+                        setTotalCoupling(getTotalCoupling()+newMetric);
                         if (existeInversePair(pairAB,listeDePairs)) {
                             double existingMetric = results.get(pairBA);
                             results.put(pairBA, existingMetric + (double) newMetric);
@@ -90,4 +113,22 @@ public class SpoonCouplage {
 
         return results;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("Couplage {\n");
+        sb.append("\tTotal Coupling: ").append(getTotalCoupling()).append("\n");
+        sb.append("\tWeighted Graph: \n");
+        Map<Pair<String, String>, Double> couplingMetrics = calculateCouplingMetricsForAllClasses();
+        Map<Pair<String, String>, Double> couplage = calculateCouplingMetric(couplingMetrics);
+        for (Map.Entry<Pair<String, String>, Double> entry : couplage.entrySet()) {
+            sb.append("\t\t").append(entry.getKey().getFirst()).append("-").append(entry.getKey().getSecond()).append(" -> ").append(entry.getValue()).append("\n");
+        }
+        sb.append("}");
+
+        return sb.toString();
+    }
+
 }
