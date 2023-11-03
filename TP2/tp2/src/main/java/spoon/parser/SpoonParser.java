@@ -1,11 +1,11 @@
 package spoon.parser;
 
-import Abstract.Parsers;
 import spoon.Launcher;
 import spoon.processing.Processor;
 import spoon.reflect.declaration.CtClass;
+import Abstract.AbstractParser;
 
-public class SpoonParser extends Parsers<Launcher> {
+public class SpoonParser extends AbstractParser<Launcher> {
 
     public SpoonParser(String projectPath) {
         super(projectPath);
@@ -13,17 +13,17 @@ public class SpoonParser extends Parsers<Launcher> {
 
     public void setLauncher(String sourceOutputPath, String binaryOutputPath,
                             boolean autoImports, boolean commentsEnabled) {
-        parser = new Launcher(); // create launcher
-        parser.addInputResource(getProjectSrcPath()); // set project source path
-        parser.getEnvironment().setSourceClasspath(new String[] {getProjectBinPath()}); // set project classpath
-        parser.setSourceOutputDirectory(sourceOutputPath); // set generated source code directory path
-        parser.setBinaryOutputDirectory(binaryOutputPath); // set generated binary code directory path
-        parser.getEnvironment().setAutoImports(autoImports); // set auto imports
-        parser.getEnvironment().setCommentEnabled(commentsEnabled); // set comments enabled
+        parser = new Launcher(); // Créer le lanceur (Launcher)
+        parser.addInputResource(getProjectSrcPath()); // Définir le chemin des sources du projet
+//        parser.getEnvironment().setSourceClasspath(new String[] {getProjectBinPath()}); // Définir le chemin de classe du projet
+        parser.setSourceOutputDirectory(sourceOutputPath); // Définir le chemin du répertoire pour le code source généré
+        parser.setBinaryOutputDirectory(binaryOutputPath); // Définir le chemin du répertoire pour le code binaire généré
+        parser.getEnvironment().setAutoImports(autoImports); // Définir l'importation automatique
+        parser.getEnvironment().setCommentEnabled(commentsEnabled); // Activer/désactiver les commentaires
     }
 
     public void configure() {
-        setLauncher(projectPath+"/spooned/src/", projectPath+"/spooned/bin/", true, true);
+        setLauncher(projectPath + "/spooned/src/", projectPath + "/spooned/bin/", true, true);
     }
 
     public void addProcessor(Processor<CtClass> processor) {
@@ -33,5 +33,4 @@ public class SpoonParser extends Parsers<Launcher> {
     public void run() {
         parser.run();
     }
-
 }

@@ -4,7 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Parsers<T> {
+public abstract class AbstractParser<T> {
     /* ATTRIBUTES */
     protected String projectPath;
     protected String projectSrcPath;
@@ -12,7 +12,7 @@ public abstract class Parsers<T> {
     protected T parser;
 
     /* CONSTRUCTOR */
-    public Parsers(String projectPath) {
+    public AbstractParser(String projectPath) {
         setProjectPaths(projectPath);
         configure();
     }
@@ -44,7 +44,7 @@ public abstract class Parsers<T> {
 
     private void setProjectPaths(String projectPath) {
         setProjectPath(projectPath);
-        setProjectSrcPath(projectPath+ File.separator+"src"+File.separator);
+        setProjectSrcPath(projectPath+File.separator+"src"+File.separator);
         setProjectBinPath(projectPath+File.separator+"bin"+File.separator);
     }
 
@@ -68,7 +68,6 @@ public abstract class Parsers<T> {
 
         return javaFiles;
     }
-
     public List<File> listJavaProjectFiles(){
         return listJavaFiles(getProjectSrcPath());
     }
