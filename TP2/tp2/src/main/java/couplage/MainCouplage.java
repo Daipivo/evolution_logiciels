@@ -17,7 +17,7 @@ public class MainCouplage {
         Instance du projet courant
          */
 
-        CallGraph graph = new CallGraph("/home/e20180003955/Bureau/evolution_logiciels/TP2/tp2");
+        CallGraph graph = new CallGraph("C:\\Users\\Sandratra\\Desktop\\Projet M2 UM\\evolution_logiciels\\TP2\\tp2");
 
         Couplage couplage = new Couplage(graph);
 
