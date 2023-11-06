@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import org.apache.commons.io.FileUtils;
-import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.dom.AST;
 import org.eclipse.jdt.core.dom.ASTParser;
 import org.eclipse.jdt.core.dom.CompilationUnit;
@@ -18,6 +17,7 @@ import visiteur.AttributDeclarationVisitor;
 import visiteur.ClassCountVisitor;
 import visiteur.MethodDeclarationVisitor;
 import visiteur.PackageDeclarationVisitor;
+import org.eclipse.jdt.core.JavaCore;
 public class Parser {
     // recuperer le fichier a parser
     private String projectPath;

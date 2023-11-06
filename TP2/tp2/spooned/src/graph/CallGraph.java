@@ -10,6 +10,7 @@ import visiteur.ClassCountVisitor;
 import visiteur.MethodDeclarationVisitor;
 import visiteur.MethodInvocationVisitor;
 import org.eclipse.jdt.core.dom.*;
+import scala.util.parsing.combinator.testing.Str;
 public class CallGraph {
     private Parser parser;
 
