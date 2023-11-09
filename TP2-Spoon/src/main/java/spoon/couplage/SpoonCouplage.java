@@ -63,11 +63,21 @@ public class SpoonCouplage {
     public int calculateCouplingMetric(CtClass<?> classA, CtClass<?> classB) {
         int couplingMetric = 0;
         if (classA != null && classB != null) {
+//            for (CtMethod<?> methodA : classA.getMethods()) {
+//                for (CtMethod<?> methodB : classB.getMethods()) {
+//                    if (methodA.getBody() != null && methodA.getBody().toString().contains(methodB.getSimpleName())) {
+//                        couplingMetric++;
+//                    }
+//                }
+//            }
             for (CtMethod<?> methodA : classA.getMethods()) {
-                for (CtMethod<?> methodB : classB.getMethods()) {
-                    if (methodA.getBody() != null && methodA.getBody().toString().contains(methodB.getSimpleName())) {
+                // Parcourez les appels de méthodes dans methodA
+                for (CtMethod<?> methodCall : methodA.getElements(new TypeFilter<CtMethod<?>>(CtMethod.class))) {
+                    if (methodCall.getDeclaringType().equals(classB)) {
+                        System.out.println("met"+ methodCall.getDeclaringType());
                         couplingMetric++;
                     }
+                    couplingMetric++;
                 }
             }
         }
@@ -135,6 +145,12 @@ public class SpoonCouplage {
         for (Map.Entry<Pair<String, String>, Double> entry : getWeightedGraph().entrySet()) {
             sb.append("\t\t").append(entry.getKey().getFirst()).append("-").append(entry.getKey().getSecond()).append(" -> ").append(entry.getValue()).append("\n");
         }
+
+        double somme=couplage.values().stream()
+                .mapToDouble(Double::doubleValue)
+                .sum();
+
+        sb.append("somme total des couple : "+somme);
         sb.append("}");
 
         return sb.toString();
