@@ -1,38 +1,32 @@
 package spoon.couplage;
 
+
 import graph.Pair;
-import spoon.Launcher;
-import spoon.reflect.CtModel;
-import spoon.reflect.declaration.CtClass;
-import spoon.reflect.declaration.CtMethod;
-import spoon.reflect.visitor.filter.TypeFilter;
+
 import java.util.*;
 
 public class ClusteringHierarchique {
 
-    private Set<Cluster> dendrogramme = new LinkedHashSet<>();
     private Map<Pair<String, String>, Double> weightedGraph;
 
-    public ClusteringHierarchique(CtModel model,Map<Pair<String,String> ,Double> weightedGraph) {
-        this.dendrogramme = clusteringHierarchique(model);
+    private Set<Cluster> dendrogramme = new LinkedHashSet<>();
+
+    /**
+     * Constructeur de la classe ClusteringHierarchique.
+     *
+     * @param weightedGraph Le graphe pondéré de l'application.
+     */
+    public ClusteringHierarchique(Map<Pair<String, String>, Double> weightedGraph) {
         this.weightedGraph = weightedGraph;
+        this.dendrogramme = clusteringHierarchique();
     }
 
-    private Set<Cluster> clusteringHierarchique(CtModel model) {
-        Set<Cluster> dendro = new LinkedHashSet<>();
-        Set<Cluster> clusters = new HashSet<>();
-
-        for (CtClass<?> ctClass : model.getElements(new TypeFilter<>(CtClass.class))) {
-            addClusterIfNotExists(clusters, ctClass.getQualifiedName());
-        }
-
-        dendro.addAll(clusters);
-
-        // Le reste de votre implémentation pour le clustering hiérarchique ici
-
-        return dendro;
-    }
-
+    /**
+     * Ajoute un cluster s'il n'existe pas déjà.
+     *
+     * @param clusters Ensemble de clusters existants.
+     * @param vertex Le sommet pour vérifier / ajouter.
+     */
     private void addClusterIfNotExists(Set<Cluster> clusters, String vertex) {
         for (Cluster existingCluster : clusters) {
             if (existingCluster.getClasses().contains(vertex)) {
@@ -74,6 +68,46 @@ public class ClusteringHierarchique {
      *
      * @return Un ensemble représentant la dendrogramme de clusters.
      */
+    private Set<Cluster> clusteringHierarchique() {
+        Set<Cluster> dendro = new LinkedHashSet<>();
+        Set<Cluster> clusters = new HashSet<>();
+
+        // Initialisez les clusters individuels
+        for (Pair<String, String> edge : weightedGraph.keySet()) {
+            addClusterIfNotExists(clusters, edge.getFirst());
+            addClusterIfNotExists(clusters, edge.getSecond());
+        }
+
+        dendro.addAll(clusters);
+
+        while (clusters.size() > 1) {
+            double couplageMax = -1;
+            Cluster clusterMax1 = null;
+            Cluster clusterMax2 = null;
+
+            List<Cluster> clusterList = new ArrayList<>(clusters);
+
+            for (int i = 0; i < clusterList.size() - 1; i++) {
+                for (int j = i + 1; j < clusterList.size(); j++) {
+                    double currentCouplage = couplageBtwClusters(clusterList.get(i), clusterList.get(j));
+                    if (currentCouplage > couplageMax) {
+                        couplageMax = currentCouplage;
+                        clusterMax1 = clusterList.get(i);
+                        clusterMax2 = clusterList.get(j);
+                    }
+                }
+            }
+
+            Cluster clusterMax = new Cluster(clusterMax1, clusterMax2);
+            clusters.remove(clusterMax1);
+            clusters.remove(clusterMax2);
+            clusters.add(clusterMax);
+            dendro.add(clusterMax);
+        }
+
+        return dendro;
+    }
+
     public Set<Cluster> getDendrogramme(){
         return dendrogramme;
     }
@@ -99,8 +133,4 @@ public class ClusteringHierarchique {
         builder.append("}");
         return builder.toString();
     }
-
-
-
-    // Reste du code inchangé
 }

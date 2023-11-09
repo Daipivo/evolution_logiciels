@@ -3,6 +3,7 @@ package spoon.main;
 import graph.Pair;
 import spoon.couplage.ClusteringHierarchique;
 import spoon.couplage.DisplayWeightedGraph;
+import spoon.couplage.ModuleIdentifier;
 import spoon.couplage.SpoonCouplage;
 import spoon.parser.SpoonParser;
 import spoon.reflect.CtModel;
@@ -60,8 +61,11 @@ public class SpoonMain {
         weightedGraphExempleRapport.put(new Pair<>("ClassB", "ClassC"), 2.0/totalRelations);
         weightedGraphExempleRapport.put(new Pair<>("ClassC", "ClassC"), 1.0/totalRelations);
 
-        ClusteringHierarchique clusteringExempleRapport = new ClusteringHierarchique(model,weightedGraphExempleRapport);
+        ClusteringHierarchique clusteringExempleRapport = new ClusteringHierarchique(weightedGraphExempleRapport);
         System.out.println(clusteringExempleRapport);
+
+        ModuleIdentifier moduleIdentifier = new ModuleIdentifier(clusteringExempleRapport, weightedGraphExempleRapport, 0.2, 3);
+        System.out.println(moduleIdentifier);
 
 
     }
