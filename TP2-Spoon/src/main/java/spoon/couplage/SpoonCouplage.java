@@ -2,6 +2,7 @@ package spoon.couplage;
 
 import graph.Pair;
 import spoon.reflect.CtModel;
+import spoon.reflect.code.CtInvocation;
 import spoon.reflect.declaration.CtClass;
 import spoon.reflect.declaration.CtMethod;
 import spoon.reflect.visitor.filter.TypeFilter;
@@ -63,21 +64,19 @@ public class SpoonCouplage {
     public int calculateCouplingMetric(CtClass<?> classA, CtClass<?> classB) {
         int couplingMetric = 0;
         if (classA != null && classB != null) {
-//            for (CtMethod<?> methodA : classA.getMethods()) {
-//                for (CtMethod<?> methodB : classB.getMethods()) {
-//                    if (methodA.getBody() != null && methodA.getBody().toString().contains(methodB.getSimpleName())) {
-//                        couplingMetric++;
-//                    }
-//                }
-//            }
             for (CtMethod<?> methodA : classA.getMethods()) {
-                // Parcourez les appels de méthodes dans methodA
-                for (CtMethod<?> methodCall : methodA.getElements(new TypeFilter<CtMethod<?>>(CtMethod.class))) {
-                    if (methodCall.getDeclaringType().equals(classB)) {
-                        System.out.println("met"+ methodCall.getDeclaringType());
-                        couplingMetric++;
+                for (CtMethod<?> methodB : classB.getMethods()) {
+                    if (methodA.getBody() != null) {
+                        // Rechercher des invocations de méthode qui impliquent classB
+                        List<CtInvocation<?>> invocations = methodA.getBody().getElements(new TypeFilter<>(CtInvocation.class));
+                        for (CtInvocation<?> invocation : invocations) {
+                            // Vérifier si l'invocation est une méthode de classB
+                            if (invocation.getExecutable().getDeclaringType().equals(classB.getReference()) &&
+                                    invocation.getExecutable().getSimpleName().equals(methodB.getSimpleName())) {
+                                couplingMetric++;
+                            }
+                        }
                     }
-                    couplingMetric++;
                 }
             }
         }
@@ -116,12 +115,12 @@ public class SpoonCouplage {
                 if (classA != classB) {
                     Pair<String, String> pairAB = new Pair<>(classA.getQualifiedName(), classB.getQualifiedName());
                     Pair<String, String> pairBA = new Pair<>(classB.getQualifiedName(), classA.getQualifiedName());
-
                     // Vérifiez si l'entrée existe déjà pour A vers B
                     if (!results.containsKey(pairAB)) {
                         double newMetric = calculateCouplingMetric(classA, classB);
                         setTotalCoupling(getTotalCoupling()+newMetric);
                         if (existeInversePair(pairAB,listeDePairs)) {
+                            System.out.println("misy"+results.get(pairBA));
                             double existingMetric = results.get(pairBA);
                             results.put(pairBA, existingMetric + (double) newMetric);
                         } else {
