@@ -16,7 +16,7 @@ import java.util.Map;
 public class SpoonMain {
     public static void main(String[] args) {
         // Remplacez le chemin du projet par le chemin réel de votre projet
-        String projectPath = "/home/e20220012486/M2/Projet/evolution_logiciels/TP2/tp2/";
+        String projectPath = "/home/e20220012486/Semestre1/ingenierie Logiciel/EauDuBidons/";
 
         // Créez une instance de votre SpoonParser en passant le chemin du projet
         SpoonParser spoonParser = new SpoonParser(projectPath);
@@ -34,19 +34,6 @@ public class SpoonMain {
         SpoonCouplage cpl=new SpoonCouplage(model);
         List<String> classes=cpl.getStringClasses();
 
-//        // Calculez le métrique de couplage entre toutes les classes de l'application
-//        Map<Pair<String, String>, Double> couplingResults = cpl.calculateCouplingMetricsForAllClasses();
-//
-//        // Affichez les résultats
-//        for (Map.Entry<Pair<String, String>, Double> entry : couplingResults.entrySet()) {
-//            Pair<String, String> classPair = entry.getKey();
-//            double couplingMetric = entry.getValue();
-//
-//            String classA = classPair.getFirst();
-//            String classB = classPair.getSecond();
-//
-//            System.out.println("Couplage entre " + classA + " et " + classB + ": " + couplingMetric);
-//        }
         // Affichez les détails de l'objet SpoonCouplage en utilisant la méthode toString
         System.out.println(cpl.toString());
         // Affichage du graphe de couplage

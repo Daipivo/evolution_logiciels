@@ -7,7 +7,7 @@ public class MainGraph {
 
     public static void main(String[] args) throws IOException, InterruptedException {
         // Projet à tester
-        CallGraph graph = new CallGraph("C:\\Users\\Sandratra\\Desktop\\Projet M2 UM\\evolution_logiciels\\TP2\\tp2");
+        CallGraph graph = new CallGraph("home/e20220012486/Semestre1/ingenierie Logiciel/EauDuBidons/");
 
         // Lancement du graph
         graph.start();
