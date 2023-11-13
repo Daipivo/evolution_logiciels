@@ -1,0 +1,17 @@
+spoon\couplage\ClusteringHierarchique.class
+spoon\parser\SpoonParser.class
+spoon\processor\SpoonProcessor.class
+Abstract\AbstractProcessor.class
+Abstract\Processor.class
+spoon\couplage\SpoonCouplage.class
+spoon\couplage\MainTest.class
+Abstract\Parsers.class
+Abstract\AbstractParser.class
+spoon\main\SpoonMain.class
+spoon\couplage\DisplayWeightedGraph.class
+org\example\Main.class
+spoon\couplage\DisplayWeightedGraph$1.class
+graph\Pair.class
+spoon\couplage\ModuleIdentifier.class
+spoon\couplage\Cluster.class
+spoon\filter\CallFilter.class
