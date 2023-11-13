@@ -1,23 +1,14 @@
 package spoon.couplage;
 
-import graph.Pair;
+import org.graphstream.algorithm.Toolkit;
 import org.graphstream.graph.Edge;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;
 import org.graphstream.graph.implementations.SingleGraph;
-import org.graphstream.ui.view.Viewer;
-import org.graphstream.ui.view.ViewerListener;
-import org.graphstream.ui.view.ViewerPipe;
-
-import java.util.HashMap;
-import java.util.Map;
-
-import org.graphstream.algorithm.Toolkit;
-import org.graphstream.graph.*;
-import org.graphstream.graph.implementations.*;
+import org.graphstream.ui.swingViewer.DefaultView;
 import org.graphstream.ui.swingViewer.ViewPanel;
 import org.graphstream.ui.view.Viewer;
-import org.graphstream.ui.swingViewer.DefaultView;
+import org.graphstream.ui.j2dviewer.J2DGraphRenderer;
 
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
@@ -103,4 +94,6 @@ public class DisplayWeightedGraph {
                     "   text-offset: 10px, 10px;" +  // Décale le texte de
                     "   text-size: 16px;" +   // Augmente la taille du texte pour les noms de classes
                     "}";
+
+
 }

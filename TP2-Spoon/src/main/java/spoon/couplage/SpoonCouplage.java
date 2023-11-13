@@ -83,13 +83,23 @@ public class SpoonCouplage {
         return couplingMetric;
     }
 
-    public boolean existeInversePair(Pair<String, String> pairToFind, List<Pair<String, String>> listeDePairs) {
+    public boolean existePair(Pair<String, String> pairToFind, List<Pair<String, String>> listeDePairs) {
         for (Pair<String, String> pair : listeDePairs) {
-            if (pair.getFirst().equals(pairToFind.getSecond()) && pair.getFirst().equals(pairToFind.getSecond())) {
+            if (pair.getFirst().equals(pairToFind.getFirst()) && pair.getSecond().equals(pairToFind.getSecond())) {
                 return true;
             }
         }
         return false;
+    }
+
+
+    public Pair<String, String> getCurrentPair(Pair<String, String> pairToFind, List<Pair<String, String>> listeDePairs) {
+        for (Pair<String, String> pair : listeDePairs) {
+            if (pair.getFirst().equals(pairToFind.getSecond()) && pair.getFirst().equals(pairToFind.getSecond())) {
+                return pair;
+            }
+        }
+        return null;
     }
 
     public Map<Pair<String, String>, Double> calculateCouplingMetric(Map<Pair<String, String>, Double> relations) {
@@ -111,27 +121,26 @@ public class SpoonCouplage {
 
         for (CtClass<?> classA : classes) {
             for (CtClass<?> classB : classes) {
-
-                if (classA != classB) {
                     Pair<String, String> pairAB = new Pair<>(classA.getQualifiedName(), classB.getQualifiedName());
                     Pair<String, String> pairBA = new Pair<>(classB.getQualifiedName(), classA.getQualifiedName());
                     // Vérifiez si l'entrée existe déjà pour A vers B
-                    if (!results.containsKey(pairAB)) {
+                    if (!existePair(pairAB,listeDePairs)) {
                         double newMetric = calculateCouplingMetric(classA, classB);
                         setTotalCoupling(getTotalCoupling()+newMetric);
-                        if (existeInversePair(pairAB,listeDePairs)) {
-                            System.out.println("misy"+results.get(pairBA));
+                        if (existePair(pairBA,listeDePairs)) {
+//                            System.out.println("paire :" +pairAB.getFirst() +" -" +pairAB.getSecond() +" : "+ results.get(pairBA));
                             double existingMetric = results.get(pairBA);
                             results.put(pairBA, existingMetric + (double) newMetric);
                         } else {
                             results.put(pairAB, (double) newMetric);
                         }
                         listeDePairs.add(pairAB);
-                    }
                 }
             }
         }
-
+        results.forEach((key, value) -> {
+            System.out.println("Clé : " + key.getFirst()+" - " +key.getSecond()+ ", Valeur : " + value);
+        });
         return results;
     }
 

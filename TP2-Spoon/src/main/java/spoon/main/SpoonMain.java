@@ -16,7 +16,7 @@ import java.util.Map;
 public class SpoonMain {
     public static void main(String[] args) {
         // Remplacez le chemin du projet par le chemin réel de votre projet
-        String projectPath = "/home/e20220012486/Semestre1/ingenierie Logiciel/EauDuBidons";
+        String projectPath = "C:\\Users\\Sandratra\\Desktop\\Projet M1 UM\\HAI712I - Ingénierie Logicielle\\TP4-EauDuBidon";
 
         // Créez une instance de votre SpoonParser en passant le chemin du projet
         SpoonParser spoonParser = new SpoonParser(projectPath);
