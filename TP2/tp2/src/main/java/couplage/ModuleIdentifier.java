@@ -74,7 +74,7 @@ public class ModuleIdentifier {
     public String toString() {
         StringBuilder builder = new StringBuilder();
 
-        builder.append("Modules identifiés basés sur le dendrogramme, CP : " + this.CP + " et M : " + this.M +"\n");
+        builder.append(String.format("Modules identifiés basés sur le dendrogramme, CP : %.2f et M : %.2f\n", this.CP, this.M));
 
         int moduleCounter = 1;
         for (Set<String> module : moduleIdentfiers) {
