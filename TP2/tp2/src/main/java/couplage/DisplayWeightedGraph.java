@@ -25,7 +25,8 @@ import java.awt.event.MouseWheelListener;
 public class DisplayWeightedGraph {
 
     private Graph graph;
-    private Couplage couplage;
+    private Map<Pair<String, String>, Double> graphW;
+
     public DisplayWeightedGraph(Couplage couplage) {
         System.setProperty("org.graphstream.ui.renderer", "org.graphstream.ui.j2dviewer.J2DGraphRenderer");
         graph = new SingleGraph("Weighted Graph");
@@ -34,13 +35,23 @@ public class DisplayWeightedGraph {
         graph.setStrict(false);
         graph.addAttribute("ui.quality");
         graph.addAttribute("ui.antialias");
-        this.couplage = couplage;
+        this.graphW = couplage.getWeightedGraph();
     }
+    public DisplayWeightedGraph(Map<Pair<String, String>, Double> graphW) {
+        System.setProperty("org.graphstream.ui.renderer", "org.graphstream.ui.j2dviewer.J2DGraphRenderer");
+        graph = new SingleGraph("Weighted Graph");
+        graph.addAttribute("ui.stylesheet", styleSheet);
+        graph.setAutoCreate(true);
+        graph.setStrict(false);
+        graph.addAttribute("ui.quality");
+        graph.addAttribute("ui.antialias");
+        this.graphW = graphW;
+    }
+
 
     public void displayGraph() {
 
-
-        couplage.getWeightedGraph().forEach((pair, weight) -> {
+        graphW.forEach((pair, weight) -> {
                 String class1 = pair.getFirst();
                 String class2 = pair.getSecond();
 
