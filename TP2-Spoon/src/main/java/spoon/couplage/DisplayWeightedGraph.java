@@ -1,5 +1,6 @@
 package spoon.couplage;
 
+import graph.Pair;
 import org.graphstream.algorithm.Toolkit;
 import org.graphstream.graph.Edge;
 import org.graphstream.graph.Graph;
@@ -12,11 +13,13 @@ import org.graphstream.ui.j2dviewer.J2DGraphRenderer;
 
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
+import java.util.Map;
 
 public class DisplayWeightedGraph {
 
     private Graph graph;
     private SpoonCouplage couplage;
+    Map<Pair<String, String>, Double> weightedGraph;
     public DisplayWeightedGraph(SpoonCouplage couplage) {
         System.setProperty("org.graphstream.ui.renderer", "org.graphstream.ui.j2dviewer.J2DGraphRenderer");
         graph = new SingleGraph("Weighted Graph");
@@ -26,12 +29,24 @@ public class DisplayWeightedGraph {
         graph.addAttribute("ui.quality");
         graph.addAttribute("ui.antialias");
         this.couplage = couplage;
+        this.weightedGraph=couplage.getWeightedGraph();
     }
 
+    public DisplayWeightedGraph(Map<Pair<String, String>, Double> weightedGraph){
+        System.setProperty("org.graphstream.ui.renderer", "org.graphstream.ui.j2dviewer.J2DGraphRenderer");
+        graph = new SingleGraph("Weighted Graph");
+        graph.addAttribute("ui.stylesheet", styleSheet);
+        graph.setAutoCreate(true);
+        graph.setStrict(false);
+        graph.addAttribute("ui.quality");
+        graph.addAttribute("ui.antialias");
+        this.weightedGraph = weightedGraph;
+    }
+
+
+
     public void displayGraph() {
-
-
-        couplage.getWeightedGraph().forEach((pair, weight) -> {
+        weightedGraph.forEach((pair, weight) -> {
             String class1 = pair.getFirst();
             String class2 = pair.getSecond();
 

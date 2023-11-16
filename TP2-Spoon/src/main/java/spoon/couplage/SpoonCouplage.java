@@ -138,9 +138,6 @@ public class SpoonCouplage {
                 }
             }
         }
-        results.forEach((key, value) -> {
-            System.out.println("Clé : " + key.getFirst()+" - " +key.getSecond()+ ", Valeur : " + value);
-        });
         return results;
     }
 

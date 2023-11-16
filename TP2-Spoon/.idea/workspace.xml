@@ -5,12 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e3102826-819d-445a-9e2a-0ce82010ccbf" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../TP2/tp2/src/main/java/couplage/ClusteringHierarchique.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2/tp2/src/main/java/couplage/ClusteringHierarchique.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TP2/tp2/src/main/java/couplage/Couplage.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2/tp2/src/main/java/couplage/Couplage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TP2/tp2/src/main/java/couplage/MainCouplage.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2/tp2/src/main/java/couplage/MainCouplage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TP2/tp2/target/maven-archiver/pom.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TP2/tp2/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TP2/tp2/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TP1/tp1.ast/target/classes/org/example/graph/styleSheet.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TP2/tp2/target/classes/graph/styleSheet.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/spoon/couplage/DisplayWeightedGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/spoon/couplage/DisplayWeightedGraph.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/spoon/couplage/SpoonCouplage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/spoon/couplage/SpoonCouplage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TP2/tp2/src/main/java/cli/MainCLI.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TP2/tp2/src/main/java/cli/MainCLI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,6 +22,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -45,10 +47,24 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "dart.analysis.tool.window.visible": "false",
+    "git-widget-placeholder": "main",
     "show.migrate.to.gradle.popup": "false"
   }
 }]]></component>
-  <component name="RunManager" selected="Application.SpoonMain">
+  <component name="RunManager" selected="Application.MainCLI">
+    <configuration name="MainCLI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="spoon.cli.MainCLI" />
+      <module name="TP2-Spoon" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="spoon.cli.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="MainTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="spoon.couplage.MainTest" />
       <module name="TP2-Spoon" />
@@ -77,6 +93,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.MainCLI" />
         <item itemvalue="Application.SpoonMain" />
         <item itemvalue="Application.MainTest" />
       </list>
