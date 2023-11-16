@@ -18,21 +18,23 @@
             continuer = true;
             isInstance = false;
 
-            System.out.println("Choisissez une option :");
-            System.out.println("1 - Entrez le path du projet");
-            System.out.println("2 - Choisir une instance");
+            while(continuer) {
+                System.out.println("Choisissez une option :");
+                System.out.println("1 - Entrez le path du projet");
+                System.out.println("2 - Choisir une instance");
 
-            int choix = scanner.nextInt();
+                int choix = scanner.nextInt();
 
-            switch (choix) {
-                case 1:
-                    handleProjectPathInput(scanner);
-                    break;
-                case 2:
-                    handleInstanceSelection(scanner);
-                    break;
-                default:
-                    System.out.println("Option non valide. Veuillez choisir 1 ou 2.");
+                switch (choix) {
+                    case 1:
+                        handleProjectPathInput(scanner);
+                        break;
+                    case 2:
+                        handleInstanceSelection(scanner);
+                        break;
+                    default:
+                        System.out.println("Option non valide. Veuillez choisir 1 ou 2.");
+                }
             }
         }
 
@@ -69,6 +71,7 @@
 
                 switch (choix) {
                     case 0:
+                        continuer = false;
                         return;
                     case 1:
                         if (isInstance) {
