@@ -3,6 +3,7 @@
     import couplage.Instance;
     import facade.Facade;
 
+    import java.io.File;
     import java.util.Scanner;
 
     public class MainCLI {
@@ -39,8 +40,25 @@
         }
 
         private static void handleProjectPathInput(Scanner scanner) {
-            System.out.println("Entrez le chemin du projet (ex : /home/name/Bureau/projet) : ");
-            String path = scanner.next();
+            String path;
+            boolean validPath = false;
+            scanner.nextLine();
+            do {
+                System.out.println("Entrez le chemin du projet (ex : /home/name/Bureau/projet) : ");
+                // Consommer le reste de la ligne après la lecture d'un entier1
+                path = scanner.nextLine(); // Utilisation de nextLine() pour lire toute la ligne
+
+                // Vérifier si le chemin contient un dossier "src"
+                File srcFolder = new File(path + File.separator + "src");
+                validPath = srcFolder.exists() && srcFolder.isDirectory();
+
+                if (!validPath) {
+                    System.out.println("Chemin non valide. Veuillez vérifier et réessayer.");
+                }
+
+            } while (!validPath);
+
+            // Le chemin est valide, afficher les options
             displayOptions(path);
         }
         private static void handleInstanceSelection(Scanner scanner) {
