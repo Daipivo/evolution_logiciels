@@ -1,0 +1,15 @@
+digraph G { 
+	rankdir=BT;
+0 [shape=record,style=filled,label="{0 (I: 5, E: 1)||ListeChainee\n}"];
+1 [shape=record,style=filled,label="{1 (I: 4, E: 1)|staticLT()\n|ListeTableau\n}"];
+2 [shape=record,style=filled,label="{2 (I: 5, E: 1)|comparator()\n|QueueAvecPriorite\n}"];
+3 [shape=record,style=filled,label="{3 (I: 4, E: 3)|peek()\npoll()\n|QueueDoubleEntree\n}"];
+4 [shape=record,style=filled,fillcolor=lightblue,label="{4 (I: 3, E: 2)|get(int i)\n|}"];
+5 [shape=record,style=filled,fillcolor=lightblue,label="{5 (I: 2, E: 4)|add(Object o)\nisEmpty()\n|}"];
+	0 -> 3
+	0 -> 4
+	1 -> 4
+	2 -> 3
+	3 -> 5
+	4 -> 5
+}

@@ -1,0 +1,5 @@
+;add(Object o);isEmpty();get(int i);peek();poll()
+ListeChainee;1;1;1;1;1
+ListeTableau;1;1;1;0;0
+QueueAvecPriorite;1;1;0;1;1
+QueueDoubleEntree;1;1;0;1;1
