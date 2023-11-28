@@ -8,11 +8,14 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import  org.slf4j.Logger;
+import  org.slf4j.LoggerFactory;
 
 @RestController
 @RequestMapping("/api/products")
 public class ProductController {
 
+    Logger logger=LoggerFactory.getLogger(ProductController.class);
     private final IProductRepository productRepository;
 
     public ProductController(IProductRepository productRepository) {
@@ -20,6 +23,7 @@ public class ProductController {
     }
     @GetMapping
     public ResponseEntity<List<Product>> getAllProducts() {
+        logger.info("READ");
         List<Product> productList = productRepository.findAll();
         return new ResponseEntity<>(productList, HttpStatus.OK);
     }
@@ -34,12 +38,8 @@ public class ProductController {
 
     @PostMapping
     public ResponseEntity<Product> addProduct(@RequestBody Product product) {
-        String productId = product.getId();
-        if (productRepository.existsById(productId)) {
-            throw new RuntimeException("Product with ID " + productId + " already exists.");
-        }
-
         Product createdProduct = productRepository.save(product);
+        logger.info("Product added with ID: {}", createdProduct.getId());
         return new ResponseEntity<>(createdProduct, HttpStatus.CREATED);
     }
 
