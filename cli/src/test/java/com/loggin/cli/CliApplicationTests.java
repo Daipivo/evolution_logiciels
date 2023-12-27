@@ -1,10 +1,10 @@
-package com.example.tp3;
+package com.loggin.cli;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class Tp3ApplicationTests {
+class CliApplicationTests {
 
 	@Test
 	void contextLoads() {

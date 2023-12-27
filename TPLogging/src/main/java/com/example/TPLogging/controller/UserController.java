@@ -34,4 +34,10 @@ public class UserController {
         return user.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
+    @PostMapping("/find")
+    public ResponseEntity<User> findUserByEmailAndPassword(@RequestBody User user) {
+        Optional<User> foundUser = userRepository.findByEmailAndPassword(user.getEmail(), user.getPassword());
+        return foundUser.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
+                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
 }
